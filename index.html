@@ -176,12 +176,20 @@
       letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 8px;
+      margin-bottom: 4px;
+    }
+
+    .slogan {
+      font-size: 0.95rem;
+      color: var(--text);
+      opacity: 0.9;
+      margin-bottom: 12px;
+      font-style: italic;
     }
 
     h1 {
       font-size: clamp(2rem, 2.7vw, 2.4rem);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       font-weight: 700;
       background: linear-gradient(90deg, var(--blue1), var(--blue2));
       -webkit-background-clip: text;
@@ -189,19 +197,20 @@
       color: transparent;
     }
 
-    .slogan {
-      font-size: 0.95rem;
-      color: var(--text);
-      opacity: 0.9;
-      margin-bottom: 16px;
-    }
-
     #subtitle {
       font-size: 0.98rem;
       color: var(--muted);
       line-height: 1.6;
       max-width: 520px;
-      margin: 0 auto 24px;
+      margin: 0 auto 18px;
+    }
+
+    .spoiler {
+      font-size: 0.85rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 26px;
+      line-height: 1.5;
     }
 
     /* BUTTONS -------------------------------------------------------------- */
@@ -276,7 +285,8 @@
         width: 190px;
       }
 
-      #subtitle {
+      #subtitle,
+      .spoiler {
         font-size: 0.9rem;
       }
     }
@@ -294,30 +304,36 @@
     <img src="logo-apl-branco.png" alt="APL Consulting" class="logo" />
 
     <div class="tagline" id="tagline">
-      SYSTÈMES DIGITAUX & AUTOMATISATION
+      SISTEMAS DIGITAIS & AUTOMAÇÃO
     </div>
-
-    <h1 id="title">Bientôt disponible</h1>
 
     <div class="slogan" id="slogan">
       Eficientemente movemos o mundo.
     </div>
 
+    <h1 id="title">Brevemente disponível</h1>
+
     <p id="subtitle">
-      Notre nouvelle plateforme digitale APL Consulting est en construction.<br />
-      Optimisée pour la gestion, l’efficacité et l’automatisation.
+      A nossa nova plataforma digital APL Consulting está em construção.<br />
+      Otimizada para gestão, eficiência e automatização.
     </p>
+
+    <div class="spoiler" id="spoiler">
+      Desenvolvemos e gerimos sistemas digitais para negócios exigentes,
+      automatizamos fluxos logísticos e operacionais e ligamos software,
+      máquinas e motores para que tudo trabalhe em conjunto.
+    </div>
 
     <a
       id="contactBtn"
       class="primary-btn"
-      href="mailto:contact@apl-consulting.com?subject=Contact%20APL%20Consulting"
+      href="mailto:contact@apl-consulting.com?subject=Contacto%20APL%20Consulting"
     >
-      Contactez-nous
+      Contacte-nos
     </a>
 
     <div class="lang-switch">
-      <button class="lang-btn active" id="btn-pt" onclick="setLang('pt')">
+      <button class="lang-btn" id="btn-pt" onclick="setLang('pt')">
         PT
       </button>
       <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">
@@ -329,8 +345,8 @@
     </div>
 
     <div class="footnote" id="footnote">
-      Première version publique prévue pour 2026. Conçue sur des projets réels,
-      pas sur des maquettes.
+      Primeira versão pública prevista para 2026. Criada a partir de projetos
+      reais, não de maquetes.
     </div>
   </main>
 
@@ -343,6 +359,8 @@
         slogan: "Eficientemente movemos o mundo.",
         subtitle:
           "A nossa nova plataforma digital APL Consulting está em construção.<br>Otimizada para gestão, eficiência e automatização.",
+        spoiler:
+          "Desenvolvemos e gerimos sistemas digitais para negócios exigentes, automatizamos fluxos logísticos e operacionais e ligamos software, máquinas e motores para que tudo trabalhe em conjunto.",
         contactLabel: "Contacte-nos",
         subject: "Contacto APL Consulting",
         footnote:
@@ -355,6 +373,8 @@
         slogan: "Nous faisons bouger le monde avec efficacité.",
         subtitle:
           "Notre nouvelle plateforme digitale APL Consulting est en construction.<br>Optimisée pour la gestion, l’efficacité et l’automatisation.",
+        spoiler:
+          "Nous concevons et pilotons des systèmes digitaux pour des entreprises exigeantes, nous automatisons les flux logistiques et opérationnels et nous faisons dialoguer logiciels, machines et moteurs pour que tout fonctionne ensemble.",
         contactLabel: "Contactez-nous",
         subject: "Contact APL Consulting",
         footnote:
@@ -367,6 +387,8 @@
         slogan: "Efficiently moving the world.",
         subtitle:
           "Our new APL Consulting digital platform is under development.<br>Optimised for management, efficiency and automation.",
+        spoiler:
+          "We design and operate digital systems for demanding businesses, automate logistics and operational flows, and connect software, machines and engines so everything works together.",
         contactLabel: "Contact us",
         subject: "Contact APL Consulting",
         footnote:
@@ -378,11 +400,11 @@
       const t = translations[lang] || translations.en;
 
       document.documentElement.lang = t.htmlLang;
-
       document.getElementById("tagline").textContent = t.tagline;
       document.getElementById("title").textContent = t.title;
       document.getElementById("slogan").textContent = t.slogan;
       document.getElementById("subtitle").innerHTML = t.subtitle;
+      document.getElementById("spoiler").innerHTML = t.spoiler;
       document.getElementById("footnote").textContent = t.footnote;
 
       const btn = document.getElementById("contactBtn");
@@ -391,10 +413,16 @@
         "mailto:contact@apl-consulting.com?subject=" +
         encodeURIComponent(t.subject);
 
-      // activar botão certo
-      document.getElementById("btn-pt").classList.toggle("active", lang === "pt");
-      document.getElementById("btn-fr").classList.toggle("active", lang === "fr");
-      document.getElementById("btn-en").classList.toggle("active", lang === "en");
+      // atualizar estado dos botões
+      document
+        .getElementById("btn-pt")
+        .classList.toggle("active", lang === "pt");
+      document
+        .getElementById("btn-fr")
+        .classList.toggle("active", lang === "fr");
+      document
+        .getElementById("btn-en")
+        .classList.toggle("active", lang === "en");
     }
 
     function detectInitialLang() {
