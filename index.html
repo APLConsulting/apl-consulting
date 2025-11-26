@@ -4,41 +4,77 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>APL Consulting</title>
+
   <style>
     :root {
       --blue1: #0078FF;
       --blue2: #00A0FF;
       --text: #E8ECF5;
       --bg: #0B0E13;
+      --glass: rgba(255, 255, 255, 0.06);
+      --border: rgba(0, 150, 255, 0.22);
     }
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
+      padding: 0;
+      background: radial-gradient(circle at top, #0d111a, #05070c);
       color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
       text-align: center;
+      overflow: hidden;
+    }
+
+    /* Animated background glow */
+    .bg-glow {
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--blue1), transparent 70%);
+      opacity: 0.12;
+      filter: blur(60px);
+      animation: pulse 12s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.2) translate(25px, -25px); }
     }
 
     .container {
-      padding: 20px;
+      padding: 35px;
+      width: 90%;
       max-width: 600px;
-      animation: fadeIn 1.2s ease-out;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+      animation: fadeIn 1s ease-out;
     }
 
     img {
-      width: 180px;
-      margin-bottom: 25px;
-      animation: float 6s ease-in-out infinite;
+      width: 200px;
+      margin-bottom: 20px;
+      animation: float 5.8s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(0, 160, 255, 0.4));
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-12px); }
+      100% { transform: translateY(0); }
     }
 
     h1 {
-      font-size: 2rem;
-      margin: 0 0 10px 0;
+      font-size: 2.2rem;
+      margin: 0 0 12px 0;
       font-weight: 700;
       background: linear-gradient(90deg, var(--blue1), var(--blue2));
       -webkit-background-clip: text;
@@ -47,54 +83,78 @@
 
     p {
       font-size: 1rem;
+      opacity: 0.88;
+      line-height: 1.5rem;
       margin-bottom: 25px;
-      opacity: 0.85;
     }
 
     .lang-switch {
-      margin-top: 30px;
       display: flex;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
+      margin-top: 15px;
     }
 
     button {
       background: transparent;
       border: 1px solid var(--blue2);
-      padding: 8px 14px;
+      padding: 8px 15px;
       border-radius: 6px;
       color: var(--text);
       cursor: pointer;
+      font-size: 0.9rem;
       transition: 0.2s;
     }
 
     button:hover {
       background: var(--blue2);
-      color: black;
+      color: #000;
+    }
+
+    .contact-btn {
+      margin-top: 20px;
+      display: inline-block;
+      background: linear-gradient(90deg, var(--blue1), var(--blue2));
+      color: #000;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 0 18px rgba(0, 140, 255, 0.45);
+      transition: 0.2s;
+    }
+
+    .contact-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 150, 255, 0.65);
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(25px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes float {
-      0%   { transform: translateY(0); }
-      50%  { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
-    }
   </style>
 </head>
+
 <body>
 
+  <div class="bg-glow"></div>
+
   <div class="container">
-    <img src="https://i.ibb.co/Mn3QP4N/apl-logo-blue.png" alt="APL Consulting Logo">
+    <!-- LOGO LOCAL -->
+    <img src="logo-apl.png" alt="APL Consulting">
 
     <h1 id="title">Bientôt disponible</h1>
+
     <p id="subtitle">
-      Notre nouvelle plateforme digitale APL Consulting est en construction.
+      Notre nouvelle plateforme digitale APL Consulting est en construction.<br>
       Optimisée pour la gestion, l’efficacité et l’automatisation.
     </p>
+
+    <a class="contact-btn" id="contactBtn" href="mailto:info@apl-consulting.com?subject=Contact APL Consulting">
+      Contactez-nous
+    </a>
 
     <div class="lang-switch">
       <button onclick="setLang('fr')">FR</button>
@@ -104,15 +164,18 @@
 
   <script>
     function setLang(lang) {
-      if (lang === 'fr') {
+      if (lang === "fr") {
         document.getElementById("title").textContent = "Bientôt disponible";
-        document.getElementById("subtitle").textContent =
-          "Notre nouvelle plateforme digitale APL Consulting est en construction. Optimisée pour la gestion, l’efficacité et l’automatisation.";
+        document.getElementById("subtitle").innerHTML =
+          "Notre nouvelle plateforme digitale APL Consulting est en construction.<br>Optimisée pour la gestion, l’efficacité et l’automatisation.";
+        document.getElementById("contactBtn").textContent = "Contactez-nous";
       }
-      if (lang === 'en') {
+
+      if (lang === "en") {
         document.getElementById("title").textContent = "Coming Soon";
-        document.getElementById("subtitle").textContent =
-          "Our new APL Consulting digital platform is under development. Optimized for management, efficiency, and automation.";
+        document.getElementById("subtitle").innerHTML =
+          "Our new APL Consulting digital platform is under development.<br>Optimized for management, efficiency, and automation.";
+        document.getElementById("contactBtn").textContent = "Contact us";
       }
     }
   </script>
