@@ -181,12 +181,19 @@
 
     h1 {
       font-size: clamp(2rem, 2.7vw, 2.4rem);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       font-weight: 700;
       background: linear-gradient(90deg, var(--blue1), var(--blue2));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+    }
+
+    .slogan {
+      font-size: 0.95rem;
+      color: var(--text);
+      opacity: 0.9;
+      margin-bottom: 16px;
     }
 
     #subtitle {
@@ -287,10 +294,14 @@
     <img src="logo-apl-branco.png" alt="APL Consulting" class="logo" />
 
     <div class="tagline" id="tagline">
-      digital systems & automation
+      SYSTÈMES DIGITAUX & AUTOMATISATION
     </div>
 
     <h1 id="title">Bientôt disponible</h1>
+
+    <div class="slogan" id="slogan">
+      Eficientemente movemos o mundo.
+    </div>
 
     <p id="subtitle">
       Notre nouvelle plateforme digitale APL Consulting est en construction.<br />
@@ -300,13 +311,16 @@
     <a
       id="contactBtn"
       class="primary-btn"
-      href="mailto:info@apl-consulting.com?subject=Contact%20APL%20Consulting"
+      href="mailto:contact@apl-consulting.com?subject=Contact%20APL%20Consulting"
     >
       Contactez-nous
     </a>
 
     <div class="lang-switch">
-      <button class="lang-btn active" id="btn-fr" onclick="setLang('fr')">
+      <button class="lang-btn active" id="btn-pt" onclick="setLang('pt')">
+        PT
+      </button>
+      <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">
         FR
       </button>
       <button class="lang-btn" id="btn-en" onclick="setLang('en')">
@@ -315,47 +329,90 @@
     </div>
 
     <div class="footnote" id="footnote">
-      Première version publique prévue pour 2026. Conçue sur des projets
-      réels, pas sur des maquettes.
+      Première version publique prévue pour 2026. Conçue sur des projets réels,
+      pas sur des maquettes.
     </div>
   </main>
 
   <script>
+    const translations = {
+      pt: {
+        htmlLang: "pt-PT",
+        tagline: "SISTEMAS DIGITAIS & AUTOMAÇÃO",
+        title: "Brevemente disponível",
+        slogan: "Eficientemente movemos o mundo.",
+        subtitle:
+          "A nossa nova plataforma digital APL Consulting está em construção.<br>Otimizada para gestão, eficiência e automatização.",
+        contactLabel: "Contacte-nos",
+        subject: "Contacto APL Consulting",
+        footnote:
+          "Primeira versão pública prevista para 2026. Criada a partir de projetos reais, não de maquetes."
+      },
+      fr: {
+        htmlLang: "fr",
+        tagline: "SYSTÈMES DIGITAUX & AUTOMATISATION",
+        title: "Bientôt disponible",
+        slogan: "Nous faisons bouger le monde avec efficacité.",
+        subtitle:
+          "Notre nouvelle plateforme digitale APL Consulting est en construction.<br>Optimisée pour la gestion, l’efficacité et l’automatisation.",
+        contactLabel: "Contactez-nous",
+        subject: "Contact APL Consulting",
+        footnote:
+          "Première version publique prévue pour 2026. Conçue sur des projets réels, pas sur des maquettes."
+      },
+      en: {
+        htmlLang: "en",
+        tagline: "DIGITAL SYSTEMS & AUTOMATION",
+        title: "Coming Soon",
+        slogan: "Efficiently moving the world.",
+        subtitle:
+          "Our new APL Consulting digital platform is under development.<br>Optimised for management, efficiency and automation.",
+        contactLabel: "Contact us",
+        subject: "Contact APL Consulting",
+        footnote:
+          "First public release planned for 2026. Built on real projects, not slide decks."
+      }
+    };
+
     function setLang(lang) {
-      const title = document.getElementById("title");
-      const subtitle = document.getElementById("subtitle");
-      const contactBtn = document.getElementById("contactBtn");
-      const tagline = document.getElementById("tagline");
-      const footnote = document.getElementById("footnote");
-      const btnFr = document.getElementById("btn-fr");
-      const btnEn = document.getElementById("btn-en");
+      const t = translations[lang] || translations.en;
 
-      if (lang === "fr") {
-        document.documentElement.lang = "fr";
-        title.textContent = "Bientôt disponible";
-        subtitle.innerHTML =
-          "Notre nouvelle plateforme digitale APL Consulting est en construction.<br>Optimisée pour la gestion, l’efficacité et l’automatisation.";
-        contactBtn.textContent = "Contactez-nous";
-        tagline.textContent = "systèmes digitaux & automatisation";
-        footnote.textContent =
-          "Première version publique prévue pour 2026. Conçue sur des projets réels, pas sur des maquettes.";
-        btnFr.classList.add("active");
-        btnEn.classList.remove("active");
-      }
+      document.documentElement.lang = t.htmlLang;
 
-      if (lang === "en") {
-        document.documentElement.lang = "en";
-        title.textContent = "Coming Soon";
-        subtitle.innerHTML =
-          "Our new APL Consulting digital platform is under development.<br>Optimised for management, efficiency and automation.";
-        contactBtn.textContent = "Contact us";
-        tagline.textContent = "digital systems & automation";
-        footnote.textContent =
-          "First public release planned for 2026. Built on real projects, not slide decks.";
-        btnEn.classList.add("active");
-        btnFr.classList.remove("active");
-      }
+      document.getElementById("tagline").textContent = t.tagline;
+      document.getElementById("title").textContent = t.title;
+      document.getElementById("slogan").textContent = t.slogan;
+      document.getElementById("subtitle").innerHTML = t.subtitle;
+      document.getElementById("footnote").textContent = t.footnote;
+
+      const btn = document.getElementById("contactBtn");
+      btn.textContent = t.contactLabel;
+      btn.href =
+        "mailto:contact@apl-consulting.com?subject=" +
+        encodeURIComponent(t.subject);
+
+      // activar botão certo
+      document.getElementById("btn-pt").classList.toggle("active", lang === "pt");
+      document.getElementById("btn-fr").classList.toggle("active", lang === "fr");
+      document.getElementById("btn-en").classList.toggle("active", lang === "en");
     }
+
+    function detectInitialLang() {
+      const nav =
+        (navigator.languages && navigator.languages[0]) ||
+        navigator.language ||
+        "";
+      const l = nav.toLowerCase();
+
+      if (l.startsWith("pt")) return "pt";
+      if (l.startsWith("fr")) return "fr";
+      return "en";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const initial = detectInitialLang();
+      setLang(initial);
+    });
   </script>
 </body>
 </html>
