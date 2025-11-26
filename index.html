@@ -293,7 +293,7 @@
       background: rgba(15, 20, 30, 0.96);
       border: 1px solid rgba(0, 150, 255, 0.35);
       box-shadow: 0 0 40px rgba(0, 150, 255, 0.35);
-      padding: 25px 30px;
+      padding: 25px 30px 22px;
       border-radius: 18px;
       width: 90%;
       max-width: 420px;
@@ -326,35 +326,23 @@
       opacity: 1;
     }
 
-    .contact-options {
-      margin-top: 18px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .modal-btn {
-      display: block;
-      background: rgba(0, 150, 255, 0.22);
-      color: white;
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: 1px solid rgba(0, 150, 255, 0.5);
-      font-size: 0.85rem;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.15s ease-out, transform 0.15s ease-out;
-    }
-
-    .modal-btn:hover {
-      background: rgba(0, 150, 255, 0.35);
-      transform: translateY(-1px);
-    }
-
     .email-display {
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: var(--text);
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+
+    .email-link {
+      color: var(--blue2);
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 500;
       word-break: break-all;
+    }
+
+    .email-hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
     }
 
     @media (max-width: 600px) {
@@ -435,42 +423,21 @@
 
       <h2 id="modalTitle">Contacte-nos</h2>
       <p id="modalText">
-        Se o seu programa de email não abriu automaticamente, escolha uma das
-        opções:
+        Se o seu programa de email não abriu automaticamente, use o endereço
+        abaixo. Clique para copiar.
       </p>
 
-      <div class="email-display">contact@apl-consulting.com</div>
-
-      <div class="contact-options">
+      <div class="email-display">
         <a
-          id="emailLink"
+          id="emailCopy"
+          class="email-link"
           href="mailto:contact@apl-consulting.com?subject=Contacto%20APL%20Consulting"
-          class="modal-btn"
         >
-          Abrir programa de email
+          contact@apl-consulting.com
         </a>
-
-        <button class="modal-btn" onclick="copyEmail()">
-          Copiar email para a área de transferência
-        </button>
-
-        <a
-          id="gmailLink"
-          class="modal-btn"
-          target="_blank"
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@apl-consulting.com&su=Contacto%20APL%20Consulting"
-        >
-          Abrir Gmail Web
-        </a>
-
-        <a
-          id="outlookLink"
-          class="modal-btn"
-          target="_blank"
-          href="https://outlook.office.com/mail/deeplink/compose?to=contact@apl-consulting.com&subject=Contacto%20APL%20Consulting"
-        >
-          Abrir Outlook Web
-        </a>
+      </div>
+      <div class="email-hint" id="emailHint">
+        Clique no endereço para o copiar para a área de transferência.
       </div>
     </div>
   </div>
@@ -492,8 +459,11 @@
           "Primeira versão pública prevista para 2026. Criada a partir de projetos reais, não de maquetes.",
         modalTitle: "Contacte-nos",
         modalText:
-          "Se o seu programa de email não abriu automaticamente, escolha uma das opções:",
-        copyText: "Copiar email para a área de transferência"
+          "Se o seu programa de email não abriu automaticamente, use o endereço abaixo. Clique para copiar.",
+        emailHint:
+          "Clique no endereço para o copiar para a área de transferência.",
+        copySuccess: "Endereço de email copiado.",
+        copyFail: "Não foi possível copiar. O email é: contact@apl-consulting.com"
       },
       fr: {
         htmlLang: "fr",
@@ -510,8 +480,12 @@
           "Première version publique prévue pour 2026. Conçue sur des projets réels, pas sur des maquettes.",
         modalTitle: "Contactez-nous",
         modalText:
-          "Si votre client de messagerie ne s’est pas ouvert automatiquement, choisissez l’une des options ci-dessous :",
-        copyText: "Copier l’adresse e-mail dans le presse-papiers"
+          "Si votre client de messagerie ne s’est pas ouvert automatiquement, utilisez l’adresse ci-dessous. Cliquez pour la copier.",
+        emailHint:
+          "Cliquez sur l’adresse pour la copier dans le presse-papiers.",
+        copySuccess: "Adresse e-mail copiée.",
+        copyFail:
+          "Impossible de copier. L’adresse est : contact@apl-consulting.com"
       },
       en: {
         htmlLang: "en",
@@ -528,8 +502,11 @@
           "First public release planned for 2026. Built on real projects, not slide decks.",
         modalTitle: "Contact us",
         modalText:
-          "If your email client did not open automatically, choose one of the options below:",
-        copyText: "Copy email address to clipboard"
+          "If your email client did not open automatically, use the address below. Click to copy.",
+        emailHint: "Click the address to copy it to your clipboard.",
+        copySuccess: "Email address copied.",
+        copyFail:
+          "Could not copy. The email address is: contact@apl-consulting.com"
       }
     };
 
@@ -550,29 +527,18 @@
       const btn = document.getElementById("contactBtn");
       btn.textContent = t.contactLabel;
 
-      // actualizar modal
+      // modal text
       document.getElementById("modalTitle").textContent = t.modalTitle;
       document.getElementById("modalText").textContent = t.modalText;
-      document.querySelector(
-        "#contactModal button.modal-btn"
-      ).textContent = t.copyText;
+      document.getElementById("emailHint").textContent = t.emailHint;
 
+      // actualizar mailto com assunto certo
       const mailto =
         "mailto:contact@apl-consulting.com?subject=" +
         encodeURIComponent(t.subject);
-      document.getElementById("emailLink").href = mailto;
-      document.getElementById(
-        "gmailLink"
-      ).href = `https://mail.google.com/mail/?view=cm&fs=1&to=contact@apl-consulting.com&su=${encodeURIComponent(
-        t.subject
-      )}`;
-      document.getElementById(
-        "outlookLink"
-      ).href = `https://outlook.office.com/mail/deeplink/compose?to=contact@apl-consulting.com&subject=${encodeURIComponent(
-        t.subject
-      )}`;
+      document.getElementById("emailCopy").href = mailto;
 
-      // estado dos botões
+      // estado dos botões de língua
       document
         .getElementById("btn-pt")
         .classList.toggle("active", lang === "pt");
@@ -605,9 +571,11 @@
       const mailto =
         "mailto:contact@apl-consulting.com?subject=" +
         encodeURIComponent(t.subject);
-      // tenta abrir o cliente de email
+
+      // tenta abrir o cliente de email configurado
       window.location.href = mailto;
-      // e abre o modal com alternativas
+
+      // mostra sempre o modal com o email visível
       openModal();
     }
 
@@ -620,36 +588,29 @@
     }
 
     function copyEmail() {
+      const t = translations[currentLang] || translations.en;
       const email = "contact@apl-consulting.com";
+
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(email).then(
-          () => {
-            alert("Endereço de email copiado.");
-          },
-          () => {
-            fallbackCopyEmail(email);
-          }
+          () => alert(t.copySuccess),
+          () => alert(t.copyFail)
         );
       } else {
-        fallbackCopyEmail(email);
+        // fallback simples
+        alert(t.copyFail);
       }
     }
 
-    function fallbackCopyEmail(text) {
-      const temp = document.createElement("textarea");
-      temp.value = text;
-      document.body.appendChild(temp);
-      temp.select();
-      try {
-        document.execCommand("copy");
-        alert("Endereço de email copiado.");
-      } catch (e) {
-        alert("Não foi possível copiar. O email é: " + text);
+    // click no endereço -> copia
+    document.addEventListener("click", (e) => {
+      if (e.target && e.target.id === "emailCopy") {
+        e.preventDefault(); // não mudar de página ao clicar
+        copyEmail();
       }
-      document.body.removeChild(temp);
-    }
+    });
 
-    // fechar modal ao clicar fora dele
+    // fechar modal ao clicar fora
     window.addEventListener("click", (e) => {
       const modal = document.getElementById("contactModal");
       if (e.target === modal) {
