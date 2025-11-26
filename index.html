@@ -1,184 +1,361 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>APL Consulting</title>
 
   <style>
     :root {
-      --blue1: #0078FF;
-      --blue2: #00A0FF;
-      --text: #E8ECF5;
-      --bg: #0B0E13;
-      --glass: rgba(255, 255, 255, 0.06);
-      --border: rgba(0, 150, 255, 0.22);
+      --blue1: #0078ff;
+      --blue2: #00a0ff;
+      --text: #e8ecf5;
+      --muted: #a7b0c7;
+      --bg: #05070c;
+      --glass: rgba(17, 22, 34, 0.92);
+      --border: rgba(0, 150, 255, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at top, #0d111a, #05070c);
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #0f1724, #05070c 55%);
       color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
-      height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
       display: flex;
-      justify-content: center;
       align-items: center;
-      text-align: center;
+      justify-content: center;
       overflow: hidden;
     }
 
-    /* Animated background glow */
-    .bg-glow {
-      position: absolute;
-      width: 650px;
-      height: 650px;
+    /* ORBS / BACKGROUND FX ------------------------------------------------- */
+
+    .orb {
+      position: fixed;
       border-radius: 50%;
-      background: radial-gradient(circle, var(--blue1), transparent 70%);
-      opacity: 0.12;
       filter: blur(60px);
-      animation: pulse 12s ease-in-out infinite alternate;
+      opacity: 0.5;
+      z-index: -2;
+      pointer-events: none;
+      transform-origin: center;
+    }
+
+    .orb--left {
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, #0f9aff, transparent 70%);
+      top: -80px;
+      left: -120px;
+      animation: orbLeft 24s ease-in-out infinite alternate;
+    }
+
+    .orb--right {
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, #00ffc3, transparent 75%);
+      bottom: -130px;
+      right: -100px;
+      animation: orbRight 30s ease-in-out infinite alternate;
+    }
+
+    @keyframes orbLeft {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      100% {
+        transform: translate3d(40px, 30px, 0) scale(1.15);
+      }
+    }
+
+    @keyframes orbRight {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1.05);
+      }
+      100% {
+        transform: translate3d(-40px, -25px, 0) scale(1.18);
+      }
+    }
+
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='noStitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.8'/%3E%3C/svg%3E");
       z-index: -1;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1) translate(0, 0); }
-      100% { transform: scale(1.2) translate(25px, -25px); }
-    }
+    /* CARD ----------------------------------------------------------------- */
 
-    .container {
-      padding: 35px;
+    .card {
       width: 90%;
-      max-width: 600px;
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      border-radius: 20px;
+      max-width: 720px;
+      padding: 34px 30px 30px;
+      background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.06),
+          rgba(255, 255, 255, 0.01)
+        ),
+        var(--glass);
+      border-radius: 26px;
       border: 1px solid var(--border);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
-      animation: fadeIn 1s ease-out;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.9);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: cardEnter 0.9s ease-out;
     }
 
-    img {
-      width: 200px;
-      margin-bottom: 20px;
-      animation: float 5.8s ease-in-out infinite;
-      filter: drop-shadow(0 0 20px rgba(0, 160, 255, 0.4));
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(
+        circle at top,
+        rgba(0, 168, 255, 0.25),
+        transparent 60%
+      );
+      opacity: 0;
+      animation: cardGlow 8s ease-in-out infinite alternate;
+      pointer-events: none;
     }
 
-    @keyframes float {
-      0%   { transform: translateY(0); }
-      50%  { transform: translateY(-12px); }
-      100% { transform: translateY(0); }
+    @keyframes cardEnter {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes cardGlow {
+      0% {
+        opacity: 0.08;
+        transform: translate3d(0, 10px, 0);
+      }
+      100% {
+        opacity: 0.25;
+        transform: translate3d(0, -8px, 0);
+      }
+    }
+
+    /* LOGO + TEXT ---------------------------------------------------------- */
+
+    .logo {
+      width: 220px;
+      margin: 4px auto 18px;
+      display: block;
+      animation: floatLogo 6s ease-in-out infinite;
+      filter: drop-shadow(0 0 14px rgba(0, 160, 255, 0.45));
+    }
+
+    @keyframes floatLogo {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
     }
 
     h1 {
-      font-size: 2.2rem;
-      margin: 0 0 12px 0;
+      font-size: clamp(2rem, 2.7vw, 2.4rem);
+      margin-bottom: 12px;
       font-weight: 700;
       background: linear-gradient(90deg, var(--blue1), var(--blue2));
       -webkit-background-clip: text;
+      background-clip: text;
       color: transparent;
     }
 
-    p {
-      font-size: 1rem;
-      opacity: 0.88;
-      line-height: 1.5rem;
-      margin-bottom: 25px;
+    #subtitle {
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto 24px;
+    }
+
+    /* BUTTONS -------------------------------------------------------------- */
+
+    .primary-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--blue1), var(--blue2));
+      color: #02050a;
+      padding: 11px 26px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: 0 0 22px rgba(0, 150, 255, 0.65);
+      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out,
+        filter 0.18s ease-out;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-1px) scale(1.03);
+      box-shadow: 0 0 28px rgba(0, 170, 255, 0.85);
+      filter: brightness(1.05);
     }
 
     .lang-switch {
+      margin-top: 22px;
       display: flex;
       justify-content: center;
-      gap: 12px;
-      margin-top: 15px;
+      gap: 10px;
     }
 
-    button {
+    .lang-btn {
       background: transparent;
-      border: 1px solid var(--blue2);
-      padding: 8px 15px;
-      border-radius: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 150, 255, 0.6);
+      padding: 7px 14px;
+      min-width: 52px;
+      font-size: 0.85rem;
       color: var(--text);
       cursor: pointer;
-      font-size: 0.9rem;
-      transition: 0.2s;
+      transition: background 0.18s ease-out, color 0.18s ease-out,
+        border-color 0.18s ease-out, transform 0.18s ease-out;
     }
 
-    button:hover {
-      background: var(--blue2);
-      color: #000;
+    .lang-btn:hover {
+      background: rgba(0, 150, 255, 0.15);
+      transform: translateY(-1px);
     }
 
-    .contact-btn {
-      margin-top: 20px;
-      display: inline-block;
-      background: linear-gradient(90deg, var(--blue1), var(--blue2));
-      color: #000;
-      padding: 10px 22px;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      box-shadow: 0 0 18px rgba(0, 140, 255, 0.45);
-      transition: 0.2s;
+    .lang-btn.active {
+      background: rgba(0, 150, 255, 0.25);
+      color: #ffffff;
+      border-color: var(--blue2);
     }
 
-    .contact-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(0, 150, 255, 0.65);
+    .footnote {
+      margin-top: 18px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      opacity: 0.8;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(25px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    /* RESPONSIVE ----------------------------------------------------------- */
 
+    @media (max-width: 600px) {
+      .card {
+        padding: 26px 20px 24px;
+        border-radius: 22px;
+      }
+
+      .logo {
+        width: 190px;
+      }
+
+      #subtitle {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <!-- Background FX -->
+  <div class="orb orb--left"></div>
+  <div class="orb orb--right"></div>
+  <div class="noise-overlay"></div>
 
-  <div class="bg-glow"></div>
+  <!-- Main card -->
+  <main class="card">
+    <img src="logo-apl-branco.png" alt="APL Consulting" class="logo" />
 
-  <div class="container">
-    <!-- LOGO LOCAL -->
-    <img src="logo-apl.png" alt="APL Consulting">
+    <div class="tagline" id="tagline">
+      digital systems & automation
+    </div>
 
     <h1 id="title">Bientôt disponible</h1>
 
     <p id="subtitle">
-      Notre nouvelle plateforme digitale APL Consulting est en construction.<br>
+      Notre nouvelle plateforme digitale APL Consulting est en construction.<br />
       Optimisée pour la gestion, l’efficacité et l’automatisation.
     </p>
 
-    <a class="contact-btn" id="contactBtn" href="mailto:info@apl-consulting.com?subject=Contact APL Consulting">
+    <a
+      id="contactBtn"
+      class="primary-btn"
+      href="mailto:info@apl-consulting.com?subject=Contact%20APL%20Consulting"
+    >
       Contactez-nous
     </a>
 
     <div class="lang-switch">
-      <button onclick="setLang('fr')">FR</button>
-      <button onclick="setLang('en')">EN</button>
+      <button class="lang-btn active" id="btn-fr" onclick="setLang('fr')">
+        FR
+      </button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">
+        EN
+      </button>
     </div>
-  </div>
+
+    <div class="footnote" id="footnote">
+      Première version publique prévue pour 2026. Conçue sur des projets
+      réels, pas sur des maquettes.
+    </div>
+  </main>
 
   <script>
     function setLang(lang) {
+      const title = document.getElementById("title");
+      const subtitle = document.getElementById("subtitle");
+      const contactBtn = document.getElementById("contactBtn");
+      const tagline = document.getElementById("tagline");
+      const footnote = document.getElementById("footnote");
+      const btnFr = document.getElementById("btn-fr");
+      const btnEn = document.getElementById("btn-en");
+
       if (lang === "fr") {
-        document.getElementById("title").textContent = "Bientôt disponible";
-        document.getElementById("subtitle").innerHTML =
+        document.documentElement.lang = "fr";
+        title.textContent = "Bientôt disponible";
+        subtitle.innerHTML =
           "Notre nouvelle plateforme digitale APL Consulting est en construction.<br>Optimisée pour la gestion, l’efficacité et l’automatisation.";
-        document.getElementById("contactBtn").textContent = "Contactez-nous";
+        contactBtn.textContent = "Contactez-nous";
+        tagline.textContent = "systèmes digitaux & automatisation";
+        footnote.textContent =
+          "Première version publique prévue pour 2026. Conçue sur des projets réels, pas sur des maquettes.";
+        btnFr.classList.add("active");
+        btnEn.classList.remove("active");
       }
 
       if (lang === "en") {
-        document.getElementById("title").textContent = "Coming Soon";
-        document.getElementById("subtitle").innerHTML =
-          "Our new APL Consulting digital platform is under development.<br>Optimized for management, efficiency, and automation.";
-        document.getElementById("contactBtn").textContent = "Contact us";
+        document.documentElement.lang = "en";
+        title.textContent = "Coming Soon";
+        subtitle.innerHTML =
+          "Our new APL Consulting digital platform is under development.<br>Optimised for management, efficiency and automation.";
+        contactBtn.textContent = "Contact us";
+        tagline.textContent = "digital systems & automation";
+        footnote.textContent =
+          "First public release planned for 2026. Built on real projects, not slide decks.";
+        btnEn.classList.add("active");
+        btnFr.classList.remove("active");
       }
     }
   </script>
-
 </body>
 </html>
