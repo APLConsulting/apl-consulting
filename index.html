@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="pt-PT">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -227,6 +227,8 @@
       box-shadow: 0 0 22px rgba(0, 150, 255, 0.65);
       transition: transform 0.18s ease-out, box-shadow 0.18s ease-out,
         filter 0.18s ease-out;
+      border: none;
+      cursor: pointer;
     }
 
     .primary-btn:hover {
@@ -273,7 +275,87 @@
       opacity: 0.8;
     }
 
-    /* RESPONSIVE ----------------------------------------------------------- */
+    /* MODAL POPUP ---------------------------------------------------------- */
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(6px);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      position: relative;
+      background: rgba(15, 20, 30, 0.96);
+      border: 1px solid rgba(0, 150, 255, 0.35);
+      box-shadow: 0 0 40px rgba(0, 150, 255, 0.35);
+      padding: 25px 30px;
+      border-radius: 18px;
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+      animation: modalEnter 0.25s ease-out;
+    }
+
+    @keyframes modalEnter {
+      from {
+        transform: scale(0.92);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .modal .close {
+      position: absolute;
+      top: 8px;
+      right: 14px;
+      font-size: 26px;
+      cursor: pointer;
+      color: #fff;
+      opacity: 0.7;
+    }
+
+    .modal .close:hover {
+      opacity: 1;
+    }
+
+    .contact-options {
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .modal-btn {
+      display: block;
+      background: rgba(0, 150, 255, 0.22);
+      color: white;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 150, 255, 0.5);
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s ease-out, transform 0.15s ease-out;
+    }
+
+    .modal-btn:hover {
+      background: rgba(0, 150, 255, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .email-display {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--text);
+      word-break: break-all;
+    }
 
     @media (max-width: 600px) {
       .card {
@@ -324,13 +406,9 @@
       máquinas e motores para que tudo trabalhe em conjunto.
     </div>
 
-    <a
-      id="contactBtn"
-      class="primary-btn"
-      href="mailto:contact@apl-consulting.com?subject=Contacto%20APL%20Consulting"
-    >
+    <button id="contactBtn" class="primary-btn" onclick="openContact()">
       Contacte-nos
-    </a>
+    </button>
 
     <div class="lang-switch">
       <button class="lang-btn" id="btn-pt" onclick="setLang('pt')">
@@ -350,6 +428,53 @@
     </div>
   </main>
 
+  <!-- CONTACT MODAL -->
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+
+      <h2 id="modalTitle">Contacte-nos</h2>
+      <p id="modalText">
+        Se o seu programa de email não abriu automaticamente, escolha uma das
+        opções:
+      </p>
+
+      <div class="email-display">contact@apl-consulting.com</div>
+
+      <div class="contact-options">
+        <a
+          id="emailLink"
+          href="mailto:contact@apl-consulting.com?subject=Contacto%20APL%20Consulting"
+          class="modal-btn"
+        >
+          Abrir programa de email
+        </a>
+
+        <button class="modal-btn" onclick="copyEmail()">
+          Copiar email para a área de transferência
+        </button>
+
+        <a
+          id="gmailLink"
+          class="modal-btn"
+          target="_blank"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@apl-consulting.com&su=Contacto%20APL%20Consulting"
+        >
+          Abrir Gmail Web
+        </a>
+
+        <a
+          id="outlookLink"
+          class="modal-btn"
+          target="_blank"
+          href="https://outlook.office.com/mail/deeplink/compose?to=contact@apl-consulting.com&subject=Contacto%20APL%20Consulting"
+        >
+          Abrir Outlook Web
+        </a>
+      </div>
+    </div>
+  </div>
+
   <script>
     const translations = {
       pt: {
@@ -364,7 +489,11 @@
         contactLabel: "Contacte-nos",
         subject: "Contacto APL Consulting",
         footnote:
-          "Primeira versão pública prevista para 2026. Criada a partir de projetos reais, não de maquetes."
+          "Primeira versão pública prevista para 2026. Criada a partir de projetos reais, não de maquetes.",
+        modalTitle: "Contacte-nos",
+        modalText:
+          "Se o seu programa de email não abriu automaticamente, escolha uma das opções:",
+        copyText: "Copiar email para a área de transferência"
       },
       fr: {
         htmlLang: "fr",
@@ -378,7 +507,11 @@
         contactLabel: "Contactez-nous",
         subject: "Contact APL Consulting",
         footnote:
-          "Première version publique prévue pour 2026. Conçue sur des projets réels, pas sur des maquettes."
+          "Première version publique prévue pour 2026. Conçue sur des projets réels, pas sur des maquettes.",
+        modalTitle: "Contactez-nous",
+        modalText:
+          "Si votre client de messagerie ne s’est pas ouvert automatiquement, choisissez l’une des options ci-dessous :",
+        copyText: "Copier l’adresse e-mail dans le presse-papiers"
       },
       en: {
         htmlLang: "en",
@@ -392,12 +525,19 @@
         contactLabel: "Contact us",
         subject: "Contact APL Consulting",
         footnote:
-          "First public release planned for 2026. Built on real projects, not slide decks."
+          "First public release planned for 2026. Built on real projects, not slide decks.",
+        modalTitle: "Contact us",
+        modalText:
+          "If your email client did not open automatically, choose one of the options below:",
+        copyText: "Copy email address to clipboard"
       }
     };
 
-    function setLang(lang) {
+    let currentLang = "pt";
+
+    function applyTranslation(lang) {
       const t = translations[lang] || translations.en;
+      currentLang = lang;
 
       document.documentElement.lang = t.htmlLang;
       document.getElementById("tagline").textContent = t.tagline;
@@ -409,11 +549,30 @@
 
       const btn = document.getElementById("contactBtn");
       btn.textContent = t.contactLabel;
-      btn.href =
+
+      // actualizar modal
+      document.getElementById("modalTitle").textContent = t.modalTitle;
+      document.getElementById("modalText").textContent = t.modalText;
+      document.querySelector(
+        "#contactModal button.modal-btn"
+      ).textContent = t.copyText;
+
+      const mailto =
         "mailto:contact@apl-consulting.com?subject=" +
         encodeURIComponent(t.subject);
+      document.getElementById("emailLink").href = mailto;
+      document.getElementById(
+        "gmailLink"
+      ).href = `https://mail.google.com/mail/?view=cm&fs=1&to=contact@apl-consulting.com&su=${encodeURIComponent(
+        t.subject
+      )}`;
+      document.getElementById(
+        "outlookLink"
+      ).href = `https://outlook.office.com/mail/deeplink/compose?to=contact@apl-consulting.com&subject=${encodeURIComponent(
+        t.subject
+      )}`;
 
-      // atualizar estado dos botões
+      // estado dos botões
       document
         .getElementById("btn-pt")
         .classList.toggle("active", lang === "pt");
@@ -423,6 +582,10 @@
       document
         .getElementById("btn-en")
         .classList.toggle("active", lang === "en");
+    }
+
+    function setLang(lang) {
+      applyTranslation(lang);
     }
 
     function detectInitialLang() {
@@ -437,9 +600,66 @@
       return "en";
     }
 
+    function openContact() {
+      const t = translations[currentLang] || translations.en;
+      const mailto =
+        "mailto:contact@apl-consulting.com?subject=" +
+        encodeURIComponent(t.subject);
+      // tenta abrir o cliente de email
+      window.location.href = mailto;
+      // e abre o modal com alternativas
+      openModal();
+    }
+
+    function openModal() {
+      document.getElementById("contactModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("contactModal").style.display = "none";
+    }
+
+    function copyEmail() {
+      const email = "contact@apl-consulting.com";
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(
+          () => {
+            alert("Endereço de email copiado.");
+          },
+          () => {
+            fallbackCopyEmail(email);
+          }
+        );
+      } else {
+        fallbackCopyEmail(email);
+      }
+    }
+
+    function fallbackCopyEmail(text) {
+      const temp = document.createElement("textarea");
+      temp.value = text;
+      document.body.appendChild(temp);
+      temp.select();
+      try {
+        document.execCommand("copy");
+        alert("Endereço de email copiado.");
+      } catch (e) {
+        alert("Não foi possível copiar. O email é: " + text);
+      }
+      document.body.removeChild(temp);
+    }
+
+    // fechar modal ao clicar fora dele
+    window.addEventListener("click", (e) => {
+      const modal = document.getElementById("contactModal");
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
     document.addEventListener("DOMContentLoaded", () => {
       const initial = detectInitialLang();
-      setLang(initial);
+      applyTranslation(initial);
     });
   </script>
 </body>
