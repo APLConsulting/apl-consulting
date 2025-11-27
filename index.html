@@ -7,11 +7,8 @@
   <title>APL Consulting – Sistemas Digitais &amp; Automação</title>
   <meta name="description" content="APL Consulting desenvolve sistemas digitais e soluções de automação para negócios exigentes. Otimizamos gestão, eficiência e integração entre software, máquinas e motores." />
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="logo-apl-branco.png" />
   <link rel="shortcut icon" type="image/png" href="logo-apl-branco.png" />
-
-  <!-- Preload do logo para aparecer o mais rápido possível -->
   <link rel="preload" as="image" href="logo-apl-branco.png" />
 
   <style>
@@ -103,14 +100,10 @@
       text-align: center;
     }
 
-    /* LOGO – só o logo, sem moldura */
     .logo-frame {
       width: 230px;
       height: 230px;
       margin: 0 auto 26px;
-      background: transparent;
-      box-shadow: none;
-      border-radius: 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -305,7 +298,6 @@
       opacity: 0.7;
     }
 
-    /* Toast pequeno */
     .toast {
       position: fixed;
       left: 50%;
@@ -320,7 +312,7 @@
       box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+      transition: opacity 0.25s ease-out, transform 0.25s.ease-out;
       z-index: 40;
     }
 
@@ -329,7 +321,6 @@
       transform: translateX(-50%) translateY(-4px);
     }
 
-    /* MODAL de contacto */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -476,7 +467,6 @@
       }
     }
 
-    /* Respeitar utilizadores com motion reduzido */
     @media (prefers-reduced-motion: reduce) {
       * {
         animation-duration: 0.01ms !important;
@@ -529,7 +519,7 @@
 
       <div class="cta-wrapper">
         <button class="cta-button" id="contactBtn" type="button">
-          <span>Contacte-nos</span>
+          <span id="ctaLabel">Contacte-nos</span>
         </button>
       </div>
 
@@ -549,7 +539,6 @@
     </section>
   </main>
 
-  <!-- MODAL CONTACTO -->
   <div
     class="modal-backdrop"
     id="contactModal"
@@ -573,7 +562,6 @@
     </div>
   </div>
 
-  <!-- TOAST -->
   <div class="toast" id="toast" role="status" aria-live="polite">
     Endereço de e-mail copiado para a área de transferência.
   </div>
@@ -599,7 +587,8 @@
         modalHint: "Clique no endereço para copiar para a área de transferência.",
         title: "APL Consulting – Sistemas Digitais & Automação",
         description:
-          "APL Consulting desenvolve sistemas digitais e soluções de automação para negócios exigentes. Otimizamos gestão, eficiência e integração entre software, máquinas e motores."
+          "APL Consulting desenvolve sistemas digitais e soluções de automação para negócios exigentes. Otimizamos gestão, eficiência e integração entre software, máquinas e motores.",
+        cta: "Contacte-nos"
       },
       fr: {
         eyebrow: "SYSTÈMES NUMÉRIQUES & AUTOMATISATION",
@@ -609,7 +598,7 @@
           "Notre nouvelle plateforme digitale APL Consulting est en construction. Optimisée pour la gestion, l’efficacité et l’automatisation.",
         body:
           "Nous concevons et pilotons des systèmes digitaux pour des environnements exigeants, automatisons les flux logistiques et opérationnels, et connectons logiciels, machines et moteurs pour que l’ensemble fonctionne comme un seul système.",
-        footer: "Première version publique prévue pour 2026.",
+        footer: "Première versão publique prévue pour 2026.",
         toast: "Adresse e-mail copiée dans le presse-papiers.",
         contactSubject: "Contact APL Consulting",
         modalTitle: "Contactez-nous",
@@ -618,7 +607,8 @@
         modalHint: "Cliquez sur l’adresse pour la copier dans le presse-papiers.",
         title: "APL Consulting – Systèmes numériques & automatisation",
         description:
-          "APL Consulting conçoit des systèmes digitaux et des solutions d’automatisation pour des environnements exigeants. Nous optimisons la gestion, l’efficacité et l’intégration entre logiciels, machines et moteurs."
+          "APL Consulting conçoit des systèmes digitaux et des solutions d’automatisation pour des environnements exigeants. Nous optimisons la gestion, l’efficacité et l’intégration entre logiciels, machines et moteurs.",
+        cta: "Contactez-nous"
       },
       en: {
         eyebrow: "DIGITAL SYSTEMS & AUTOMATION",
@@ -637,7 +627,8 @@
         modalHint: "Click the address to copy it to your clipboard.",
         title: "APL Consulting – Digital systems & automation",
         description:
-          "APL Consulting develops digital systems and automation solutions for demanding businesses. We optimise management, efficiency and integration between software, machines and engines."
+          "APL Consulting develops digital systems and automation solutions for demanding businesses. We optimise management, efficiency and integration between software, machines and engines.",
+        cta: "Contact us"
       }
     };
 
@@ -650,6 +641,7 @@
     const toastEl = document.getElementById("toast");
 
     const contactBtn = document.getElementById("contactBtn");
+    const ctaLabelEl = document.getElementById("ctaLabel");
     const langButtons = document.querySelectorAll(".lang-btn");
 
     const modalBackdrop = document.getElementById("contactModal");
@@ -677,17 +669,15 @@
       bodyEl.textContent = data.body;
       footerEl.textContent = data.footer;
       toastEl.textContent = data.toast;
+      ctaLabelEl.textContent = data.cta;
 
-      // Atualiza também o modal
       modalTitleEl.textContent = data.modalTitle;
       modalTextEl.textContent = data.modalText;
       modalHintEl.textContent = data.modalHint;
       modalEmailEl.textContent = EMAIL;
 
-      // Atualiza idioma do documento
       document.documentElement.lang = lang;
 
-      // Atualiza título e meta description dinamicamente
       if (data.title) {
         document.title = data.title;
       }
@@ -695,19 +685,15 @@
         metaDescription.setAttribute("content", data.description);
       }
 
-      // Estado visual e ARIA dos botões de idioma
       langButtons.forEach((btn) => {
         const isActive = btn.dataset.lang === lang;
         btn.classList.toggle("active", isActive);
         btn.setAttribute("aria-pressed", String(isActive));
       });
 
-      // Guardar preferência
       try {
         localStorage.setItem("apl_lang", lang);
-      } catch (e) {
-        // Se o navegador bloquear localStorage, ignoramos
-      }
+      } catch (e) {}
     }
 
     function showToast() {
@@ -789,11 +775,10 @@
         }
       }
 
-      // Mostramos sempre o toast (se não copiou, o utilizador pode copiar à mão)
       showToast();
 
       if (!copied) {
-        // Podias ajustar o texto do hint se quisesses, mas mantemos simples
+        // se não copiar, o user copia à mão, mas já sabe que era suposto copiar
       }
     }
 
@@ -804,10 +789,7 @@
       const subject = encodeURIComponent(data.contactSubject);
       const mailtoUrl = `mailto:${EMAIL}?subject=${subject}`;
 
-      // Tenta abrir o cliente de e-mail
       window.location.href = mailtoUrl;
-
-      // Abre o modal com as instruções e o e-mail
       openModal();
     }
 
@@ -817,7 +799,6 @@
       btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
     });
 
-    // Eventos do modal
     modalCloseBtn.addEventListener("click", closeModal);
     modalBackdrop.addEventListener("click", (e) => {
       if (e.target === modalBackdrop) closeModal();
@@ -825,7 +806,6 @@
 
     modalEmailEl.addEventListener("click", copyEmailToClipboard);
 
-    // Língua inicial baseada no browser + preferência guardada
     (function initLang() {
       let initialLang = "pt";
 
