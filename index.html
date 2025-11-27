@@ -292,7 +292,7 @@
       margin-top: 18px;
     }
 
-    /* Toast pequeno para feedback do clique no email */
+    /* Toast pequeno */
     .toast {
       position: fixed;
       left: 50%;
@@ -314,6 +314,95 @@
     .toast.visible {
       opacity: 1;
       transform: translateX(-50%) translateY(-4px);
+    }
+
+    /* MODAL de contacto */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease-out;
+      z-index: 30;
+    }
+
+    .modal-backdrop.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal {
+      background: rgba(15, 23, 42, 0.97);
+      border-radius: 20px;
+      padding: 20px 22px 18px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      max-width: 360px;
+      width: 100%;
+      box-shadow: 0 18px 48px rgba(15, 23, 42, 0.95);
+      position: relative;
+    }
+
+    .modal-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .modal-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .modal-email-wrapper {
+      text-align: center;
+    }
+
+    .modal-email {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      background: radial-gradient(circle at 50% 0%, rgba(30, 64, 175, 0.35), rgba(15, 23, 42, 0.95));
+      font-size: 0.86rem;
+      cursor: pointer;
+      user-select: text;
+      color: #e5edff;
+      margin-bottom: 6px;
+    }
+
+    .modal-email:hover {
+      border-color: rgba(191, 219, 254, 0.9);
+      box-shadow: 0 0 0 1px rgba(191, 219, 254, 0.35), 0 10px 26px rgba(37, 99, 235, 0.9);
+    }
+
+    .modal-hint {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: 4px;
+    }
+
+    .modal-close:hover {
+      color: #e5edff;
     }
 
     @keyframes cardIn {
@@ -367,6 +456,10 @@
 
       .accent-bar {
         width: 70%;
+      }
+
+      .modal {
+        margin: 0 16px;
       }
     }
   </style>
@@ -423,6 +516,25 @@
     </p>
   </div>
 
+  <!-- MODAL CONTACTO -->
+  <div class="modal-backdrop" id="contactModal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Fechar">×</button>
+      <h2 class="modal-title" id="modalTitle">Contacte-nos</h2>
+      <p class="modal-text" id="modalText">
+        Se não tiver sido encaminhado automaticamente para a sua aplicação de e-mail,
+        utilize o endereço abaixo.
+      </p>
+      <div class="modal-email-wrapper">
+        <span class="modal-email" id="modalEmail">contact@apl-consulting.com</span>
+        <small class="modal-hint" id="modalHint">
+          Clique no endereço para copiar para a área de transferência.
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
   <div class="toast" id="toast">
     Endereço de e-mail copiado para a área de transferência.
   </div>
@@ -441,7 +553,11 @@
           "Desenvolvemos e gerimos sistemas digitais para negócios exigentes, automatizamos fluxos logísticos e operacionais, e ligamos software, máquinas e motores para que tudo funcione como um único sistema.",
         footer: "Primeira versão pública prevista para 2026.",
         toast: "Endereço de e-mail copiado para a área de transferência.",
-        contactSubject: "Contacto APL Consulting"
+        contactSubject: "Contacto APL Consulting",
+        modalTitle: "Contacte-nos",
+        modalText:
+          "Se não tiver sido encaminhado automaticamente para a sua aplicação de e-mail, utilize o endereço abaixo.",
+        modalHint: "Clique no endereço para copiar para a área de transferência."
       },
       fr: {
         eyebrow: "SYSTÈMES NUMÉRIQUES & AUTOMATISATION",
@@ -453,7 +569,11 @@
           "Nous concevons et pilotons des systèmes digitaux pour des environnements exigeants, automatisons les flux logistiques et opérationnels, et connectons logiciels, machines et moteurs pour que l’ensemble fonctionne comme un seul système.",
         footer: "Première version publique prévue pour 2026.",
         toast: "Adresse e-mail copiée dans le presse-papiers.",
-        contactSubject: "Contact APL Consulting"
+        contactSubject: "Contact APL Consulting",
+        modalTitle: "Contactez-nous",
+        modalText:
+          "Si votre client de messagerie ne s’est pas ouvert automatiquement, utilisez l’adresse ci-dessous.",
+        modalHint: "Cliquez sur l’adresse pour la copier dans le presse-papiers."
       },
       en: {
         eyebrow: "DIGITAL SYSTEMS & AUTOMATION",
@@ -465,7 +585,11 @@
           "We design and operate digital systems for demanding businesses, automate logistical and operational flows, and connect software, machines and engines so that everything runs as a single system.",
         footer: "First public release planned for 2026.",
         toast: "Email address copied to clipboard.",
-        contactSubject: "Contact – APL Consulting"
+        contactSubject: "Contact – APL Consulting",
+        modalTitle: "Contact us",
+        modalText:
+          "If your e-mail application did not open automatically, use the address below.",
+        modalHint: "Click the address to copy it to your clipboard."
       }
     };
 
@@ -476,8 +600,16 @@
     const bodyEl = document.getElementById("body");
     const footerEl = document.getElementById("footerText");
     const toastEl = document.getElementById("toast");
+
     const contactBtn = document.getElementById("contactBtn");
     const langButtons = document.querySelectorAll(".lang-btn");
+
+    const modalBackdrop = document.getElementById("contactModal");
+    const modalTitleEl = document.getElementById("modalTitle");
+    const modalTextEl = document.getElementById("modalText");
+    const modalHintEl = document.getElementById("modalHint");
+    const modalEmailEl = document.getElementById("modalEmail");
+    const modalCloseBtn = document.getElementById("modalClose");
 
     function setLanguage(lang) {
       const data = content[lang] || content.pt;
@@ -489,6 +621,12 @@
       bodyEl.textContent = data.body;
       footerEl.textContent = data.footer;
       toastEl.textContent = data.toast;
+
+      // Atualiza também o modal
+      modalTitleEl.textContent = data.modalTitle;
+      modalTextEl.textContent = data.modalText;
+      modalHintEl.textContent = data.modalHint;
+      modalEmailEl.textContent = EMAIL;
 
       document.documentElement.lang = lang;
 
@@ -505,6 +643,25 @@
       }, 2400);
     }
 
+    function openModal() {
+      modalBackdrop.classList.add("visible");
+    }
+
+    function closeModal() {
+      modalBackdrop.classList.remove("visible");
+    }
+
+    async function copyEmailToClipboard() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(EMAIL);
+        } catch (err) {
+          // se falhar, o utilizador pode copiar à mão
+        }
+      }
+      showToast();
+    }
+
     async function handleContactClick() {
       const lang = document.documentElement.lang || "pt";
       const data = content[lang] || content.pt;
@@ -515,15 +672,8 @@
       // Tenta abrir o cliente de e-mail
       window.location.href = mailtoUrl;
 
-      // Tenta copiar o e-mail, mas mostra sempre o toast
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        try {
-          await navigator.clipboard.writeText(EMAIL);
-        } catch (err) {
-          // se falhar, ignoramos — o toast aparece na mesma
-        }
-      }
-      showToast();
+      // Abre o modal com as instruções e o e-mail
+      openModal();
     }
 
     contactBtn.addEventListener("click", handleContactClick);
@@ -532,7 +682,15 @@
       btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
     });
 
-    // Escolha automática inicial com base na língua do browser
+    // Eventos do modal
+    modalCloseBtn.addEventListener("click", closeModal);
+    modalBackdrop.addEventListener("click", (e) => {
+      if (e.target === modalBackdrop) closeModal();
+    });
+
+    modalEmailEl.addEventListener("click", copyEmailToClipboard);
+
+    // Língua inicial baseada no browser
     (function initLang() {
       const browserLang = (navigator.language || "pt").toLowerCase();
       if (browserLang.startsWith("fr")) setLanguage("fr");
