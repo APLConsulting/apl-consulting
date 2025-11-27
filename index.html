@@ -1,136 +1,332 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>APL Consulting</title>
+
+  <title>APL Consulting – Sistemas Digitais &amp; Automação</title>
+  <meta name="description" content="APL Consulting desenvolve sistemas digitais e soluções de automação para negócios exigentes. Otimizamos gestão, eficiência e integração entre software, máquinas e motores." />
+
+  <!-- Preload do logo para aparecer o mais rápido possível -->
+  <link rel="preload" as="image" href="logo-apl-branco.png" />
 
   <style>
     :root {
+      --bg: #05070b;
+      --card-bg: rgba(16, 24, 40, 0.96);
+      --card-border: rgba(148, 163, 184, 0.25);
       --blue1: #0078ff;
       --blue2: #00a0ff;
-      --text: #e8ecf5;
-      --muted: #a7b0c7;
-      --bg: #05070c;
-      --glass: rgba(17, 22, 34, 0.92);
-      --border: rgba(0, 150, 255, 0.25);
+      --text-main: #e5edf9;
+      --text-muted: #9ca3af;
+      --accent-soft: rgba(56, 189, 248, 0.09);
+      --shadow-strong: 0 32px 80px rgba(15, 23, 42, 0.95);
+      --radius-xl: 28px;
+      --radius-full: 999px;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
       min-height: 100vh;
-      background: radial-gradient(circle at top, #0f1724, #05070c 55%);
-      color: var(--text);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.35), transparent 55%),
+        radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.3), transparent 55%),
+        radial-gradient(circle at 50% -10%, rgba(15, 23, 42, 0.8), transparent 60%),
+        #020617;
+      color: var(--text-main);
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 32px 16px;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 760px;
+      padding: 40px 32px 28px;
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-strong);
       overflow: hidden;
+      backdrop-filter: blur(18px);
+      animation: cardIn 0.9s ease-out;
     }
 
-    /* ORBS / BACKGROUND FX ------------------------------------------------- */
-
-    .orb {
-      position: fixed;
+    .card::before,
+    .card::after {
+      content: "";
+      position: absolute;
       border-radius: 50%;
-      filter: blur(60px);
-      opacity: 0.5;
-      z-index: -2;
+      filter: blur(40px);
+      opacity: 0.55;
       pointer-events: none;
-      transform-origin: center;
-    }
-
-    .orb--left {
-      width: 480px;
-      height: 480px;
-      background: radial-gradient(circle, #0f9aff, transparent 70%);
-      top: -80px;
-      left: -120px;
-      animation: orbLeft 24s ease-in-out infinite alternate;
-    }
-
-    .orb--right {
-      width: 520px;
-      height: 520px;
-      background: radial-gradient(circle, #00ffc3, transparent 75%);
-      bottom: -130px;
-      right: -100px;
-      animation: orbRight 30s ease-in-out infinite alternate;
-    }
-
-    @keyframes orbLeft {
-      0% {
-        transform: translate3d(0, 0, 0) scale(1);
-      }
-      100% {
-        transform: translate3d(40px, 30px, 0) scale(1.15);
-      }
-    }
-
-    @keyframes orbRight {
-      0% {
-        transform: translate3d(0, 0, 0) scale(1.05);
-      }
-      100% {
-        transform: translate3d(-40px, -25px, 0) scale(1.18);
-      }
-    }
-
-    .noise-overlay {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.06;
-      mix-blend-mode: soft-light;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='noStitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.8'/%3E%3C/svg%3E");
       z-index: -1;
     }
 
-    /* CARD ----------------------------------------------------------------- */
-
-    .card {
-      width: 90%;
-      max-width: 720px;
-      padding: 34px 30px 30px;
-      background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.06),
-          rgba(255, 255, 255, 0.01)
-        ),
-        var(--glass);
-      border-radius: 26px;
-      border: 1px solid var(--border);
-      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.9);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      animation: cardEnter 0.9s ease-out;
+    .card::before {
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.6), transparent 60%);
+      top: -60px;
+      left: -60px;
     }
 
-    .card::before {
+    .card::after {
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(45, 212, 191, 0.45), transparent 60%);
+      bottom: -90px;
+      right: -70px;
+    }
+
+    .logo-frame {
+      width: 230px;
+      height: 230px;
+      margin: 0 auto 28px;
+      border-radius: 24px;
+      background: radial-gradient(circle at 20% 0%, rgba(56, 189, 248, 0.18), transparent 55%),
+                  radial-gradient(circle at 80% 110%, rgba(59, 130, 246, 0.3), transparent 55%),
+                  #020617;
+      box-shadow:
+        0 0 0 1px rgba(148, 163, 184, 0.35),
+        0 24px 60px rgba(15, 23, 42, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: floatLogo 6s ease-in-out infinite;
+    }
+
+    .logo-frame img {
+      width: 72%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 14px 40px rgba(15, 23, 42, 0.9));
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+      animation: logoFade 0.9s ease-out forwards 0.25s;
+    }
+
+    .eyebrow {
+      text-align: center;
+      letter-spacing: 0.28em;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      opacity: 0.85;
+      margin-bottom: 22px;
+      font-style: italic;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: clamp(1.9rem, 2.25vw + 1.3rem, 2.4rem);
+      margin-bottom: 14px;
+      font-weight: 750;
+      background: linear-gradient(120deg, var(--blue1), var(--blue2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 0.02em;
+      text-shadow: 0 0 24px rgba(37, 99, 235, 0.65);
+    }
+
+    .lead {
+      text-align: center;
+      font-size: 0.98rem;
+      color: var(--text-main);
+      opacity: 0.9;
+      max-width: 620px;
+      margin: 0 auto 14px;
+    }
+
+    .body-text {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 630px;
+      margin: 0 auto 26px;
+      line-height: 1.6;
+    }
+
+    .cta-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .cta-button {
+      position: relative;
+      padding: 12px 30px;
+      border-radius: var(--radius-full);
+      border: none;
+      font-size: 0.98rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      color: #020617;
+      background: radial-gradient(circle at 20% 0%, #38bdf8, #0ea5e9 45%, #2563eb 100%);
+      box-shadow:
+        0 0 0 1px rgba(191, 219, 254, 0.35),
+        0 18px 40px rgba(37, 99, 235, 0.9);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition:
+        transform 0.18s ease-out,
+        box-shadow 0.18s ease-out,
+        filter 0.18s ease-out;
+    }
+
+    .cta-button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-button::after {
       content: "";
       position: absolute;
-      inset: -40%;
-      background: radial-gradient(
-        circle at top,
-        rgba(0, 168, 255, 0.25),
-        transparent 60%
-      );
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.2), transparent 55%);
       opacity: 0;
-      animation: cardGlow 8s ease-in-out infinite alternate;
-      pointer-events: none;
+      transition: opacity 0.18s ease-out;
     }
 
-    @keyframes cardEnter {
+    .cta-button:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow:
+        0 0 0 1px rgba(191, 219, 254, 0.45),
+        0 22px 52px rgba(37, 99, 235, 0.95);
+      filter: brightness(1.02);
+    }
+
+    .cta-button:hover::after {
+      opacity: 1;
+    }
+
+    .cta-button:active {
+      transform: translateY(0) scale(0.99);
+      box-shadow:
+        0 0 0 1px rgba(191, 219, 254, 0.25),
+        0 10px 26px rgba(30, 64, 175, 0.8);
+    }
+
+    .lang-switch {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .lang-btn {
+      min-width: 46px;
+      padding: 7px 14px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: radial-gradient(circle at 50% 0%, rgba(148, 163, 184, 0.12), transparent 60%);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition:
+        background 0.18s ease-out,
+        color 0.18s ease-out,
+        border-color 0.18s ease-out,
+        box-shadow 0.18s ease-out,
+        transform 0.12s ease-out;
+    }
+
+    .lang-btn.active {
+      background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.45), rgba(37, 99, 235, 0.9));
+      color: #e5edff;
+      border-color: rgba(191, 219, 254, 0.95);
+      box-shadow: 0 0 0 1px rgba(191, 219, 254, 0.3), 0 10px 26px rgba(37, 99, 235, 0.85);
+      transform: translateY(-1px);
+    }
+
+    .lang-btn:hover:not(.active) {
+      border-color: rgba(148, 163, 184, 0.9);
+      color: #e5edff;
+    }
+
+    .footer-text {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      opacity: 0.7;
+      margin-top: 8px;
+    }
+
+    .accent-bar {
+      position: absolute;
+      inset-inline: 18%;
+      height: 1px;
+      margin-top: 4px;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(148, 163, 184, 0.6),
+        transparent
+      );
+      opacity: 0.7;
+    }
+
+    /* Toast pequeno para feedback do clique no email */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 0.78rem;
+      color: #e5edff;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+      z-index: 40;
+    }
+
+    .toast.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-4px);
+    }
+
+    .mail-link {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    @keyframes cardIn {
       from {
         opacity: 0;
-        transform: translateY(22px) scale(0.98);
+        transform: translateY(26px) scale(0.985);
       }
       to {
         opacity: 1;
@@ -138,490 +334,219 @@
       }
     }
 
-    @keyframes cardGlow {
-      0% {
-        opacity: 0.08;
-        transform: translate3d(0, 10px, 0);
-      }
-      100% {
-        opacity: 0.25;
-        transform: translate3d(0, -8px, 0);
-      }
-    }
-
-    /* LOGO + TEXT ---------------------------------------------------------- */
-
-    .logo {
-      width: 220px;
-      margin: 4px auto 18px;
-      display: block;
-      animation: floatLogo 6s ease-in-out infinite;
-      filter: drop-shadow(0 0 14px rgba(0, 160, 255, 0.45));
-    }
-
     @keyframes floatLogo {
-      0% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-      100% {
-        transform: translateY(0);
-      }
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
     }
 
-    .tagline {
-      font-size: 0.9rem;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-
-    .slogan {
-      font-size: 0.95rem;
-      color: var(--text);
-      opacity: 0.9;
-      margin-bottom: 12px;
-      font-style: italic;
-    }
-
-    h1 {
-      font-size: clamp(2rem, 2.7vw, 2.4rem);
-      margin-bottom: 12px;
-      font-weight: 700;
-      background: linear-gradient(90deg, var(--blue1), var(--blue2));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    #subtitle {
-      font-size: 0.98rem;
-      color: var(--muted);
-      line-height: 1.6;
-      max-width: 520px;
-      margin: 0 auto 18px;
-    }
-
-    .spoiler {
-      font-size: 0.85rem;
-      color: var(--muted);
-      max-width: 540px;
-      margin: 0 auto 26px;
-      line-height: 1.5;
-    }
-
-    /* BUTTONS -------------------------------------------------------------- */
-
-    .primary-btn {
-      display: inline-block;
-      background: linear-gradient(90deg, var(--blue1), var(--blue2));
-      color: #02050a;
-      padding: 11px 26px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      box-shadow: 0 0 22px rgba(0, 150, 255, 0.65);
-      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out,
-        filter 0.18s ease-out;
-      border: none;
-      cursor: pointer;
-    }
-
-    .primary-btn:hover {
-      transform: translateY(-1px) scale(1.03);
-      box-shadow: 0 0 28px rgba(0, 170, 255, 0.85);
-      filter: brightness(1.05);
-    }
-
-    .lang-switch {
-      margin-top: 22px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .lang-btn {
-      background: transparent;
-      border-radius: 999px;
-      border: 1px solid rgba(0, 150, 255, 0.6);
-      padding: 7px 14px;
-      min-width: 52px;
-      font-size: 0.85rem;
-      color: var(--text);
-      cursor: pointer;
-      transition: background 0.18s ease-out, color 0.18s ease-out,
-        border-color 0.18s ease-out, transform 0.18s ease-out;
-    }
-
-    .lang-btn:hover {
-      background: rgba(0, 150, 255, 0.15);
-      transform: translateY(-1px);
-    }
-
-    .lang-btn.active {
-      background: rgba(0, 150, 255, 0.25);
-      color: #ffffff;
-      border-color: var(--blue2);
-    }
-
-    .footnote {
-      margin-top: 18px;
-      font-size: 0.75rem;
-      color: var(--muted);
-      opacity: 0.8;
-    }
-
-    /* MODAL POPUP ---------------------------------------------------------- */
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.65);
-      backdrop-filter: blur(6px);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      position: relative;
-      background: rgba(15, 20, 30, 0.96);
-      border: 1px solid rgba(0, 150, 255, 0.35);
-      box-shadow: 0 0 40px rgba(0, 150, 255, 0.35);
-      padding: 25px 30px 22px;
-      border-radius: 18px;
-      width: 90%;
-      max-width: 420px;
-      text-align: center;
-      animation: modalEnter 0.25s ease-out;
-    }
-
-    @keyframes modalEnter {
-      from {
-        transform: scale(0.92);
-        opacity: 0;
-      }
+    @keyframes logoFade {
       to {
-        transform: scale(1);
         opacity: 1;
+        transform: translateY(0) scale(1);
       }
     }
 
-    .modal .close {
-      position: absolute;
-      top: 8px;
-      right: 14px;
-      font-size: 26px;
-      cursor: pointer;
-      color: #fff;
-      opacity: 0.7;
-    }
-
-    .modal .close:hover {
-      opacity: 1;
-    }
-
-    .email-display {
-      margin-top: 14px;
-      margin-bottom: 6px;
-    }
-
-    .email-link {
-      color: var(--blue2);
-      text-decoration: underline;
-      cursor: pointer;
-      font-weight: 500;
-      word-break: break-all;
-    }
-
-    .email-hint {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 6px;
-    }
-
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       .card {
-        padding: 26px 20px 24px;
+        padding: 28px 18px 22px;
         border-radius: 22px;
       }
 
-      .logo {
+      .logo-frame {
         width: 190px;
+        height: 190px;
+        margin-bottom: 22px;
       }
 
-      #subtitle,
-      .spoiler {
-        font-size: 0.9rem;
+      .body-text {
+        font-size: 0.86rem;
+      }
+
+      .lead {
+        font-size: 0.94rem;
+      }
+
+      .cta-button {
+        width: 100%;
+        max-width: 260px;
+      }
+
+      .accent-bar {
+        inset-inline: 20%;
       }
     }
   </style>
 </head>
-
 <body>
-  <!-- Background FX -->
-  <div class="orb orb--left"></div>
-  <div class="orb orb--right"></div>
-  <div class="noise-overlay"></div>
-
-  <!-- Main card -->
-  <main class="card">
-    <img src="logo-apl-branco.png" alt="APL Consulting" class="logo" />
-
-    <div class="tagline" id="tagline">
-      SISTEMAS DIGITAIS & AUTOMAÇÃO
+  <div class="card">
+    <div class="logo-frame">
+      <img
+        src="logo-apl-branco.png"
+        alt="Logótipo APL Consulting"
+        width="512"
+        height="512"
+        decoding="async"
+        loading="eager"
+      />
     </div>
 
-    <div class="slogan" id="slogan">
+    <div class="eyebrow" id="eyebrow">
+      SISTEMAS DIGITAIS &amp; AUTOMAÇÃO
+    </div>
+    <div class="tagline" id="tagline">
       Eficientemente movemos o mundo.
     </div>
 
-    <h1 id="title">Brevemente disponível</h1>
+    <h1 id="headline">Brevemente disponível</h1>
 
-    <p id="subtitle">
-      A nossa nova plataforma digital APL Consulting está em construção.<br />
+    <p class="lead" id="lead">
+      A nossa nova plataforma digital APL Consulting está em construção.
       Otimizada para gestão, eficiência e automatização.
     </p>
 
-    <div class="spoiler" id="spoiler">
+    <p class="body-text" id="body">
       Desenvolvemos e gerimos sistemas digitais para negócios exigentes,
-      automatizamos fluxos logísticos e operacionais e ligamos software,
-      máquinas e motores para que tudo trabalhe em conjunto.
-    </div>
+      automatizamos fluxos logísticos e operacionais, e ligamos software,
+      máquinas e motores para que tudo funcione como um único sistema.
+    </p>
 
-    <button id="contactBtn" class="primary-btn" onclick="openContact()">
-      Contacte-nos
-    </button>
+    <div class="cta-wrapper">
+      <button class="cta-button" id="contactBtn">
+        <span>Contacte-nos</span>
+      </button>
+    </div>
 
     <div class="lang-switch">
-      <button class="lang-btn" id="btn-pt" onclick="setLang('pt')">
-        PT
-      </button>
-      <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">
-        FR
-      </button>
-      <button class="lang-btn" id="btn-en" onclick="setLang('en')">
-        EN
-      </button>
+      <button class="lang-btn active" data-lang="pt">PT</button>
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
     </div>
 
-    <div class="footnote" id="footnote">
-      Primeira versão pública prevista para 2026. Criada a partir de projetos
-      reais, não de maquetes.
-    </div>
-  </main>
+    <div class="accent-bar"></div>
 
-  <!-- CONTACT MODAL -->
-  <div id="contactModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
+    <p class="footer-text" id="footerText">
+      Primeira versão pública prevista para 2026.
+    </p>
+  </div>
 
-      <h2 id="modalTitle">Contacte-nos</h2>
-      <p id="modalText">
-        Se o seu programa de email não abriu automaticamente, use o endereço
-        abaixo. Clique para copiar.
-      </p>
-
-      <div class="email-display">
-        <a
-          id="emailCopy"
-          class="email-link"
-          href="mailto:contact@apl-consulting.com?subject=Contacto%20APL%20Consulting"
-        >
-          contact@apl-consulting.com
-        </a>
-      </div>
-      <div class="email-hint" id="emailHint">
-        Clique no endereço para o copiar para a área de transferência.
-      </div>
-    </div>
+  <div class="toast" id="toast">
+    Endereço de e-mail copiado para a área de transferência.
   </div>
 
   <script>
-    const translations = {
+    const EMAIL = "contact@apl-consulting.com";
+
+    const content = {
       pt: {
-        htmlLang: "pt-PT",
-        tagline: "SISTEMAS DIGITAIS & AUTOMAÇÃO",
-        title: "Brevemente disponível",
-        slogan: "Eficientemente movemos o mundo.",
-        subtitle:
-          "A nossa nova plataforma digital APL Consulting está em construção.<br>Otimizada para gestão, eficiência e automatização.",
-        spoiler:
-          "Desenvolvemos e gerimos sistemas digitais para negócios exigentes, automatizamos fluxos logísticos e operacionais e ligamos software, máquinas e motores para que tudo trabalhe em conjunto.",
-        contactLabel: "Contacte-nos",
-        subject: "Contacto APL Consulting",
-        footnote:
-          "Primeira versão pública prevista para 2026. Criada a partir de projetos reais, não de maquetes.",
-        modalTitle: "Contacte-nos",
-        modalText:
-          "Se o seu programa de email não abriu automaticamente, use o endereço abaixo. Clique para copiar.",
-        emailHint:
-          "Clique no endereço para o copiar para a área de transferência.",
-        copySuccess: "Endereço de email copiado.",
-        copyFail: "Não foi possível copiar. O email é: contact@apl-consulting.com"
+        eyebrow: "SISTEMAS DIGITAIS & AUTOMAÇÃO",
+        tagline: "Eficientemente movemos o mundo.",
+        headline: "Brevemente disponível",
+        lead:
+          "A nossa nova plataforma digital APL Consulting está em construção. Otimizada para gestão, eficiência e automatização.",
+        body:
+          "Desenvolvemos e gerimos sistemas digitais para negócios exigentes, automatizamos fluxos logísticos e operacionais, e ligamos software, máquinas e motores para que tudo funcione como um único sistema.",
+        footer: "Primeira versão pública prevista para 2026.",
+        toast: "Endereço de e-mail copiado para a área de transferência.",
+        contactSubject: "Contacto APL Consulting"
       },
       fr: {
-        htmlLang: "fr",
-        tagline: "SYSTÈMES DIGITAUX & AUTOMATISATION",
-        title: "Bientôt disponible",
-        slogan: "Nous faisons bouger le monde avec efficacité.",
-        subtitle:
-          "Notre nouvelle plateforme digitale APL Consulting est en construction.<br>Optimisée pour la gestion, l’efficacité et l’automatisation.",
-        spoiler:
-          "Nous concevons et pilotons des systèmes digitaux pour des entreprises exigeantes, nous automatisons les flux logistiques et opérationnels et nous faisons dialoguer logiciels, machines et moteurs pour que tout fonctionne ensemble.",
-        contactLabel: "Contactez-nous",
-        subject: "Contact APL Consulting",
-        footnote:
-          "Première version publique prévue pour 2026. Conçue sur des projets réels, pas sur des maquettes.",
-        modalTitle: "Contactez-nous",
-        modalText:
-          "Si votre client de messagerie ne s’est pas ouvert automatiquement, utilisez l’adresse ci-dessous. Cliquez pour la copier.",
-        emailHint:
-          "Cliquez sur l’adresse pour la copier dans le presse-papiers.",
-        copySuccess: "Adresse e-mail copiée.",
-        copyFail:
-          "Impossible de copier. L’adresse est : contact@apl-consulting.com"
+        eyebrow: "SYSTÈMES NUMÉRIQUES & AUTOMATISATION",
+        tagline: "Nous faisons avancer le monde avec efficacité.",
+        headline: "Bientôt disponible",
+        lead:
+          "Notre nouvelle plateforme digitale APL Consulting est en construction. Optimisée pour la gestion, l’efficacité et l’automatisation.",
+        body:
+          "Nous concevons et pilotons des systèmes digitaux pour des environnements exigeants, automatisons les flux logistiques et opérationnels, et connectons logiciels, machines et moteurs pour que l’ensemble fonctionne comme un seul système.",
+        footer: "Première version publique prévue pour 2026.",
+        toast: "Adresse e-mail copiée dans le presse-papiers.",
+        contactSubject: "Contact APL Consulting"
       },
       en: {
-        htmlLang: "en",
-        tagline: "DIGITAL SYSTEMS & AUTOMATION",
-        title: "Coming Soon",
-        slogan: "Efficiently moving the world.",
-        subtitle:
-          "Our new APL Consulting digital platform is under development.<br>Optimised for management, efficiency and automation.",
-        spoiler:
-          "We design and operate digital systems for demanding businesses, automate logistics and operational flows, and connect software, machines and engines so everything works together.",
-        contactLabel: "Contact us",
-        subject: "Contact APL Consulting",
-        footnote:
-          "First public release planned for 2026. Built on real projects, not slide decks.",
-        modalTitle: "Contact us",
-        modalText:
-          "If your email client did not open automatically, use the address below. Click to copy.",
-        emailHint: "Click the address to copy it to your clipboard.",
-        copySuccess: "Email address copied.",
-        copyFail:
-          "Could not copy. The email address is: contact@apl-consulting.com"
+        eyebrow: "DIGITAL SYSTEMS & AUTOMATION",
+        tagline: "We move the world efficiently.",
+        headline: "Coming soon",
+        lead:
+          "Our new APL Consulting digital platform is under construction. Optimised for management, efficiency and automation.",
+        body:
+          "We design and operate digital systems for demanding businesses, automate logistical and operational flows, and connect software, machines and engines so that everything runs as a single system.",
+        footer: "First public release planned for 2026.",
+        toast: "Email address copied to clipboard.",
+        contactSubject: "Contact – APL Consulting"
       }
     };
 
-    let currentLang = "pt";
+    const eyebrowEl = document.getElementById("eyebrow");
+    const taglineEl = document.getElementById("tagline");
+    const headlineEl = document.getElementById("headline");
+    const leadEl = document.getElementById("lead");
+    const bodyEl = document.getElementById("body");
+    const footerEl = document.getElementById("footerText");
+    const toastEl = document.getElementById("toast");
+    const contactBtn = document.getElementById("contactBtn");
+    const langButtons = document.querySelectorAll(".lang-btn");
 
-    function applyTranslation(lang) {
-      const t = translations[lang] || translations.en;
-      currentLang = lang;
+    function setLanguage(lang) {
+      const data = content[lang] || content.pt;
 
-      document.documentElement.lang = t.htmlLang;
-      document.getElementById("tagline").textContent = t.tagline;
-      document.getElementById("title").textContent = t.title;
-      document.getElementById("slogan").textContent = t.slogan;
-      document.getElementById("subtitle").innerHTML = t.subtitle;
-      document.getElementById("spoiler").innerHTML = t.spoiler;
-      document.getElementById("footnote").textContent = t.footnote;
+      eyebrowEl.textContent = data.eyebrow;
+      taglineEl.textContent = data.tagline;
+      headlineEl.textContent = data.headline;
+      leadEl.textContent = data.lead;
+      bodyEl.textContent = data.body;
+      footerEl.textContent = data.footer;
+      toastEl.textContent = data.toast;
 
-      const btn = document.getElementById("contactBtn");
-      btn.textContent = t.contactLabel;
+      document.documentElement.lang = lang;
 
-      // modal text
-      document.getElementById("modalTitle").textContent = t.modalTitle;
-      document.getElementById("modalText").textContent = t.modalText;
-      document.getElementById("emailHint").textContent = t.emailHint;
-
-      // actualizar mailto com assunto certo
-      const mailto =
-        "mailto:contact@apl-consulting.com?subject=" +
-        encodeURIComponent(t.subject);
-      document.getElementById("emailCopy").href = mailto;
-
-      // estado dos botões de língua
-      document
-        .getElementById("btn-pt")
-        .classList.toggle("active", lang === "pt");
-      document
-        .getElementById("btn-fr")
-        .classList.toggle("active", lang === "fr");
-      document
-        .getElementById("btn-en")
-        .classList.toggle("active", lang === "en");
+      langButtons.forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
     }
 
-    function setLang(lang) {
-      applyTranslation(lang);
+    function showToast() {
+      toastEl.classList.add("visible");
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(() => {
+        toastEl.classList.remove("visible");
+      }, 2400);
     }
 
-    function detectInitialLang() {
-      const nav =
-        (navigator.languages && navigator.languages[0]) ||
-        navigator.language ||
-        "";
-      const l = nav.toLowerCase();
+    async function handleContactClick() {
+      const subject = encodeURIComponent(
+        content[document.documentElement.lang]?.contactSubject ||
+          content.pt.contactSubject
+      );
 
-      if (l.startsWith("pt")) return "pt";
-      if (l.startsWith("fr")) return "fr";
-      return "en";
-    }
+      const mailtoUrl = `mailto:${EMAIL}?subject=${subject}`;
 
-    function openContact() {
-      const t = translations[currentLang] || translations.en;
-      const mailto =
-        "mailto:contact@apl-consulting.com?subject=" +
-        encodeURIComponent(t.subject);
+      // Tenta abrir o cliente de e-mail
+      window.location.href = mailtoUrl;
 
-      // tenta abrir o cliente de email configurado
-      window.location.href = mailto;
-
-      // mostra sempre o modal com o email visível
-      openModal();
-    }
-
-    function openModal() {
-      document.getElementById("contactModal").style.display = "flex";
-    }
-
-    function closeModal() {
-      document.getElementById("contactModal").style.display = "none";
-    }
-
-    function copyEmail() {
-      const t = translations[currentLang] || translations.en;
-      const email = "contact@apl-consulting.com";
-
+      // Tenta copiar para a área de transferência em paralelo
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email).then(
-          () => alert(t.copySuccess),
-          () => alert(t.copyFail)
-        );
-      } else {
-        // fallback simples
-        alert(t.copyFail);
+        try {
+          await navigator.clipboard.writeText(EMAIL);
+          showToast();
+        } catch (err) {
+          // Se falhar, ignoramos silenciosamente
+        }
       }
     }
 
-    // click no endereço -> copia
-    document.addEventListener("click", (e) => {
-      if (e.target && e.target.id === "emailCopy") {
-        e.preventDefault(); // não mudar de página ao clicar
-        copyEmail();
-      }
+    contactBtn.addEventListener("click", handleContactClick);
+
+    langButtons.forEach((btn) => {
+      btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
     });
 
-    // fechar modal ao clicar fora
-    window.addEventListener("click", (e) => {
-      const modal = document.getElementById("contactModal");
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const initial = detectInitialLang();
-      applyTranslation(initial);
-    });
+    // Escolha automática inicial com base na língua do browser
+    (function initLang() {
+      const browserLang = (navigator.language || "pt").toLowerCase();
+      if (browserLang.startsWith("fr")) setLanguage("fr");
+      else if (browserLang.startsWith("en")) setLanguage("en");
+      else setLanguage("pt");
+    })();
   </script>
 </body>
 </html>
