@@ -7,6 +7,10 @@
   <title>APL Consulting – Sistemas Digitais &amp; Automação</title>
   <meta name="description" content="APL Consulting desenvolve sistemas digitais e soluções de automação para negócios exigentes. Otimizamos gestão, eficiência e integração entre software, máquinas e motores." />
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo-apl-branco.png" />
+  <link rel="shortcut icon" type="image/png" href="logo-apl-branco.png" />
+
   <!-- Preload do logo para aparecer o mais rápido possível -->
   <link rel="preload" as="image" href="logo-apl-branco.png" />
 
@@ -19,7 +23,6 @@
       --blue2: #00a0ff;
       --text-main: #e5edf9;
       --text-muted: #9ca3af;
-      --accent-soft: rgba(56, 189, 248, 0.09);
       --shadow-strong: 0 32px 80px rgba(15, 23, 42, 0.95);
       --radius-xl: 28px;
       --radius-full: 999px;
@@ -53,7 +56,7 @@
       position: relative;
       width: 100%;
       max-width: 760px;
-      padding: 40px 32px 28px;
+      padding: 40px 32px 30px;
       background: var(--card-bg);
       border-radius: var(--radius-xl);
       border: 1px solid var(--card-border);
@@ -90,17 +93,14 @@
       right: -70px;
     }
 
+    /* LOGO – só o logo, sem moldura */
     .logo-frame {
       width: 230px;
       height: 230px;
-      margin: 0 auto 28px;
-      border-radius: 24px;
-      background: radial-gradient(circle at 20% 0%, rgba(56, 189, 248, 0.18), transparent 55%),
-                  radial-gradient(circle at 80% 110%, rgba(59, 130, 246, 0.3), transparent 55%),
-                  #020617;
-      box-shadow:
-        0 0 0 1px rgba(148, 163, 184, 0.35),
-        0 24px 60px rgba(15, 23, 42, 0.95);
+      margin: 0 auto 26px;
+      background: transparent;
+      box-shadow: none;
+      border-radius: 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -123,7 +123,7 @@
       font-size: 0.72rem;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 6px;
+      margin-bottom: 12px; /* mais espaço antes do slogan */
     }
 
     .tagline {
@@ -131,7 +131,7 @@
       font-size: 0.9rem;
       color: var(--text-main);
       opacity: 0.85;
-      margin-bottom: 22px;
+      margin-bottom: 26px; /* ligeiramente mais espaço antes do título */
       font-style: italic;
     }
 
@@ -234,7 +234,7 @@
       display: flex;
       justify-content: center;
       gap: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     .lang-btn {
@@ -269,26 +269,27 @@
       color: #e5edff;
     }
 
-    .footer-text {
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      opacity: 0.7;
-      margin-top: 8px;
-    }
-
     .accent-bar {
-      position: absolute;
-      inset-inline: 18%;
+      position: relative;
+      width: 64%;
+      max-width: 420px;
       height: 1px;
-      margin-top: 4px;
+      margin: 4px auto 0;
       background: linear-gradient(
         to right,
         transparent,
         rgba(148, 163, 184, 0.6),
         transparent
       );
+      opacity: 0.75;
+    }
+
+    .footer-text {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
       opacity: 0.7;
+      margin-top: 18px; /* mais espaço entre a linha e o texto */
     }
 
     /* Toast pequeno para feedback do clique no email */
@@ -313,14 +314,6 @@
     .toast.visible {
       opacity: 1;
       transform: translateX(-50%) translateY(-4px);
-    }
-
-    .mail-link {
-      color: inherit;
-      text-decoration: underline;
-      text-decoration-style: dotted;
-      text-underline-offset: 3px;
-      cursor: pointer;
     }
 
     @keyframes cardIn {
@@ -349,7 +342,7 @@
 
     @media (max-width: 640px) {
       .card {
-        padding: 28px 18px 22px;
+        padding: 28px 18px 24px;
         border-radius: 22px;
       }
 
@@ -373,7 +366,7 @@
       }
 
       .accent-bar {
-        inset-inline: 20%;
+        width: 70%;
       }
     }
   </style>
