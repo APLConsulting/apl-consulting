@@ -52,6 +52,12 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    main {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
     .card {
       position: relative;
       width: 100%;
@@ -91,6 +97,10 @@
       background: radial-gradient(circle, rgba(45, 212, 191, 0.45), transparent 60%);
       bottom: -90px;
       right: -70px;
+    }
+
+    header {
+      text-align: center;
     }
 
     /* LOGO – só o logo, sem moldura */
@@ -284,12 +294,15 @@
       opacity: 0.75;
     }
 
+    footer {
+      margin-top: 18px;
+    }
+
     .footer-text {
       text-align: center;
       font-size: 0.75rem;
       color: var(--text-muted);
       opacity: 0.7;
-      margin-top: 18px;
     }
 
     /* Toast pequeno */
@@ -462,71 +475,97 @@
         margin: 0 16px;
       }
     }
+
+    /* Respeitar utilizadores com motion reduzido */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .logo-frame {
+        animation: none !important;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="logo-frame">
-      <img
-        src="logo-apl-branco.png"
-        alt="Logótipo APL Consulting"
-        width="512"
-        height="512"
-        decoding="async"
-        loading="eager"
-      />
-    </div>
+  <main>
+    <section class="card" aria-labelledby="headline">
+      <header>
+        <div class="logo-frame">
+          <img
+            src="logo-apl-branco.png"
+            alt="Logótipo APL Consulting"
+            width="512"
+            height="512"
+            decoding="async"
+            loading="eager"
+          />
+        </div>
 
-    <div class="eyebrow" id="eyebrow">
-      SISTEMAS DIGITAIS &amp; AUTOMAÇÃO
-    </div>
-    <div class="tagline" id="tagline">
-      Eficientemente movemos o mundo.
-    </div>
+        <div class="eyebrow" id="eyebrow">
+          SISTEMAS DIGITAIS &amp; AUTOMAÇÃO
+        </div>
+        <div class="tagline" id="tagline">
+          Eficientemente movemos o mundo.
+        </div>
+      </header>
 
-    <h1 id="headline">Brevemente disponível</h1>
+      <h1 id="headline">Brevemente disponível</h1>
 
-    <p class="lead" id="lead">
-      A nossa nova plataforma digital APL Consulting está em construção.
-      Otimizada para gestão, eficiência e automatização.
-    </p>
+      <p class="lead" id="lead">
+        A nossa nova plataforma digital APL Consulting está em construção.
+        Otimizada para gestão, eficiência e automatização.
+      </p>
 
-    <p class="body-text" id="body">
-      Desenvolvemos e gerimos sistemas digitais para negócios exigentes,
-      automatizamos fluxos logísticos e operacionais, e ligamos software,
-      máquinas e motores para que tudo funcione como um único sistema.
-    </p>
+      <p class="body-text" id="body">
+        Desenvolvemos e gerimos sistemas digitais para negócios exigentes,
+        automatizamos fluxos logísticos e operacionais, e ligamos software,
+        máquinas e motores para que tudo funcione como um único sistema.
+      </p>
 
-    <div class="cta-wrapper">
-      <button class="cta-button" id="contactBtn">
-        <span>Contacte-nos</span>
-      </button>
-    </div>
+      <div class="cta-wrapper">
+        <button class="cta-button" id="contactBtn" type="button">
+          <span>Contacte-nos</span>
+        </button>
+      </div>
 
-    <div class="lang-switch">
-      <button class="lang-btn active" data-lang="pt">PT</button>
-      <button class="lang-btn" data-lang="fr">FR</button>
-      <button class="lang-btn" data-lang="en">EN</button>
-    </div>
+      <nav class="lang-switch" aria-label="Selecionar idioma">
+        <button class="lang-btn active" data-lang="pt" type="button" aria-pressed="true">PT</button>
+        <button class="lang-btn" data-lang="fr" type="button" aria-pressed="false">FR</button>
+        <button class="lang-btn" data-lang="en" type="button" aria-pressed="false">EN</button>
+      </nav>
 
-    <div class="accent-bar"></div>
+      <div class="accent-bar"></div>
 
-    <p class="footer-text" id="footerText">
-      Primeira versão pública prevista para 2026.
-    </p>
-  </div>
+      <footer>
+        <p class="footer-text" id="footerText">
+          Primeira versão pública prevista para 2026.
+        </p>
+      </footer>
+    </section>
+  </main>
 
   <!-- MODAL CONTACTO -->
-  <div class="modal-backdrop" id="contactModal">
+  <div
+    class="modal-backdrop"
+    id="contactModal"
+    aria-hidden="true"
+  >
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" id="modalClose" aria-label="Fechar">×</button>
+      <button class="modal-close" id="modalClose" type="button" aria-label="Fechar">×</button>
       <h2 class="modal-title" id="modalTitle">Contacte-nos</h2>
       <p class="modal-text" id="modalText">
         Se não tiver sido encaminhado automaticamente para a sua aplicação de e-mail,
         utilize o endereço abaixo.
       </p>
       <div class="modal-email-wrapper">
-        <span class="modal-email" id="modalEmail">contact@apl-consulting.com</span>
+        <button class="modal-email" id="modalEmail" type="button">
+          contact@apl-consulting.com
+        </button>
         <small class="modal-hint" id="modalHint">
           Clique no endereço para copiar para a área de transferência.
         </small>
@@ -535,7 +574,7 @@
   </div>
 
   <!-- TOAST -->
-  <div class="toast" id="toast">
+  <div class="toast" id="toast" role="status" aria-live="polite">
     Endereço de e-mail copiado para a área de transferência.
   </div>
 
@@ -557,7 +596,10 @@
         modalTitle: "Contacte-nos",
         modalText:
           "Se não tiver sido encaminhado automaticamente para a sua aplicação de e-mail, utilize o endereço abaixo.",
-        modalHint: "Clique no endereço para copiar para a área de transferência."
+        modalHint: "Clique no endereço para copiar para a área de transferência.",
+        title: "APL Consulting – Sistemas Digitais & Automação",
+        description:
+          "APL Consulting desenvolve sistemas digitais e soluções de automação para negócios exigentes. Otimizamos gestão, eficiência e integração entre software, máquinas e motores."
       },
       fr: {
         eyebrow: "SYSTÈMES NUMÉRIQUES & AUTOMATISATION",
@@ -573,7 +615,10 @@
         modalTitle: "Contactez-nous",
         modalText:
           "Si votre client de messagerie ne s’est pas ouvert automatiquement, utilisez l’adresse ci-dessous.",
-        modalHint: "Cliquez sur l’adresse pour la copier dans le presse-papiers."
+        modalHint: "Cliquez sur l’adresse pour la copier dans le presse-papiers.",
+        title: "APL Consulting – Systèmes numériques & automatisation",
+        description:
+          "APL Consulting conçoit des systèmes digitaux et des solutions d’automatisation pour des environnements exigeants. Nous optimisons la gestion, l’efficacité et l’intégration entre logiciels, machines et moteurs."
       },
       en: {
         eyebrow: "DIGITAL SYSTEMS & AUTOMATION",
@@ -589,7 +634,10 @@
         modalTitle: "Contact us",
         modalText:
           "If your e-mail application did not open automatically, use the address below.",
-        modalHint: "Click the address to copy it to your clipboard."
+        modalHint: "Click the address to copy it to your clipboard.",
+        title: "APL Consulting – Digital systems & automation",
+        description:
+          "APL Consulting develops digital systems and automation solutions for demanding businesses. We optimise management, efficiency and integration between software, machines and engines."
       }
     };
 
@@ -611,8 +659,16 @@
     const modalEmailEl = document.getElementById("modalEmail");
     const modalCloseBtn = document.getElementById("modalClose");
 
+    const metaDescription = document.querySelector('meta[name="description"]');
+
+    let lastFocusedElement = null;
+
     function setLanguage(lang) {
-      const data = content[lang] || content.pt;
+      if (!content[lang]) {
+        lang = "pt";
+      }
+
+      const data = content[lang];
 
       eyebrowEl.textContent = data.eyebrow;
       taglineEl.textContent = data.tagline;
@@ -628,11 +684,30 @@
       modalHintEl.textContent = data.modalHint;
       modalEmailEl.textContent = EMAIL;
 
+      // Atualiza idioma do documento
       document.documentElement.lang = lang;
 
+      // Atualiza título e meta description dinamicamente
+      if (data.title) {
+        document.title = data.title;
+      }
+      if (metaDescription && data.description) {
+        metaDescription.setAttribute("content", data.description);
+      }
+
+      // Estado visual e ARIA dos botões de idioma
       langButtons.forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.lang === lang);
+        const isActive = btn.dataset.lang === lang;
+        btn.classList.toggle("active", isActive);
+        btn.setAttribute("aria-pressed", String(isActive));
       });
+
+      // Guardar preferência
+      try {
+        localStorage.setItem("apl_lang", lang);
+      } catch (e) {
+        // Se o navegador bloquear localStorage, ignoramos
+      }
     }
 
     function showToast() {
@@ -643,23 +718,84 @@
       }, 2400);
     }
 
+    function getModalFocusableElements() {
+      return modalBackdrop.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+    }
+
+    function handleModalKeydown(event) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeModal();
+        return;
+      }
+
+      if (event.key === "Tab") {
+        const focusable = getModalFocusableElements();
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey) {
+          if (document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    }
+
     function openModal() {
+      lastFocusedElement = document.activeElement;
+
       modalBackdrop.classList.add("visible");
+      modalBackdrop.setAttribute("aria-hidden", "false");
+
+      const focusable = getModalFocusableElements();
+      if (focusable.length) {
+        focusable[0].focus();
+      }
+
+      document.addEventListener("keydown", handleModalKeydown);
     }
 
     function closeModal() {
       modalBackdrop.classList.remove("visible");
+      modalBackdrop.setAttribute("aria-hidden", "true");
+
+      document.removeEventListener("keydown", handleModalKeydown);
+
+      if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+        lastFocusedElement.focus();
+      }
     }
 
     async function copyEmailToClipboard() {
+      let copied = false;
+
       if (navigator.clipboard && navigator.clipboard.writeText) {
         try {
           await navigator.clipboard.writeText(EMAIL);
+          copied = true;
         } catch (err) {
-          // se falhar, o utilizador pode copiar à mão
+          copied = false;
         }
       }
+
+      // Mostramos sempre o toast (se não copiou, o utilizador pode copiar à mão)
       showToast();
+
+      if (!copied) {
+        // opcionalmente, poderias alterar temporariamente o texto do hint
+        // mas para já mantemos simples
+      }
     }
 
     async function handleContactClick() {
@@ -690,13 +826,32 @@
 
     modalEmailEl.addEventListener("click", copyEmailToClipboard);
 
-    // Língua inicial baseada no browser
+    // Língua inicial baseada no browser + preferência guardada
     (function initLang() {
-      const browserLang = (navigator.language || "pt").toLowerCase();
-      if (browserLang.startsWith("fr")) setLanguage("fr");
-      else if (browserLang.startsWith("en")) setLanguage("en");
-      else setLanguage("pt");
+      let initialLang = "pt";
+
+      try {
+        const stored = localStorage.getItem("apl_lang");
+        if (stored && content[stored]) {
+          initialLang = stored;
+        } else {
+          const browserLang = (navigator.language || "pt").toLowerCase();
+          if (browserLang.startsWith("fr")) initialLang = "fr";
+          else if (browserLang.startsWith("en")) initialLang = "en";
+        }
+      } catch (e) {
+        const browserLang = (navigator.language || "pt").toLowerCase();
+        if (browserLang.startsWith("fr")) initialLang = "fr";
+        else if (browserLang.startsWith("en")) initialLang = "en";
+      }
+
+      setLanguage(initialLang);
     })();
+
+    // Mensagem só para quem abre o console 😏
+    console.log(
+      "Não, não usamos WP Rocket nem outras mariquises, aqui programa se com vontade, não para parecer bem\" -Alexandre Pereira Leite"
+    );
   </script>
 </body>
 </html>
