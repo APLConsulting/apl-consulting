@@ -7,6 +7,10 @@
   <title>APL Consulting – Sistemas Digitais &amp; Automação</title>
   <meta name="description" content="APL Consulting desenvolve sistemas digitais e soluções de automação para negócios exigentes. Otimizamos gestão, eficiência e integração entre software, máquinas e motores." />
 
+  <!-- Pequenas hardenings no lado do browser -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'self'; frame-ancestors 'self';" />
+  <meta name="referrer" content="same-origin" />
+
   <link rel="icon" type="image/png" href="logo-apl-branco.png" />
   <link rel="shortcut icon" type="image/png" href="logo-apl-branco.png" />
   <link rel="preload" as="image" href="logo-apl-branco.png" />
@@ -312,7 +316,7 @@
       box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.25s ease-out, transform 0.25s.ease-out;
+      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
       z-index: 40;
     }
 
@@ -567,267 +571,269 @@
   </div>
 
   <script>
-    const EMAIL = "contact@apl-consulting.com";
+    (function () {
+      const EMAIL = "contact@apl-consulting.com";
 
-    const content = {
-      pt: {
-        eyebrow: "SISTEMAS DIGITAIS & AUTOMAÇÃO",
-        tagline: "Eficientemente movemos o mundo.",
-        headline: "Brevemente disponível",
-        lead:
-          "A nossa nova plataforma digital APL Consulting está em construção. Otimizada para gestão, eficiência e automatização.",
-        body:
-          "Desenvolvemos e gerimos sistemas digitais para negócios exigentes, automatizamos fluxos logísticos e operacionais, e ligamos software, máquinas e motores para que tudo funcione como um único sistema.",
-        footer: "Primeira versão pública prevista para 2026.",
-        toast: "Endereço de e-mail copiado para a área de transferência.",
-        contactSubject: "Contacto APL Consulting",
-        modalTitle: "Contacte-nos",
-        modalText:
-          "Se não tiver sido encaminhado automaticamente para a sua aplicação de e-mail, utilize o endereço abaixo.",
-        modalHint: "Clique no endereço para copiar para a área de transferência.",
-        title: "APL Consulting – Sistemas Digitais & Automação",
-        description:
-          "APL Consulting desenvolve sistemas digitais e soluções de automação para negócios exigentes. Otimizamos gestão, eficiência e integração entre software, máquinas e motores.",
-        cta: "Contacte-nos"
-      },
-      fr: {
-        eyebrow: "SYSTÈMES NUMÉRIQUES & AUTOMATISATION",
-        tagline: "Nous faisons avancer le monde avec efficacité.",
-        headline: "Bientôt disponible",
-        lead:
-          "Notre nouvelle plateforme digitale APL Consulting est en construction. Optimisée pour la gestion, l’efficacité et l’automatisation.",
-        body:
-          "Nous concevons et pilotons des systèmes digitaux pour des environnements exigeants, automatisons les flux logistiques et opérationnels, et connectons logiciels, machines et moteurs pour que l’ensemble fonctionne comme un seul système.",
-        footer: "Première versão publique prévue pour 2026.",
-        toast: "Adresse e-mail copiée dans le presse-papiers.",
-        contactSubject: "Contact APL Consulting",
-        modalTitle: "Contactez-nous",
-        modalText:
-          "Si votre client de messagerie ne s’est pas ouvert automatiquement, utilisez l’adresse ci-dessous.",
-        modalHint: "Cliquez sur l’adresse pour la copier dans le presse-papiers.",
-        title: "APL Consulting – Systèmes numériques & automatisation",
-        description:
-          "APL Consulting conçoit des systèmes digitaux et des solutions d’automatisation pour des environnements exigeants. Nous optimisons la gestion, l’efficacité et l’intégration entre logiciels, machines et moteurs.",
-        cta: "Contactez-nous"
-      },
-      en: {
-        eyebrow: "DIGITAL SYSTEMS & AUTOMATION",
-        tagline: "We move the world efficiently.",
-        headline: "Coming soon",
-        lead:
-          "Our new APL Consulting digital platform is under construction. Optimised for management, efficiency and automation.",
-        body:
-          "We design and operate digital systems for demanding businesses, automate logistical and operational flows, and connect software, machines and engines so that everything runs as a single system.",
-        footer: "First public release planned for 2026.",
-        toast: "Email address copied to clipboard.",
-        contactSubject: "Contact – APL Consulting",
-        modalTitle: "Contact us",
-        modalText:
-          "If your e-mail application did not open automatically, use the address below.",
-        modalHint: "Click the address to copy it to your clipboard.",
-        title: "APL Consulting – Digital systems & automation",
-        description:
-          "APL Consulting develops digital systems and automation solutions for demanding businesses. We optimise management, efficiency and integration between software, machines and engines.",
-        cta: "Contact us"
+      const content = {
+        pt: {
+          eyebrow: "SISTEMAS DIGITAIS & AUTOMAÇÃO",
+          tagline: "Eficientemente movemos o mundo.",
+          headline: "Brevemente disponível",
+          lead:
+            "A nossa nova plataforma digital APL Consulting está em construção. Otimizada para gestão, eficiência e automatização.",
+          body:
+            "Desenvolvemos e gerimos sistemas digitais para negócios exigentes, automatizamos fluxos logísticos e operacionais, e ligamos software, máquinas e motores para que tudo funcione como um único sistema.",
+          footer: "Primeira versão pública prevista para 2026.",
+          toast: "Endereço de e-mail copiado para a área de transferência.",
+          contactSubject: "Contacto APL Consulting",
+          modalTitle: "Contacte-nos",
+          modalText:
+            "Se não tiver sido encaminhado automaticamente para a sua aplicação de e-mail, utilize o endereço abaixo.",
+          modalHint: "Clique no endereço para copiar para a área de transferência.",
+          title: "APL Consulting – Sistemas Digitais & Automação",
+          description:
+            "APL Consulting desenvolve sistemas digitais e soluções de automação para negócios exigentes. Otimizamos gestão, eficiência e integração entre software, máquinas e motores.",
+          cta: "Contacte-nos"
+        },
+        fr: {
+          eyebrow: "SYSTÈMES NUMÉRIQUES & AUTOMATISATION",
+          tagline: "Nous faisons avancer le monde avec efficacité.",
+          headline: "Bientôt disponível",
+          lead:
+            "Notre nouvelle plateforme digitale APL Consulting est en construction. Optimisée pour la gestion, l’efficacité et l’automatisation.",
+          body:
+            "Nous concevons et pilotons des systèmes digitaux pour des environnements exigeants, automatisons les flux logistiques et opérationnels, et connectons logiciels, machines et moteurs pour que l’ensemble fonctionne comme un seul système.",
+          footer: "Première versão publique prévue pour 2026.",
+          toast: "Adresse e-mail copiée dans le presse-papiers.",
+          contactSubject: "Contact APL Consulting",
+          modalTitle: "Contactez-nous",
+          modalText:
+            "Si votre client de messagerie ne s’est pas ouvert automatiquement, utilisez l’adresse ci-dessous.",
+          modalHint: "Cliquez sur l’adresse pour la copier dans le presse-papiers.",
+          title: "APL Consulting – Systèmes numériques & automatisation",
+          description:
+            "APL Consulting conçoit des systèmes digitaux et des solutions d’automatisation pour des environnements exigeants. Nous optimisons la gestion, l’efficacité et l’intégration entre logiciels, machines et moteurs.",
+          cta: "Contactez-nous"
+        },
+        en: {
+          eyebrow: "DIGITAL SYSTEMS & AUTOMATION",
+          tagline: "We move the world efficiently.",
+          headline: "Coming soon",
+          lead:
+            "Our new APL Consulting digital platform is under construction. Optimised for management, efficiency and automation.",
+          body:
+            "We design and operate digital systems for demanding businesses, automate logistical and operational flows, and connect software, machines and engines so that everything runs as a single system.",
+          footer: "First public release planned for 2026.",
+          toast: "Email address copied to clipboard.",
+          contactSubject: "Contact – APL Consulting",
+          modalTitle: "Contact us",
+          modalText:
+            "If your e-mail application did not open automatically, use the address below.",
+          modalHint: "Click the address to copy it to your clipboard.",
+          title: "APL Consulting – Digital systems & automation",
+          description:
+            "APL Consulting develops digital systems and automation solutions for demanding businesses. We optimise management, efficiency and integration between software, machines and engines.",
+          cta: "Contact us"
+        }
+      };
+
+      const eyebrowEl = document.getElementById("eyebrow");
+      const taglineEl = document.getElementById("tagline");
+      const headlineEl = document.getElementById("headline");
+      const leadEl = document.getElementById("lead");
+      const bodyEl = document.getElementById("body");
+      const footerEl = document.getElementById("footerText");
+      const toastEl = document.getElementById("toast");
+
+      const contactBtn = document.getElementById("contactBtn");
+      const ctaLabelEl = document.getElementById("ctaLabel");
+      const langButtons = document.querySelectorAll(".lang-btn");
+
+      const modalBackdrop = document.getElementById("contactModal");
+      const modalTitleEl = document.getElementById("modalTitle");
+      const modalTextEl = document.getElementById("modalText");
+      const modalHintEl = document.getElementById("modalHint");
+      const modalEmailEl = document.getElementById("modalEmail");
+      const modalCloseBtn = document.getElementById("modalClose");
+
+      const metaDescription = document.querySelector('meta[name="description"]');
+
+      let lastFocusedElement = null;
+
+      function setLanguage(lang) {
+        if (!content[lang]) {
+          lang = "pt";
+        }
+
+        const data = content[lang];
+
+        eyebrowEl.textContent = data.eyebrow;
+        taglineEl.textContent = data.tagline;
+        headlineEl.textContent = data.headline;
+        leadEl.textContent = data.lead;
+        bodyEl.textContent = data.body;
+        footerEl.textContent = data.footer;
+        toastEl.textContent = data.toast;
+        ctaLabelEl.textContent = data.cta;
+
+        modalTitleEl.textContent = data.modalTitle;
+        modalTextEl.textContent = data.modalText;
+        modalHintEl.textContent = data.modalHint;
+        modalEmailEl.textContent = EMAIL;
+
+        document.documentElement.lang = lang;
+
+        if (data.title) {
+          document.title = data.title;
+        }
+        if (metaDescription && data.description) {
+          metaDescription.setAttribute("content", data.description);
+        }
+
+        langButtons.forEach((btn) => {
+          const isActive = btn.dataset.lang === lang;
+          btn.classList.toggle("active", isActive);
+          btn.setAttribute("aria-pressed", String(isActive));
+        });
+
+        try {
+          localStorage.setItem("apl_lang", lang);
+        } catch (e) {}
       }
-    };
 
-    const eyebrowEl = document.getElementById("eyebrow");
-    const taglineEl = document.getElementById("tagline");
-    const headlineEl = document.getElementById("headline");
-    const leadEl = document.getElementById("lead");
-    const bodyEl = document.getElementById("body");
-    const footerEl = document.getElementById("footerText");
-    const toastEl = document.getElementById("toast");
-
-    const contactBtn = document.getElementById("contactBtn");
-    const ctaLabelEl = document.getElementById("ctaLabel");
-    const langButtons = document.querySelectorAll(".lang-btn");
-
-    const modalBackdrop = document.getElementById("contactModal");
-    const modalTitleEl = document.getElementById("modalTitle");
-    const modalTextEl = document.getElementById("modalText");
-    const modalHintEl = document.getElementById("modalHint");
-    const modalEmailEl = document.getElementById("modalEmail");
-    const modalCloseBtn = document.getElementById("modalClose");
-
-    const metaDescription = document.querySelector('meta[name="description"]');
-
-    let lastFocusedElement = null;
-
-    function setLanguage(lang) {
-      if (!content[lang]) {
-        lang = "pt";
+      function showToast() {
+        toastEl.classList.add("visible");
+        clearTimeout(showToast._timer);
+        showToast._timer = setTimeout(() => {
+          toastEl.classList.remove("visible");
+        }, 2400);
       }
 
-      const data = content[lang];
-
-      eyebrowEl.textContent = data.eyebrow;
-      taglineEl.textContent = data.tagline;
-      headlineEl.textContent = data.headline;
-      leadEl.textContent = data.lead;
-      bodyEl.textContent = data.body;
-      footerEl.textContent = data.footer;
-      toastEl.textContent = data.toast;
-      ctaLabelEl.textContent = data.cta;
-
-      modalTitleEl.textContent = data.modalTitle;
-      modalTextEl.textContent = data.modalText;
-      modalHintEl.textContent = data.modalHint;
-      modalEmailEl.textContent = EMAIL;
-
-      document.documentElement.lang = lang;
-
-      if (data.title) {
-        document.title = data.title;
+      function getModalFocusableElements() {
+        return modalBackdrop.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
       }
-      if (metaDescription && data.description) {
-        metaDescription.setAttribute("content", data.description);
+
+      function handleModalKeydown(event) {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeModal();
+          return;
+        }
+
+        if (event.key === "Tab") {
+          const focusable = getModalFocusableElements();
+          if (!focusable.length) return;
+
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+
+          if (event.shiftKey) {
+            if (document.activeElement === first) {
+              event.preventDefault();
+              last.focus();
+            }
+          } else {
+            if (document.activeElement === last) {
+              event.preventDefault();
+              first.focus();
+            }
+          }
+        }
       }
+
+      function openModal() {
+        lastFocusedElement = document.activeElement;
+
+        modalBackdrop.classList.add("visible");
+        modalBackdrop.setAttribute("aria-hidden", "false");
+
+        const focusable = getModalFocusableElements();
+        if (focusable.length) {
+          focusable[0].focus();
+        }
+
+        document.addEventListener("keydown", handleModalKeydown);
+      }
+
+      function closeModal() {
+        modalBackdrop.classList.remove("visible");
+        modalBackdrop.setAttribute("aria-hidden", "true");
+
+        document.removeEventListener("keydown", handleModalKeydown);
+
+        if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+          lastFocusedElement.focus();
+        }
+      }
+
+      async function copyEmailToClipboard() {
+        let copied = false;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          try {
+            await navigator.clipboard.writeText(EMAIL);
+            copied = true;
+          } catch (err) {
+            copied = false;
+          }
+        }
+
+        showToast();
+
+        if (!copied) {
+          // se não copiar, o user copia à mão, mas já sabe que era suposto copiar
+        }
+      }
+
+      async function handleContactClick() {
+        const lang = document.documentElement.lang || "pt";
+        const data = content[lang] || content.pt;
+
+        const subject = encodeURIComponent(data.contactSubject);
+        const mailtoUrl = `mailto:${EMAIL}?subject=${subject}`;
+
+        window.location.href = mailtoUrl;
+        openModal();
+      }
+
+      contactBtn.addEventListener("click", handleContactClick);
 
       langButtons.forEach((btn) => {
-        const isActive = btn.dataset.lang === lang;
-        btn.classList.toggle("active", isActive);
-        btn.setAttribute("aria-pressed", String(isActive));
+        btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
       });
 
-      try {
-        localStorage.setItem("apl_lang", lang);
-      } catch (e) {}
-    }
+      modalCloseBtn.addEventListener("click", closeModal);
+      modalBackdrop.addEventListener("click", (e) => {
+        if (e.target === modalBackdrop) closeModal();
+      });
 
-    function showToast() {
-      toastEl.classList.add("visible");
-      clearTimeout(showToast._timer);
-      showToast._timer = setTimeout(() => {
-        toastEl.classList.remove("visible");
-      }, 2400);
-    }
+      modalEmailEl.addEventListener("click", copyEmailToClipboard);
 
-    function getModalFocusableElements() {
-      return modalBackdrop.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
-    }
+      (function initLang() {
+        let initialLang = "pt";
 
-    function handleModalKeydown(event) {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        closeModal();
-        return;
-      }
-
-      if (event.key === "Tab") {
-        const focusable = getModalFocusableElements();
-        if (!focusable.length) return;
-
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-
-        if (event.shiftKey) {
-          if (document.activeElement === first) {
-            event.preventDefault();
-            last.focus();
-          }
-        } else {
-          if (document.activeElement === last) {
-            event.preventDefault();
-            first.focus();
-          }
-        }
-      }
-    }
-
-    function openModal() {
-      lastFocusedElement = document.activeElement;
-
-      modalBackdrop.classList.add("visible");
-      modalBackdrop.setAttribute("aria-hidden", "false");
-
-      const focusable = getModalFocusableElements();
-      if (focusable.length) {
-        focusable[0].focus();
-      }
-
-      document.addEventListener("keydown", handleModalKeydown);
-    }
-
-    function closeModal() {
-      modalBackdrop.classList.remove("visible");
-      modalBackdrop.setAttribute("aria-hidden", "true");
-
-      document.removeEventListener("keydown", handleModalKeydown);
-
-      if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
-        lastFocusedElement.focus();
-      }
-    }
-
-    async function copyEmailToClipboard() {
-      let copied = false;
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
         try {
-          await navigator.clipboard.writeText(EMAIL);
-          copied = true;
-        } catch (err) {
-          copied = false;
-        }
-      }
-
-      showToast();
-
-      if (!copied) {
-        // se não copiar, o user copia à mão, mas já sabe que era suposto copiar
-      }
-    }
-
-    async function handleContactClick() {
-      const lang = document.documentElement.lang || "pt";
-      const data = content[lang] || content.pt;
-
-      const subject = encodeURIComponent(data.contactSubject);
-      const mailtoUrl = `mailto:${EMAIL}?subject=${subject}`;
-
-      window.location.href = mailtoUrl;
-      openModal();
-    }
-
-    contactBtn.addEventListener("click", handleContactClick);
-
-    langButtons.forEach((btn) => {
-      btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
-    });
-
-    modalCloseBtn.addEventListener("click", closeModal);
-    modalBackdrop.addEventListener("click", (e) => {
-      if (e.target === modalBackdrop) closeModal();
-    });
-
-    modalEmailEl.addEventListener("click", copyEmailToClipboard);
-
-    (function initLang() {
-      let initialLang = "pt";
-
-      try {
-        const stored = localStorage.getItem("apl_lang");
-        if (stored && content[stored]) {
-          initialLang = stored;
-        } else {
+          const stored = localStorage.getItem("apl_lang");
+          if (stored && content[stored]) {
+            initialLang = stored;
+          } else {
+            const browserLang = (navigator.language || "pt").toLowerCase();
+            if (browserLang.startsWith("fr")) initialLang = "fr";
+            else if (browserLang.startsWith("en")) initialLang = "en";
+          }
+        } catch (e) {
           const browserLang = (navigator.language || "pt").toLowerCase();
           if (browserLang.startsWith("fr")) initialLang = "fr";
           else if (browserLang.startsWith("en")) initialLang = "en";
         }
-      } catch (e) {
-        const browserLang = (navigator.language || "pt").toLowerCase();
-        if (browserLang.startsWith("fr")) initialLang = "fr";
-        else if (browserLang.startsWith("en")) initialLang = "en";
-      }
 
-      setLanguage(initialLang);
+        setLanguage(initialLang);
+      })();
     })();
   </script>
 
-  <!-- "Não, não usamos WP Rocket nem outras mariquises, aqui programa se com vontade, não para parecer bem" -Alexandre Pereira Leite -->
+  <!-- Este site é como um foguetão, não é? Otimizado por Alexandre Pereira Leite. WP Rocket? O que é isso? -->
 </body>
 </html>
