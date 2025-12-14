@@ -7,12 +7,25 @@
   <title>APL Consulting – Sistemas Digitais &amp; Automação</title>
   <meta name="description" content="APL Consulting desenvolve sistemas digitais e soluções de automação para negócios exigentes. Otimizamos gestão, eficiência e integração entre software, máquinas e motores." />
 
-  <!-- Pequenas hardenings no lado do browser -->
+  <!-- Meta tags adicionais -->
+  <meta name="theme-color" content="#05070b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="APL Consulting – Sistemas Digitais & Automação" />
+  <meta property="og:description" content="Desenvolvemos sistemas digitais e soluções de automação para negócios exigentes." />
+  <meta property="og:image" content="/logo-apl-branco.png" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://apl-consulting.com" />
+
+  <!-- Segurança -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'self'; frame-ancestors 'self';" />
   <meta name="referrer" content="same-origin" />
 
   <link rel="icon" type="image/png" href="logo-apl-branco.png" />
   <link rel="shortcut icon" type="image/png" href="logo-apl-branco.png" />
+  <link rel="apple-touch-icon" href="logo-apl-branco.png" />
   <link rel="preload" as="image" href="logo-apl-branco.png" />
 
   <style>
@@ -111,12 +124,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      animation: floatLogo 6s ease-in-out infinite;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .logo-frame {
+        animation: floatLogo 6s ease-in-out infinite;
+      }
     }
 
     .logo-frame img {
       width: 72%;
       height: auto;
+      aspect-ratio: 1;
       display: block;
       filter: drop-shadow(0 14px 40px rgba(15, 23, 42, 0.9));
       opacity: 0;
@@ -329,6 +348,7 @@
       position: fixed;
       inset: 0;
       background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(4px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -383,11 +403,17 @@
       user-select: text;
       color: #e5edff;
       margin-bottom: 6px;
+      transition: border-color 0.18s ease-out, box-shadow 0.18s ease-out, background 0.18s ease-out;
     }
 
     .modal-email:hover {
       border-color: rgba(191, 219, 254, 0.9);
       box-shadow: 0 0 0 1px rgba(191, 219, 254, 0.35), 0 10px 26px rgba(37, 99, 235, 0.9);
+    }
+
+    .modal-email.copied {
+      border-color: rgba(34, 197, 94, 0.8);
+      background: radial-gradient(circle at 50% 0%, rgba(34, 197, 94, 0.35), rgba(15, 23, 42, 0.95));
     }
 
     .modal-hint {
@@ -407,6 +433,7 @@
       font-size: 1.1rem;
       line-height: 1;
       padding: 4px;
+      transition: color 0.18s ease-out;
     }
 
     .modal-close:hover {
@@ -441,6 +468,7 @@
       .card {
         padding: 28px 18px 24px;
         border-radius: 22px;
+        backdrop-filter: blur(8px);
       }
 
       .logo-frame {
@@ -570,6 +598,21 @@
     Endereço de e-mail copiado para a área de transferência.
   </div>
 
+  <!-- Fallback para browsers sem JavaScript -->
+  <noscript>
+    <style>
+      .card { opacity: 1 !important; transform: none !important; }
+      .lang-switch { display: none; }
+      .cta-button { display: none; }
+    </style>
+    <div style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+                background:#1e3a8a;padding:12px 24px;border-radius:12px;
+                text-align:center;font-size:0.9rem;max-width:90%;
+                box-shadow:0 10px 40px rgba(0,0,0,0.5);">
+      📧 <strong>contact@apl-consulting.com</strong>
+    </div>
+  </noscript>
+
   <script>
     (function () {
       const EMAIL = "contact@apl-consulting.com";
@@ -600,19 +643,19 @@
           tagline: "Nous faisons avancer le monde avec efficacité.",
           headline: "Bientôt disponible",
           lead:
-            "Notre nouvelle plateforme digitale APL Consulting est en construction. Optimisée pour la gestion, l’efficacité et l’automatisation.",
+            "Notre nouvelle plateforme digitale APL Consulting est en construction. Optimisée pour la gestion, l'efficacité et l'automatisation.",
           body:
-            "Nous concevons et pilotons des systèmes digitaux pour des environnements exigeants, automatisons les flux logistiques et opérationnels, et connectons logiciels, machines et moteurs pour que l’ensemble fonctionne comme un seul système.",
-          footer: "Première versão publique prévue pour 2026.",
+            "Nous concevons et pilotons des systèmes digitaux pour des environnements exigeants, automatisons les flux logistiques et opérationnels, et connectons logiciels, machines et moteurs pour que l'ensemble fonctionne comme un seul système.",
+          footer: "Première version publique prévue pour 2026.",
           toast: "Adresse e-mail copiée dans le presse-papiers.",
           contactSubject: "Contact APL Consulting",
           modalTitle: "Contactez-nous",
           modalText:
-            "Si votre client de messagerie ne s’est pas ouvert automatiquement, utilisez l’adresse ci-dessous.",
-          modalHint: "Cliquez sur l’adresse pour la copier dans le presse-papiers.",
+            "Si votre client de messagerie ne s'est pas ouvert automatiquement, utilisez l'adresse ci-dessous.",
+          modalHint: "Cliquez sur l'adresse pour la copier dans le presse-papiers.",
           title: "APL Consulting – Systèmes numériques & automatisation",
           description:
-            "APL Consulting conçoit des systèmes digitaux et des solutions d’automatisation pour des environnements exigeants. Nous optimisons la gestion, l’efficacité et l’intégration entre logiciels, machines et moteurs.",
+            "APL Consulting conçoit des systèmes digitaux et des solutions d'automatisation pour des environnements exigeants. Nous optimisons la gestion, l'efficacité et l'intégration entre logiciels, machines et moteurs.",
           cta: "Contactez-nous"
         },
         en: {
@@ -657,6 +700,8 @@
       const modalCloseBtn = document.getElementById("modalClose");
 
       const metaDescription = document.querySelector('meta[name="description"]');
+      const metaOgTitle = document.querySelector('meta[property="og:title"]');
+      const metaOgDescription = document.querySelector('meta[property="og:description"]');
 
       let lastFocusedElement = null;
 
@@ -689,6 +734,12 @@
         if (metaDescription && data.description) {
           metaDescription.setAttribute("content", data.description);
         }
+        if (metaOgTitle && data.title) {
+          metaOgTitle.setAttribute("content", data.title);
+        }
+        if (metaOgDescription && data.description) {
+          metaOgDescription.setAttribute("content", data.description);
+        }
 
         langButtons.forEach((btn) => {
           const isActive = btn.dataset.lang === lang;
@@ -698,7 +749,9 @@
 
         try {
           localStorage.setItem("apl_lang", lang);
-        } catch (e) {}
+        } catch (e) {
+          // localStorage não disponível
+        }
       }
 
       function showToast() {
@@ -768,34 +821,54 @@
         }
       }
 
-      async function copyEmailToClipboard() {
-        let copied = false;
-
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          try {
-            await navigator.clipboard.writeText(EMAIL);
-            copied = true;
-          } catch (err) {
-            copied = false;
-          }
+      async function copyEmailToClipboard(event) {
+        if (event) {
+          event.stopPropagation();
         }
 
-        showToast();
+        const originalText = modalEmailEl.textContent;
 
-        if (!copied) {
-          // se não copiar, o user copia à mão, mas já sabe que era suposto copiar
+        try {
+          await navigator.clipboard.writeText(EMAIL);
+          
+          // Feedback visual de sucesso
+          modalEmailEl.textContent = "✓ Copiado!";
+          modalEmailEl.classList.add("copied");
+          
+          showToast();
+          
+          setTimeout(() => {
+            modalEmailEl.textContent = originalText;
+            modalEmailEl.classList.remove("copied");
+          }, 2000);
+        } catch (err) {
+          // Fallback: selecionar texto para cópia manual
+          try {
+            const range = document.createRange();
+            range.selectNodeContents(modalEmailEl);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+          } catch (selectErr) {
+            // Se nada funcionar, pelo menos o user vê o email
+          }
         }
       }
 
-      async function handleContactClick() {
+      function handleContactClick() {
         const lang = document.documentElement.lang || "pt";
         const data = content[lang] || content.pt;
 
         const subject = encodeURIComponent(data.contactSubject);
         const mailtoUrl = `mailto:${EMAIL}?subject=${subject}`;
 
+        // Tentar abrir mailto
         window.location.href = mailtoUrl;
-        openModal();
+
+        // Mostrar modal após pequeno delay (assume que mailto pode não funcionar)
+        setTimeout(() => {
+          openModal();
+        }, 500);
       }
 
       contactBtn.addEventListener("click", handleContactClick);
@@ -811,6 +884,20 @@
 
       modalEmailEl.addEventListener("click", copyEmailToClipboard);
 
+      // Intersection Observer para pausar animação do logo quando fora de vista
+      if ('IntersectionObserver' in window && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+        const logoFrame = document.querySelector('.logo-frame');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.target.style.animationPlayState !== undefined) {
+              entry.target.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+            }
+          });
+        });
+        observer.observe(logoFrame);
+      }
+
+      // Inicializar idioma
       (function initLang() {
         let initialLang = "pt";
 
@@ -819,12 +906,12 @@
           if (stored && content[stored]) {
             initialLang = stored;
           } else {
-            const browserLang = (navigator.language || "pt").toLowerCase();
+            const browserLang = (navigator?.language || navigator?.userLanguage || "pt").toLowerCase();
             if (browserLang.startsWith("fr")) initialLang = "fr";
             else if (browserLang.startsWith("en")) initialLang = "en";
           }
         } catch (e) {
-          const browserLang = (navigator.language || "pt").toLowerCase();
+          const browserLang = (navigator?.language || navigator?.userLanguage || "pt").toLowerCase();
           if (browserLang.startsWith("fr")) initialLang = "fr";
           else if (browserLang.startsWith("en")) initialLang = "en";
         }
@@ -834,6 +921,6 @@
     })();
   </script>
 
-  <!-- Este site é como um foguetão, não é? Otimizado por Alexandre Pereira Leite. WP Rocket? O que é isso? -->
+  <!-- Developed by Alexandre Pereira Leite | APL Consulting © 2025 -->
 </body>
 </html>
