@@ -628,6 +628,7 @@
             "Desenvolvemos e gerimos sistemas digitais para negócios exigentes, automatizamos fluxos logísticos e operacionais, e ligamos software, máquinas e motores para que tudo funcione como um único sistema.",
           footer: "Primeira versão pública prevista para 2026.",
           toast: "Endereço de e-mail copiado para a área de transferência.",
+          copied: "✓ Copiado!",
           contactSubject: "Contacto APL Consulting",
           modalTitle: "Contacte-nos",
           modalText:
@@ -648,6 +649,7 @@
             "Nous concevons et pilotons des systèmes digitaux pour des environnements exigeants, automatisons les flux logistiques et opérationnels, et connectons logiciels, machines et moteurs pour que l'ensemble fonctionne comme un seul système.",
           footer: "Première version publique prévue pour 2026.",
           toast: "Adresse e-mail copiée dans le presse-papiers.",
+          copied: "✓ Copié !",
           contactSubject: "Contact APL Consulting",
           modalTitle: "Contactez-nous",
           modalText:
@@ -668,6 +670,7 @@
             "We design and operate digital systems for demanding businesses, automate logistical and operational flows, and connect software, machines and engines so that everything runs as a single system.",
           footer: "First public release planned for 2026.",
           toast: "Email address copied to clipboard.",
+          copied: "✓ Copied!",
           contactSubject: "Contact – APL Consulting",
           modalTitle: "Contact us",
           modalText:
@@ -707,7 +710,7 @@
 
       function setLanguage(lang) {
         if (!content[lang]) {
-          lang = "pt";
+          lang = "en";
         }
 
         const data = content[lang];
@@ -827,12 +830,16 @@
         }
 
         const originalText = modalEmailEl.textContent;
+        
+        // Obter idioma atual
+        const currentLang = document.documentElement.lang || "en";
+        const data = content[currentLang] || content.en;
 
         try {
           await navigator.clipboard.writeText(EMAIL);
           
-          // Feedback visual de sucesso
-          modalEmailEl.textContent = "✓ Copiado!";
+          // Feedback visual de sucesso com texto traduzido
+          modalEmailEl.textContent = data.copied;
           modalEmailEl.classList.add("copied");
           
           showToast();
@@ -856,8 +863,8 @@
       }
 
       function handleContactClick() {
-        const lang = document.documentElement.lang || "pt";
-        const data = content[lang] || content.pt;
+        const lang = document.documentElement.lang || "en";
+        const data = content[lang] || content.en;
 
         const subject = encodeURIComponent(data.contactSubject);
         const mailtoUrl = `mailto:${EMAIL}?subject=${subject}`;
@@ -899,21 +906,37 @@
 
       // Inicializar idioma
       (function initLang() {
-        let initialLang = "pt";
+        let initialLang = "en"; // Default para inglês
 
         try {
+          // Primeiro verificar se há idioma guardado
           const stored = localStorage.getItem("apl_lang");
           if (stored && content[stored]) {
             initialLang = stored;
           } else {
-            const browserLang = (navigator?.language || navigator?.userLanguage || "pt").toLowerCase();
-            if (browserLang.startsWith("fr")) initialLang = "fr";
-            else if (browserLang.startsWith("en")) initialLang = "en";
+            // Detectar idioma do browser
+            const browserLang = (navigator?.language || navigator?.userLanguage || "en").toLowerCase();
+            
+            if (browserLang.startsWith("pt")) {
+              initialLang = "pt";
+            } else if (browserLang.startsWith("fr")) {
+              initialLang = "fr";
+            } else {
+              // Qualquer outro idioma (árabe, chinês, espanhol, alemão, etc.) → inglês
+              initialLang = "en";
+            }
           }
         } catch (e) {
-          const browserLang = (navigator?.language || navigator?.userLanguage || "pt").toLowerCase();
-          if (browserLang.startsWith("fr")) initialLang = "fr";
-          else if (browserLang.startsWith("en")) initialLang = "en";
+          // Se localStorage falhar, tentar apenas detecção de browser
+          const browserLang = (navigator?.language || navigator?.userLanguage || "en").toLowerCase();
+          
+          if (browserLang.startsWith("pt")) {
+            initialLang = "pt";
+          } else if (browserLang.startsWith("fr")) {
+            initialLang = "fr";
+          } else {
+            initialLang = "en";
+          }
         }
 
         setLanguage(initialLang);
