@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="pt">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>APL Consulting – Systèmes numériques & automatisation</title>
-  <meta name="description" content="APL Consulting conçoit des systèmes numériques et des solutions d'automatisation pour les entreprises. Basée en Provence-Alpes-Côte d'Azur, France." />
+  <title>APL Consulting – Sistemas digitais & automação</title>
+  <meta name="description" content="A APL Consulting desenvolve sistemas digitais e soluções de automação para empresas. Sediada em Provence-Alpes-Côte d'Azur, França." />
 
   <!-- Meta tags -->
   <meta name="theme-color" content="#05070b" />
@@ -13,8 +13,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   
   <!-- Open Graph -->
-  <meta property="og:title" content="APL Consulting – Systèmes numériques & automatisation" />
-  <meta property="og:description" content="Conseil technique et support à distance pour entreprises exigeantes." />
+  <meta property="og:title" content="APL Consulting – Sistemas digitais & automação" />
+  <meta property="og:description" content="Consultoria técnica e suporte remoto para empresas exigentes." />
   <meta property="og:image" content="https://www.apl-consulting.com/logo-apl-branco.png" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.apl-consulting.com" />
@@ -107,6 +107,7 @@
       color: var(--text-main);
       font-weight: 600;
       font-size: 1.1rem;
+      cursor: pointer;
     }
 
     .nav-logo img {
@@ -144,6 +145,7 @@
       font-weight: 500;
       transition: color 0.2s ease;
       position: relative;
+      cursor: pointer;
     }
 
     .nav-menu a:hover,
@@ -269,6 +271,7 @@
       font-weight: 500;
       display: block;
       padding: 8px 0;
+      cursor: pointer;
     }
 
     /* ========== MAIN CONTENT ========== */
@@ -656,6 +659,7 @@
       text-decoration: none;
       font-size: 0.95rem;
       transition: color 0.2s ease;
+      cursor: pointer;
     }
 
     .footer-links a:hover {
@@ -715,21 +719,21 @@
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="javascript:void(0)" class="nav-logo" data-scroll="home">
+      <a href="#home" class="nav-logo" data-scroll="home">
         <img src="logo-apl-branco.png" alt="APL Consulting" width="40" height="40" />
         <span>APL Consulting</span>
       </a>
 
       <ul class="nav-menu">
-        <li><a href="javascript:void(0)" class="nav-link" data-scroll="home" data-nav="home">Accueil</a></li>
-        <li><a href="javascript:void(0)" class="nav-link" data-scroll="services" data-nav="services">Services</a></li>
-        <li><a href="javascript:void(0)" class="nav-link" data-scroll="about" data-nav="about">À propos</a></li>
-        <li><a href="javascript:void(0)" class="nav-link" data-scroll="contact" data-nav="contact">Contact</a></li>
+        <li><a href="#home" class="nav-link active" data-scroll="home" data-nav="home">Início</a></li>
+        <li><a href="#services" class="nav-link" data-scroll="services" data-nav="services">Serviços</a></li>
+        <li><a href="#about" class="nav-link" data-scroll="about" data-nav="about">Sobre</a></li>
+        <li><a href="#contact" class="nav-link" data-scroll="contact" data-nav="contact">Contacto</a></li>
       </ul>
 
       <div class="nav-lang">
         <button class="lang-btn-nav" data-lang="fr">FR</button>
-        <button class="lang-btn-nav" data-lang="pt">PT</button>
+        <button class="lang-btn-nav active" data-lang="pt">PT</button>
         <button class="lang-btn-nav" data-lang="en">EN</button>
       </div>
 
@@ -743,10 +747,10 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
       <ul class="mobile-menu-list">
-        <li><a href="javascript:void(0)" class="mobile-link" data-scroll="home" data-nav="home">Accueil</a></li>
-        <li><a href="javascript:void(0)" class="mobile-link" data-scroll="services" data-nav="services">Services</a></li>
-        <li><a href="javascript:void(0)" class="mobile-link" data-scroll="about" data-nav="about">À propos</a></li>
-        <li><a href="javascript:void(0)" class="mobile-link" data-scroll="contact" data-nav="contact">Contact</a></li>
+        <li><a href="#home" class="mobile-link" data-scroll="home" data-nav="home">Início</a></li>
+        <li><a href="#services" class="mobile-link" data-scroll="services" data-nav="services">Serviços</a></li>
+        <li><a href="#about" class="mobile-link" data-scroll="about" data-nav="about">Sobre</a></li>
+        <li><a href="#contact" class="mobile-link" data-scroll="contact" data-nav="contact">Contacto</a></li>
       </ul>
     </div>
   </nav>
@@ -755,31 +759,30 @@
   <section class="hero" id="home">
     <div class="hero-content">
       <div class="hero-badge" id="heroBadge">
-        Disponible pour nouveaux projets
+        Disponível para novos projetos
       </div>
       
       <img src="logo-apl-branco.png" alt="APL Consulting" class="logo-hero" width="120" height="120" />
       
       <h1 id="heroTitle">
-        Solutions numériques & automatisation
+        Soluções digitais & automação
       </h1>
       
       <p class="hero-subtitle" id="heroSubtitle">
-        Nous accompagnons les entreprises dans leur transformation digitale 
-        et l'optimisation de leurs opérations.
+        Acompanhamos empresas na sua transformação digital e otimização de operações.
       </p>
       
       <p class="hero-location" id="heroLocation">
-        Basée en Provence-Alpes-Côte d'Azur, France
+        Sediada em Provence-Alpes-Côte d'Azur, França
       </p>
 
       <div class="hero-cta">
-        <a href="javascript:void(0)" class="btn btn-primary" data-scroll="contact">
-          <span id="heroCta1">Discuter de votre projet</span>
+        <a href="#contact" class="btn btn-primary" data-scroll="contact">
+          <span id="heroCta1">Discutir o seu projeto</span>
           <span>→</span>
         </a>
-        <a href="javascript:void(0)" class="btn btn-secondary" data-scroll="services" id="heroCta2">
-          Découvrir nos services
+        <a href="#services" class="btn btn-secondary" data-scroll="services" id="heroCta2">
+          Descobrir os nossos serviços
         </a>
       </div>
     </div>
@@ -789,10 +792,10 @@
   <section class="services" id="services">
     <div class="container">
       <div class="section-header">
-        <div class="section-eyebrow" id="servicesEyebrow">Nos Services</div>
-        <h2 class="section-title" id="servicesTitle">Comment nous pouvons vous aider</h2>
+        <div class="section-eyebrow" id="servicesEyebrow">Nossos Serviços</div>
+        <h2 class="section-title" id="servicesTitle">Como podemos ajudar</h2>
         <p class="section-description" id="servicesDesc">
-          Expertise technique et accompagnement personnalisé pour vos projets de transformation digitale.
+          Expertise técnica e acompanhamento personalizado para os seus projetos de transformação digital.
         </p>
       </div>
 
@@ -800,45 +803,42 @@
         <!-- Service 1 -->
         <div class="service-card">
           <span class="service-icon">💼</span>
-          <h3 id="service1Title">Conseil technique</h3>
+          <h3 id="service1Title">Consultoria técnica</h3>
           <p id="service1Desc">
-            Audit de systèmes, architecture de solutions, sélection de technologies 
-            et planification d'implémentation.
+            Auditoria de sistemas, arquitetura de soluções, seleção de tecnologias e planeamento de implementação.
           </p>
           <ul class="service-features">
-            <li id="service1Feature1">Audit et analyse</li>
-            <li id="service1Feature2">Architecture de solutions</li>
-            <li id="service1Feature3">Planification stratégique</li>
+            <li id="service1Feature1">Auditoria e análise</li>
+            <li id="service1Feature2">Arquitetura de soluções</li>
+            <li id="service1Feature3">Planeamento estratégico</li>
           </ul>
         </div>
 
         <!-- Service 2 -->
         <div class="service-card">
           <span class="service-icon">🛠️</span>
-          <h3 id="service2Title">Support à distance</h3>
+          <h3 id="service2Title">Suporte remoto</h3>
           <p id="service2Desc">
-            Résolution de problèmes techniques, maintenance préventive et 
-            support technique qualifié disponible rapidement.
+            Resolução de problemas técnicos, manutenção preventiva e suporte técnico qualificado disponível rapidamente.
           </p>
           <ul class="service-features">
-            <li id="service2Feature1">Support réactif</li>
-            <li id="service2Feature2">Maintenance préventive</li>
-            <li id="service2Feature3">Monitoring 24/7 (option)</li>
+            <li id="service2Feature1">Suporte reativo</li>
+            <li id="service2Feature2">Manutenção preventiva</li>
+            <li id="service2Feature3">Monitorização 24/7 (opção)</li>
           </ul>
         </div>
 
         <!-- Service 3 -->
         <div class="service-card">
           <span class="service-icon">⚙️</span>
-          <h3 id="service3Title">Implémentation</h3>
+          <h3 id="service3Title">Implementação</h3>
           <p id="service3Desc">
-            Développement sur mesure, intégrations entre systèmes, migration 
-            de données et formation des équipes.
+            Desenvolvimento à medida, integrações entre sistemas, migração de dados e formação de equipas.
           </p>
           <ul class="service-features">
-            <li id="service3Feature1">Développement custom</li>
-            <li id="service3Feature2">Intégrations système</li>
-            <li id="service3Feature3">Formation incluse</li>
+            <li id="service3Feature1">Desenvolvimento custom</li>
+            <li id="service3Feature2">Integrações de sistema</li>
+            <li id="service3Feature3">Formação incluída</li>
           </ul>
         </div>
       </div>
@@ -849,31 +849,28 @@
   <section class="about" id="about">
     <div class="container">
       <div class="section-header">
-        <div class="section-eyebrow" id="aboutEyebrow">À propos</div>
+        <div class="section-eyebrow" id="aboutEyebrow">Sobre</div>
         <h2 class="section-title">APL Consulting</h2>
       </div>
 
       <div class="about-content">
         <p class="about-text" id="aboutText">
-          Basée en Provence-Alpes-Côte d'Azur, APL Consulting est une entreprise 
-          spécialisée en systèmes numériques et automatisation. Nous travaillons 
-          avec des entreprises qui ont besoin d'optimiser leurs opérations à travers 
-          l'intégration de systèmes et l'automatisation de processus.
+          Sediada em Provence-Alpes-Côte d'Azur, a APL Consulting é uma empresa especializada em sistemas digitais e automação. Trabalhamos com empresas que precisam otimizar as suas operações através da integração de sistemas e automação de processos.
         </p>
       </div>
 
       <div class="about-stats">
         <div class="stat">
           <div class="stat-number">2026</div>
-          <div class="stat-label" id="stat1Label">Fondée</div>
+          <div class="stat-label" id="stat1Label">Fundada</div>
         </div>
         <div class="stat">
           <div class="stat-number">FR</div>
-          <div class="stat-label" id="stat2Label">France</div>
+          <div class="stat-label" id="stat2Label">França</div>
         </div>
         <div class="stat">
           <div class="stat-number">&lt;24h</div>
-          <div class="stat-label" id="stat3Label">Réponse</div>
+          <div class="stat-label" id="stat3Label">Resposta</div>
         </div>
       </div>
     </div>
@@ -883,21 +880,21 @@
   <section class="contact" id="contact">
     <div class="container">
       <div class="section-header">
-        <div class="section-eyebrow" id="contactEyebrow">Contact</div>
-        <h2 class="section-title" id="contactTitle">Parlons de votre projet</h2>
+        <div class="section-eyebrow" id="contactEyebrow">Contacto</div>
+        <h2 class="section-title" id="contactTitle">Vamos falar do seu projeto</h2>
         <p class="section-description" id="contactDesc">
-          Nous sommes disponibles pour discuter de vos besoins et vous proposer des solutions adaptées.
+          Estamos disponíveis para discutir as suas necessidades e propor soluções adaptadas.
         </p>
       </div>
 
       <div class="contact-content">
         <div class="contact-info">
-          <p id="contactInfoText">Contactez-nous par email</p>
+          <p id="contactInfoText">Contacte-nos por email</p>
           <a href="mailto:contact@apl-consulting.com" class="contact-email">
             contact@apl-consulting.com
           </a>
           <p class="contact-response" id="contactResponse">
-            Réponse garantie sous 24h ouvrées
+            Resposta garantida em 24h úteis
           </p>
         </div>
       </div>
@@ -911,40 +908,42 @@
         <div class="footer-brand">
           <h3>APL Consulting</h3>
           <p id="footerDesc">
-            Solutions numériques et automatisation pour entreprises exigeantes.
+            Soluções digitais e automação para empresas exigentes.
           </p>
           <p class="footer-location" id="footerLocation">
-            Provence-Alpes-Côte d'Azur, France
+            Provence-Alpes-Côte d'Azur, França
           </p>
         </div>
 
         <div class="footer-links">
-          <h4 id="footerNav">Navigation</h4>
+          <h4 id="footerNav">Navegação</h4>
           <ul>
-            <li><a href="javascript:void(0)" data-scroll="home" data-footer="home">Accueil</a></li>
-            <li><a href="javascript:void(0)" data-scroll="services" data-footer="services" id="footerServices">Services</a></li>
-            <li><a href="javascript:void(0)" data-scroll="about" data-footer="about" id="footerAbout">À propos</a></li>
-            <li><a href="javascript:void(0)" data-scroll="contact" data-footer="contact" id="footerContact">Contact</a></li>
+            <li><a href="#home" data-scroll="home" data-footer="home">Início</a></li>
+            <li><a href="#services" data-scroll="services" data-footer="services" id="footerServices">Serviços</a></li>
+            <li><a href="#about" data-scroll="about" data-footer="about" id="footerAbout">Sobre</a></li>
+            <li><a href="#contact" data-scroll="contact" data-footer="contact" id="footerContact">Contacto</a></li>
           </ul>
         </div>
 
         <div class="footer-links">
-          <h4 id="footerContactTitle">Contact</h4>
+          <h4 id="footerContactTitle">Contacto</h4>
           <ul>
             <li><a href="mailto:contact@apl-consulting.com">contact@apl-consulting.com</a></li>
-            <li id="footerResponse" style="color: var(--text-muted);">Réponse sous 24h ouvrées</li>
+            <li id="footerResponse" style="color: var(--text-muted);">Resposta em 24h úteis</li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p id="footerCopy">© 2026 APL Consulting. Tous droits réservés.</p>
+        <p id="footerCopy">© 2026 APL Consulting. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
 
   <script>
     (function () {
+      'use strict';
+
       // ===== DESABILITA SCROLL RESTORATION DO BROWSER =====
       if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
@@ -1055,7 +1054,7 @@
 
       // ===== MUDAR IDIOMA (SEM AFETAR SCROLL) =====
       function setLanguage(lang) {
-        if (!content[lang]) lang = "fr";
+        if (!content[lang]) lang = "pt";
         const data = content[lang];
 
         // Atualiza textos SEM mexer no scroll
@@ -1077,9 +1076,12 @@
         // Meta tags
         document.documentElement.lang = lang;
         document.title = data.title;
-        document.querySelector('meta[name="description"]')?.setAttribute("content", data.description);
-        document.querySelector('meta[property="og:title"]')?.setAttribute("content", data.title);
-        document.querySelector('meta[property="og:description"]')?.setAttribute("content", data.description);
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.setAttribute("content", data.description);
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute("content", data.title);
+        const ogDesc = document.querySelector('meta[property="og:description"]');
+        if (ogDesc) ogDesc.setAttribute("content", data.description);
 
         // Botões lang
         document.querySelectorAll('.lang-btn-nav').forEach(btn => {
@@ -1087,23 +1089,29 @@
         });
 
         // localStorage
-        try { localStorage.setItem("apl_lang", lang); } catch(e) {}
+        try { 
+          localStorage.setItem("apl_lang", lang); 
+        } catch(e) {
+          console.warn('localStorage não disponível');
+        }
       }
 
-      // ===== INIT LANG (SEM SCROLL) =====
+      // ===== INIT LANG =====
       (function() {
-        let lang = "fr";
+        let lang = "pt";
         try {
           const stored = localStorage.getItem("apl_lang");
           if (stored && content[stored]) {
             lang = stored;
           } else {
-            const browserLang = (navigator?.language || "fr").toLowerCase();
+            const browserLang = (navigator.language || "pt").toLowerCase();
             if (browserLang.startsWith("pt")) lang = "pt";
             else if (browserLang.startsWith("fr")) lang = "fr";
             else lang = "en";
           }
-        } catch(e) {}
+        } catch(e) {
+          console.warn('localStorage não disponível');
+        }
         
         setLanguage(lang);
       })();
@@ -1117,15 +1125,17 @@
         });
       });
 
-      // ===== SCROLL TO SECTION (CORRIGIDO) =====
+      // ===== SCROLL TO SECTION (CORRIGIDO COM OFFSET MAIOR) =====
       function scrollToSection(sectionId) {
         const target = document.getElementById(sectionId);
-        if (!target) return;
+        if (!target) {
+          console.warn('Secção não encontrada:', sectionId);
+          return;
+        }
 
         const navHeight = 70;
-        let offset = 20; // Reduzido de 200 para 20
         
-        // Ajuste especial para home (topo)
+        // Home vai sempre para topo
         if (sectionId === 'home') {
           window.scrollTo({
             top: 0,
@@ -1134,6 +1144,8 @@
           return;
         }
         
+        // Para outras secções: offset maior (150px) para não cortar
+        const offset = 150;
         const targetPos = target.offsetTop - navHeight - offset;
         
         window.scrollTo({
@@ -1149,17 +1161,22 @@
           e.stopPropagation();
           const sectionId = this.dataset.scroll;
           scrollToSection(sectionId);
+          
+          // Fecha mobile menu se estiver aberto
+          const mobileMenu = document.getElementById('mobileMenu');
+          const navToggle = document.getElementById('navToggle');
+          if (mobileMenu.classList.contains('active')) {
+            mobileMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+          }
         });
       });
 
       // ===== NAVBAR SCROLL EFFECT =====
       const navbar = document.getElementById('navbar');
-      let lastScroll = 0;
       
       window.addEventListener('scroll', function() {
-        const currentScroll = window.pageYOffset;
-        navbar.classList.toggle('scrolled', currentScroll > 50);
-        lastScroll = currentScroll;
+        navbar.classList.toggle('scrolled', window.pageYOffset > 50);
       });
 
       // ===== MOBILE MENU =====
@@ -1168,16 +1185,9 @@
       
       navToggle.addEventListener('click', function(e) {
         e.preventDefault();
+        e.stopPropagation();
         this.classList.toggle('active');
         mobileMenu.classList.toggle('active');
-      });
-
-      // Fecha mobile menu ao clicar em link
-      document.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', function() {
-          navToggle.classList.remove('active');
-          mobileMenu.classList.remove('active');
-        });
       });
 
       // Fecha mobile menu ao clicar fora
@@ -1196,7 +1206,7 @@
         let current = 'home';
         
         sections.forEach(section => {
-          const sectionTop = section.offsetTop - 200;
+          const sectionTop = section.offsetTop - 250;
           const sectionBottom = sectionTop + section.offsetHeight;
           
           if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionBottom) {
@@ -1215,9 +1225,10 @@
       // ===== GARANTE TOPO NO LOAD (BACKUP) =====
       window.addEventListener('load', function() {
         setTimeout(function() {
-          if (window.pageYOffset === 0) return;
-          window.scrollTo(0, 0);
-        }, 50);
+          if (window.pageYOffset !== 0) {
+            window.scrollTo(0, 0);
+          }
+        }, 100);
       });
 
     })();
