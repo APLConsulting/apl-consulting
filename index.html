@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>APL Consulting – Sistemas Digitais &amp; Automação</title>
-  <meta name="description" content="APL Consulting desenvolve sistemas digitais e soluções de automação para negócios exigentes. Otimizamos gestão, eficiência e integração entre software, máquinas e motores." />
+  <title>APL Consulting – Systèmes numériques & automatisation</title>
+  <meta name="description" content="APL Consulting conçoit des systèmes numériques et des solutions d'automatisation pour les entreprises. Basée en Provence-Alpes-Côte d'Azur, France." />
 
   <!-- Meta tags adicionais -->
   <meta name="theme-color" content="#05070b" />
@@ -13,11 +13,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   
   <!-- Open Graph / Social Media -->
-  <meta property="og:title" content="APL Consulting – Sistemas Digitais & Automação" />
-  <meta property="og:description" content="Desenvolvemos sistemas digitais e soluções de automação para negócios exigentes." />
-  <meta property="og:image" content="/logo-apl-branco.png" />
+  <meta property="og:title" content="APL Consulting – Systèmes numériques & automatisation" />
+  <meta property="og:description" content="Conseil technique et support à distance pour entreprises exigeantes." />
+  <meta property="og:image" content="https://www.apl-consulting.com/logo-apl-branco.png" />
   <meta property="og:type" content="website" />
-  <link rel="canonical" href="https://apl-consulting.com" />
+  <meta property="og:url" content="https://www.apl-consulting.com" />
+  <link rel="canonical" href="https://www.apl-consulting.com" />
 
   <!-- Segurança -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'self'; frame-ancestors 'self';" />
@@ -35,11 +36,14 @@
       --card-border: rgba(148, 163, 184, 0.25);
       --blue1: #0078ff;
       --blue2: #00a0ff;
+      --green: #10b981;
       --text-main: #e5edf9;
       --text-muted: #9ca3af;
       --shadow-strong: 0 32px 80px rgba(15, 23, 42, 0.95);
       --radius-xl: 28px;
+      --radius-lg: 16px;
       --radius-full: 999px;
+      --nav-height: 70px;
     }
 
     * {
@@ -50,452 +54,599 @@
 
     body {
       min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
       background:
         radial-gradient(circle at top left, rgba(59, 130, 246, 0.35), transparent 55%),
         radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.3), transparent 55%),
         radial-gradient(circle at 50% -10%, rgba(15, 23, 42, 0.8), transparent 60%),
         #020617;
       color: var(--text-main);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 32px 16px;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
+      padding-top: var(--nav-height);
     }
 
-    main {
-      width: 100%;
-      display: flex;
-      justify-content: center;
+    /* ========== NAVBAR ========== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      background: rgba(5, 7, 11, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+      z-index: 100;
+      transition: background 0.3s ease;
     }
 
-    .card {
-      position: relative;
-      width: 100%;
-      max-width: 760px;
-      padding: 40px 32px 30px;
-      background: var(--card-bg);
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--card-border);
-      box-shadow: var(--shadow-strong);
-      overflow: hidden;
-      backdrop-filter: blur(18px);
-      animation: cardIn 0.9s ease-out;
+    .navbar.scrolled {
+      background: rgba(5, 7, 11, 0.95);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
 
-    .card::before,
-    .card::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(40px);
-      opacity: 0.55;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .card::before {
-      width: 220px;
-      height: 220px;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.6), transparent 60%);
-      top: -60px;
-      left: -60px;
-    }
-
-    .card::after {
-      width: 260px;
-      height: 260px;
-      background: radial-gradient(circle, rgba(45, 212, 191, 0.45), transparent 60%);
-      bottom: -90px;
-      right: -70px;
-    }
-
-    header {
-      text-align: center;
-    }
-
-    .logo-frame {
-      width: 230px;
-      height: 230px;
-      margin: 0 auto 26px;
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 100%;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      padding: 0 24px;
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-      .logo-frame {
-        animation: floatLogo 6s ease-in-out infinite;
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .nav-logo img {
+      width: 40px;
+      height: 40px;
+      filter: drop-shadow(0 2px 8px rgba(37, 99, 235, 0.6));
+    }
+
+    .nav-logo span {
+      display: none;
+    }
+
+    @media (min-width: 640px) {
+      .nav-logo span {
+        display: inline;
       }
     }
 
-    .logo-frame img {
-      width: 72%;
-      height: auto;
-      aspect-ratio: 1;
-      display: block;
-      filter: drop-shadow(0 14px 40px rgba(15, 23, 42, 0.9));
-      opacity: 0;
-      transform: translateY(8px) scale(0.98);
-      animation: logoFade 0.9s ease-out forwards 0.25s;
+    .nav-menu {
+      display: none;
+      gap: 32px;
+      list-style: none;
     }
 
-    .eyebrow {
-      text-align: center;
-      letter-spacing: 0.28em;
-      font-size: 0.72rem;
-      text-transform: uppercase;
+    @media (min-width: 768px) {
+      .nav-menu {
+        display: flex;
+      }
+    }
+
+    .nav-menu a {
       color: var(--text-muted);
-      margin-bottom: 12px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      position: relative;
     }
 
-    .tagline {
-      text-align: center;
-      font-size: 0.9rem;
+    .nav-menu a:hover {
       color: var(--text-main);
-      opacity: 0.85;
-      margin-bottom: 26px;
-      font-style: italic;
     }
 
-    h1 {
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue1), var(--blue2));
+      transition: width 0.3s ease;
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    .nav-lang {
+      display: flex;
+      gap: 8px;
+    }
+
+    .lang-btn-nav {
+      min-width: 36px;
+      padding: 6px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn-nav.active {
+      background: rgba(59, 130, 246, 0.2);
+      color: var(--text-main);
+      border-color: rgba(59, 130, 246, 0.5);
+    }
+
+    .lang-btn-nav:hover:not(.active) {
+      border-color: rgba(148, 163, 184, 0.6);
+      color: var(--text-main);
+    }
+
+    /* Mobile Menu Toggle */
+    .nav-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .nav-toggle {
+        display: none;
+      }
+    }
+
+    .nav-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--text-main);
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      background: rgba(5, 7, 11, 0.98);
+      backdrop-filter: blur(12px);
+      padding: 24px;
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+      z-index: 99;
+    }
+
+    .mobile-menu.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .mobile-menu-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mobile-menu-list a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      display: block;
+      padding: 8px 0;
+    }
+
+    /* ========== MAIN CONTENT ========== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    /* ========== HERO SECTION ========== */
+    .hero {
+      min-height: calc(100vh - var(--nav-height));
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      font-size: clamp(1.9rem, 2.25vw + 1.3rem, 2.4rem);
-      margin-bottom: 14px;
-      font-weight: 750;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      color: var(--green);
+      margin-bottom: 24px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .hero-badge::before {
+      content: '●';
+      font-size: 1.2rem;
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    .logo-hero {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 32px;
+      filter: drop-shadow(0 14px 40px rgba(15, 23, 42, 0.9));
+      animation: floatLogo 6s ease-in-out infinite;
+    }
+
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 20px;
       background: linear-gradient(120deg, var(--blue1), var(--blue2));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      letter-spacing: 0.02em;
-      text-shadow: 0 0 24px rgba(37, 99, 235, 0.65);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
     }
 
-    .lead {
-      text-align: center;
-      font-size: 0.98rem;
-      color: var(--text-main);
-      opacity: 0.9;
-      max-width: 620px;
-      margin: 0 auto 14px;
-    }
-
-    .body-text {
-      text-align: center;
-      font-size: 0.9rem;
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
       color: var(--text-muted);
-      max-width: 630px;
-      margin: 0 auto 26px;
+      margin-bottom: 16px;
       line-height: 1.6;
     }
 
-    .cta-wrapper {
+    .hero-location {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
       display: flex;
-      justify-content: center;
-      margin-bottom: 22px;
-    }
-
-    .cta-button {
-      position: relative;
-      padding: 12px 30px;
-      border-radius: var(--radius-full);
-      border: none;
-      font-size: 0.98rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      cursor: pointer;
-      color: #020617;
-      background: radial-gradient(circle at 20% 0%, #38bdf8, #0ea5e9 45%, #2563eb 100%);
-      box-shadow:
-        0 0 0 1px rgba(191, 219, 254, 0.35),
-        0 18px 40px rgba(37, 99, 235, 0.9);
-      display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition:
-        transform 0.18s ease-out,
-        box-shadow 0.18s ease-out,
-        filter 0.18s ease-out;
     }
 
-    .cta-button span {
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      border-radius: var(--radius-full);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at 20% 0%, #38bdf8, #0ea5e9 45%, #2563eb 100%);
+      color: #020617;
+      box-shadow: 0 0 0 1px rgba(191, 219, 254, 0.35), 0 18px 40px rgba(37, 99, 235, 0.9);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 0 0 1px rgba(191, 219, 254, 0.45), 0 22px 52px rgba(37, 99, 235, 0.95);
+    }
+
+    .btn-secondary {
+      background: rgba(148, 163, 184, 0.1);
+      color: var(--text-main);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(148, 163, 184, 0.2);
+      border-color: rgba(148, 163, 184, 0.5);
+    }
+
+    /* ========== SERVICES SECTION ========== */
+    .services {
+      background: rgba(16, 24, 40, 0.3);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-eyebrow {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--blue1);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-main);
+    }
+
+    .section-description {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: all 0.3s ease;
       position: relative;
-      z-index: 1;
+      overflow: hidden;
     }
 
-    .cta-button::after {
-      content: "";
+    .service-card::before {
+      content: '';
       position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      background: radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.2), transparent 55%);
-      opacity: 0;
-      transition: opacity 0.18s ease-out;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue1), var(--blue2));
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
     }
 
-    .cta-button:hover {
-      transform: translateY(-1px) scale(1.01);
-      box-shadow:
-        0 0 0 1px rgba(191, 219, 254, 0.45),
-        0 22px 52px rgba(37, 99, 235, 0.95);
-      filter: brightness(1.02);
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.8);
+      border-color: rgba(59, 130, 246, 0.4);
     }
 
-    .cta-button:hover::after {
-      opacity: 1;
+    .service-card:hover::before {
+      transform: scaleX(1);
     }
 
-    .cta-button:active {
-      transform: translateY(0) scale(0.99);
-      box-shadow:
-        0 0 0 1px rgba(191, 219, 254, 0.25),
-        0 10px 26px rgba(30, 64, 175, 0.8);
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      display: block;
     }
 
-    .lang-switch {
+    .service-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .service-link {
+      color: var(--blue1);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: gap 0.2s ease;
+    }
+
+    .service-link:hover {
+      gap: 12px;
+    }
+
+    /* ========== ABOUT PREVIEW ========== */
+    .about-preview {
+      text-align: center;
+    }
+
+    .about-content {
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .about-stats {
       display: flex;
       justify-content: center;
-      gap: 10px;
-      margin-bottom: 14px;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-top: 48px;
     }
 
-    .lang-btn {
-      min-width: 46px;
-      padding: 7px 14px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: radial-gradient(circle at 50% 0%, rgba(148, 163, 184, 0.12), transparent 60%);
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition:
-        background 0.18s ease-out,
-        color 0.18s ease-out,
-        border-color 0.18s ease-out,
-        box-shadow 0.18s ease-out,
-        transform 0.12s ease-out;
-    }
-
-    .lang-btn.active {
-      background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.45), rgba(37, 99, 235, 0.9));
-      color: #e5edff;
-      border-color: rgba(191, 219, 254, 0.95);
-      box-shadow: 0 0 0 1px rgba(191, 219, 254, 0.3), 0 10px 26px rgba(37, 99, 235, 0.85);
-      transform: translateY(-1px);
-    }
-
-    .lang-btn:hover:not(.active) {
-      border-color: rgba(148, 163, 184, 0.9);
-      color: #e5edff;
-    }
-
-    .accent-bar {
-      position: relative;
-      width: 64%;
-      max-width: 420px;
-      height: 1px;
-      margin: 4px auto 0;
-      background: linear-gradient(
-        to right,
-        transparent,
-        rgba(148, 163, 184, 0.6),
-        transparent
-      );
-      opacity: 0.75;
-    }
-
-    footer {
-      margin-top: 18px;
-    }
-
-    .footer-text {
+    .stat {
       text-align: center;
-      font-size: 0.75rem;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(120deg, var(--blue1), var(--blue2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
       color: var(--text-muted);
-      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 24px;
-      transform: translateX(-50%);
-      background: rgba(15, 23, 42, 0.96);
-      border-radius: 999px;
-      padding: 8px 18px;
-      font-size: 0.78rem;
-      color: #e5edff;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
-      z-index: 40;
+    /* ========== FOOTER ========== */
+    footer {
+      background: rgba(5, 7, 11, 0.95);
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
+      padding: 48px 0 24px;
     }
 
-    .toast.visible {
-      opacity: 1;
-      transform: translateX(-50%) translateY(-4px);
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 48px;
+      margin-bottom: 48px;
     }
 
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(4px);
+    .footer-brand h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .footer-location {
       display: flex;
       align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.22s ease-out;
-      z-index: 30;
-    }
-
-    .modal-backdrop.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal {
-      background: rgba(15, 23, 42, 0.97);
-      border-radius: 20px;
-      padding: 20px 22px 18px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      max-width: 360px;
-      width: 100%;
-      box-shadow: 0 18px 48px rgba(15, 23, 42, 0.95);
-      position: relative;
-    }
-
-    .modal-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      text-align: center;
-    }
-
-    .modal-text {
-      font-size: 0.85rem;
+      gap: 8px;
       color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-links h4 {
+      font-size: 0.95rem;
       margin-bottom: 16px;
-      text-align: center;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
-    .modal-email-wrapper {
-      text-align: center;
+    .footer-links ul {
+      list-style: none;
     }
 
-    .modal-email {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.65);
-      background: radial-gradient(circle at 50% 0%, rgba(30, 64, 175, 0.35), rgba(15, 23, 42, 0.95));
-      font-size: 0.86rem;
-      cursor: pointer;
-      user-select: text;
-      color: #e5edff;
-      margin-bottom: 6px;
-      transition: border-color 0.18s ease-out, box-shadow 0.18s ease-out, background 0.18s ease-out;
+    .footer-links li {
+      margin-bottom: 12px;
     }
 
-    .modal-email:hover {
-      border-color: rgba(191, 219, 254, 0.9);
-      box-shadow: 0 0 0 1px rgba(191, 219, 254, 0.35), 0 10px 26px rgba(37, 99, 235, 0.9);
-    }
-
-    .modal-email.copied {
-      border-color: rgba(34, 197, 94, 0.8);
-      background: radial-gradient(circle at 50% 0%, rgba(34, 197, 94, 0.35), rgba(15, 23, 42, 0.95));
-    }
-
-    .modal-hint {
-      display: block;
-      font-size: 0.75rem;
+    .footer-links a {
       color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
     }
 
-    .modal-close {
-      position: absolute;
-      top: 8px;
-      right: 10px;
-      border: none;
-      background: transparent;
+    .footer-links a:hover {
+      color: var(--text-main);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 32px;
+      border-top: 1px solid rgba(148, 163, 184, 0.1);
       color: var(--text-muted);
-      cursor: pointer;
-      font-size: 1.1rem;
-      line-height: 1;
-      padding: 4px;
-      transition: color 0.18s ease-out;
+      font-size: 0.85rem;
     }
 
-    .modal-close:hover {
-      color: #e5edff;
-    }
-
-    @keyframes cardIn {
+    /* ========== ANIMATIONS ========== */
+    @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(26px) scale(0.985);
+        transform: translateY(30px);
       }
       to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
       }
     }
 
-    @keyframes floatLogo {
-      0%   { transform: translateY(0); }
-      50%  { transform: translateY(-8px); }
-      100% { transform: translateY(0); }
-    }
-
-    @keyframes logoFade {
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
+    /* ========== RESPONSIVE ========== */
     @media (max-width: 640px) {
-      .card {
-        padding: 28px 18px 24px;
-        border-radius: 22px;
-        backdrop-filter: blur(8px);
+      section {
+        padding: 60px 0;
       }
 
-      .logo-frame {
-        width: 190px;
-        height: 190px;
-        margin-bottom: 22px;
+      .services-grid {
+        grid-template-columns: 1fr;
       }
 
-      .body-text {
-        font-size: 0.86rem;
+      .about-stats {
+        gap: 32px;
       }
 
-      .lead {
-        font-size: 0.94rem;
-      }
-
-      .cta-button {
-        width: 100%;
-        max-width: 260px;
-      }
-
-      .accent-bar {
-        width: 70%;
-      }
-
-      .modal {
-        margin: 0 16px;
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
       }
     }
 
@@ -503,447 +654,225 @@
       * {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
-      }
-
-      .logo-frame {
-        animation: none !important;
       }
     }
   </style>
 </head>
 <body>
-  <main>
-    <section class="card" aria-labelledby="headline">
-      <header>
-        <div class="logo-frame">
-          <img
-            src="logo-apl-branco.png"
-            alt="Logótipo APL Consulting"
-            width="512"
-            height="512"
-            decoding="async"
-            loading="eager"
-          />
-        </div>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo-apl-branco.png" alt="APL Consulting" width="40" height="40" />
+        <span>APL Consulting</span>
+      </a>
 
-        <div class="eyebrow" id="eyebrow">
-          SISTEMAS DIGITAIS &amp; AUTOMAÇÃO
-        </div>
-        <div class="tagline" id="tagline">
-          Eficientemente movemos o mundo.
-        </div>
-      </header>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" id="navHome">Accueil</a></li>
+        <li><a href="services.html" id="navServices">Services</a></li>
+        <li><a href="about.html" id="navAbout">À propos</a></li>
+        <li><a href="contact.html" id="navContact">Contact</a></li>
+      </ul>
 
-      <h1 id="headline">Brevemente disponível</h1>
-
-      <p class="lead" id="lead">
-        A nossa nova plataforma digital APL Consulting está em construção.
-        Otimizada para gestão, eficiência e automatização.
-      </p>
-
-      <p class="body-text" id="body">
-        Desenvolvemos e gerimos sistemas digitais para negócios exigentes,
-        automatizamos fluxos logísticos e operacionais, e ligamos software,
-        máquinas e motores para que tudo funcione como um único sistema.
-      </p>
-
-      <div class="cta-wrapper">
-        <button class="cta-button" id="contactBtn" type="button">
-          <span id="ctaLabel">Contacte-nos</span>
-        </button>
+      <div class="nav-lang">
+        <button class="lang-btn-nav" data-lang="fr" aria-label="Français">FR</button>
+        <button class="lang-btn-nav" data-lang="pt" aria-label="Português">PT</button>
+        <button class="lang-btn-nav" data-lang="en" aria-label="English">EN</button>
       </div>
 
-      <nav class="lang-switch" aria-label="Selecionar idioma">
-        <button class="lang-btn active" data-lang="pt" type="button" aria-pressed="true">PT</button>
-        <button class="lang-btn" data-lang="fr" type="button" aria-pressed="false">FR</button>
-        <button class="lang-btn" data-lang="en" type="button" aria-pressed="false">EN</button>
-      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
 
-      <div class="accent-bar"></div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul class="mobile-menu-list">
+        <li><a href="index.html" id="mobileHome">Accueil</a></li>
+        <li><a href="services.html" id="mobileServices">Services</a></li>
+        <li><a href="about.html" id="mobileAbout">À propos</a></li>
+        <li><a href="contact.html" id="mobileContact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
-      <footer>
-        <p class="footer-text" id="footerText">
-          Primeira versão pública prevista para 2026.
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge" id="heroBadge">
+        Disponible pour nouveaux projets
+      </div>
+      
+      <img src="logo-apl-branco.png" alt="APL Consulting" class="logo-hero" width="120" height="120" />
+      
+      <h1 id="heroTitle">
+        Solutions numériques & automatisation
+      </h1>
+      
+      <p class="hero-subtitle" id="heroSubtitle">
+        Nous accompagnons les entreprises dans leur transformation digitale 
+        et l'optimisation de leurs opérations.
+      </p>
+      
+      <div class="hero-location">
+        <span>📍</span>
+        <span id="heroLocation">Basée en Provence-Alpes-Côte d'Azur, France</span>
+      </div>
+
+      <div class="hero-cta">
+        <a href="contact.html" class="btn btn-primary" id="heroCta1">
+          <span id="heroCta1Text">Discuter de votre projet</span>
+          <span>→</span>
+        </a>
+        <a href="services.html" class="btn btn-secondary" id="heroCta2">
+          <span id="heroCta2Text">Découvrir nos services</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section class="services">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow" id="servicesEyebrow">Nos Services</div>
+        <h2 class="section-title" id="servicesTitle">Comment nous pouvons vous aider</h2>
+        <p class="section-description" id="servicesDesc">
+          Expertise technique et accompagnement personnalisé pour vos projets de transformation digitale.
         </p>
-      </footer>
-    </section>
-  </main>
+      </div>
 
-  <div
-    class="modal-backdrop"
-    id="contactModal"
-    aria-hidden="true"
-  >
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" id="modalClose" type="button" aria-label="Fechar">×</button>
-      <h2 class="modal-title" id="modalTitle">Contacte-nos</h2>
-      <p class="modal-text" id="modalText">
-        Se não tiver sido encaminhado automaticamente para a sua aplicação de e-mail,
-        utilize o endereço abaixo.
-      </p>
-      <div class="modal-email-wrapper">
-        <button class="modal-email" id="modalEmail" type="button">
-          contact@apl-consulting.com
-        </button>
-        <small class="modal-hint" id="modalHint">
-          Clique no endereço para copiar para a área de transferência.
-        </small>
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-icon">💼</span>
+          <h3 id="service1Title">Conseil technique</h3>
+          <p id="service1Desc">
+            Audit de systèmes, architecture de solutions, sélection de technologies 
+            et planification d'implémentation.
+          </p>
+          <a href="services.html#conseil" class="service-link" id="service1Link">
+            <span>En savoir plus</span>
+            <span>→</span>
+          </a>
+        </div>
+
+        <div class="service-card">
+          <span class="service-icon">🛠️</span>
+          <h3 id="service2Title">Support à distance</h3>
+          <p id="service2Desc">
+            Résolution de problèmes techniques, maintenance préventive et 
+            support technique qualifié.
+          </p>
+          <a href="services.html#support" class="service-link" id="service2Link">
+            <span>En savoir plus</span>
+            <span>→</span>
+          </a>
+        </div>
+
+        <div class="service-card">
+          <span class="service-icon">⚙️</span>
+          <h3 id="service3Title">Implémentation</h3>
+          <p id="service3Desc">
+            Développement sur mesure, intégrations entre systèmes, migration 
+            de données et formation des équipes.
+          </p>
+          <a href="services.html#implementation" class="service-link" id="service3Link">
+            <span>En savoir plus</span>
+            <span>→</span>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="toast" id="toast" role="status" aria-live="polite">
-    Endereço de e-mail copiado para a área de transferência.
-  </div>
+  <!-- ABOUT PREVIEW -->
+  <section class="about-preview">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow" id="aboutEyebrow">À propos</div>
+        <h2 class="section-title" id="aboutTitle">APL Consulting</h2>
+      </div>
 
-  <!-- Fallback para browsers sem JavaScript -->
-  <noscript>
-    <style>
-      .card { opacity: 1 !important; transform: none !important; }
-      .lang-switch { display: none; }
-      .cta-button { display: none; }
-    </style>
-    <div style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
-                background:#1e3a8a;padding:12px 24px;border-radius:12px;
-                text-align:center;font-size:0.9rem;max-width:90%;
-                box-shadow:0 10px 40px rgba(0,0,0,0.5);">
-      📧 <strong>contact@apl-consulting.com</strong>
+      <div class="about-content">
+        <p id="aboutText" style="font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;">
+          Basée en Provence-Alpes-Côte d'Azur, APL Consulting est une entreprise 
+          spécialisée en systèmes numériques et automatisation. Nous travaillons 
+          avec des entreprises qui ont besoin d'optimiser leurs opérations à travers 
+          l'intégration de systèmes et l'automatisation de processus.
+        </p>
+        <a href="about.html" class="btn btn-secondary" id="aboutCta">
+          <span id="aboutCtaText">En savoir plus sur APL</span>
+        </a>
+      </div>
+
+      <div class="about-stats">
+        <div class="stat">
+          <div class="stat-number">2026</div>
+          <div class="stat-label" id="stat1Label">Fondée</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">🇫🇷</div>
+          <div class="stat-label" id="stat2Label">France</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">&lt;24h</div>
+          <div class="stat-label" id="stat3Label">Réponse</div>
+        </div>
+      </div>
     </div>
-  </noscript>
+  </section>
 
-  <script>
-    (function () {
-      const EMAIL = "contact@apl-consulting.com";
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>APL Consulting</h3>
+          <p id="footerDesc">
+            Solutions numériques et automatisation pour entreprises exigeantes.
+          </p>
+          <div class="footer-location">
+            <span>📍</span>
+            <span id="footerLocation">Provence-Alpes-Côte d'Azur, France</span>
+          </div>
+        </div>
 
-      const content = {
-        pt: {
-          eyebrow: "SISTEMAS DIGITAIS & AUTOMAÇÃO",
-          tagline: "Eficientemente movemos o mundo.",
-          headline: "Brevemente disponível",
-          lead:
-            "A nossa nova plataforma digital APL Consulting está em construção. Otimizada para gestão, eficiência e automatização.",
-          body:
-            "Desenvolvemos e gerimos sistemas digitais para negócios exigentes, automatizamos fluxos logísticos e operacionais, e ligamos software, máquinas e motores para que tudo funcione como um único sistema.",
-          footer: "Primeira versão pública prevista para 2026.",
-          toast: "Endereço de e-mail copiado para a área de transferência.",
-          copied: "✓ Copiado!",
-          contactSubject: "Contacto APL Consulting",
-          modalTitle: "Contacte-nos",
-          modalText:
-            "Se não tiver sido encaminhado automaticamente para a sua aplicação de e-mail, utilize o endereço abaixo.",
-          modalHint: "Clique no endereço para copiar para a área de transferência.",
-          title: "APL Consulting – Sistemas Digitais & Automação",
-          description:
-            "APL Consulting desenvolve sistemas digitais e soluções de automação para negócios exigentes. Otimizamos gestão, eficiência e integração entre software, máquinas e motores.",
-          cta: "Contacte-nos"
-        },
-        fr: {
-          eyebrow: "SYSTÈMES NUMÉRIQUES & AUTOMATISATION",
-          tagline: "Nous faisons avancer le monde avec efficacité.",
-          headline: "Bientôt disponible",
-          lead:
-            "Notre nouvelle plateforme digitale APL Consulting est en construction. Optimisée pour la gestion, l'efficacité et l'automatisation.",
-          body:
-            "Nous concevons et pilotons des systèmes digitaux pour des environnements exigeants, automatisons les flux logistiques et opérationnels, et connectons logiciels, machines et moteurs pour que l'ensemble fonctionne comme un seul système.",
-          footer: "Première version publique prévue pour 2026.",
-          toast: "Adresse e-mail copiée dans le presse-papiers.",
-          copied: "✓ Copié !",
-          contactSubject: "Contact APL Consulting",
-          modalTitle: "Contactez-nous",
-          modalText:
-            "Si votre client de messagerie ne s'est pas ouvert automatiquement, utilisez l'adresse ci-dessous.",
-          modalHint: "Cliquez sur l'adresse pour la copier dans le presse-papiers.",
-          title: "APL Consulting – Systèmes numériques & automatisation",
-          description:
-            "APL Consulting conçoit des systèmes digitaux et des solutions d'automatisation pour des environnements exigeants. Nous optimisons la gestion, l'efficacité et l'intégration entre logiciels, machines et moteurs.",
-          cta: "Contactez-nous"
-        },
-        en: {
-          eyebrow: "DIGITAL SYSTEMS & AUTOMATION",
-          tagline: "We move the world efficiently.",
-          headline: "Coming soon",
-          lead:
-            "Our new APL Consulting digital platform is under construction. Optimised for management, efficiency and automation.",
-          body:
-            "We design and operate digital systems for demanding businesses, automate logistical and operational flows, and connect software, machines and engines so that everything runs as a single system.",
-          footer: "First public release planned for 2026.",
-          toast: "Email address copied to clipboard.",
-          copied: "✓ Copied!",
-          contactSubject: "Contact – APL Consulting",
-          modalTitle: "Contact us",
-          modalText:
-            "If your e-mail application did not open automatically, use the address below.",
-          modalHint: "Click the address to copy it to your clipboard.",
-          title: "APL Consulting – Digital systems & automation",
-          description:
-            "APL Consulting develops digital systems and automation solutions for demanding businesses. We optimise management, efficiency and integration between software, machines and engines.",
-          cta: "Contact us"
-        }
-      };
+        <div class="footer-links">
+          <h4 id="footerNav">Navigation</h4>
+          <ul>
+            <li><a href="index.html" id="footerHome">Accueil</a></li>
+            <li><a href="services.html" id="footerServices">Services</a></li>
+            <li><a href="about.html" id="footerAbout">À propos</a></li>
+            <li><a href="contact.html" id="footerContact">Contact</a></li>
+          </ul>
+        </div>
 
-      const eyebrowEl = document.getElementById("eyebrow");
-      const taglineEl = document.getElementById("tagline");
-      const headlineEl = document.getElementById("headline");
-      const leadEl = document.getElementById("lead");
-      const bodyEl = document.getElementById("body");
-      const footerEl = document.getElementById("footerText");
-      const toastEl = document.getElementById("toast");
+        <div class="footer-links">
+          <h4 id="footerLegal">Légal</h4>
+          <ul>
+            <li><a href="mentions-legales.html" id="footerMentions">Mentions légales</a></li>
+            <li><a href="mentions-legales.html#confidentialite" id="footerPrivacy">Confidentialité</a></li>
+          </ul>
+        </div>
 
-      const contactBtn = document.getElementById("contactBtn");
-      const ctaLabelEl = document.getElementById("ctaLabel");
-      const langButtons = document.querySelectorAll(".lang-btn");
+        <div class="footer-links">
+          <h4 id="footerContactTitle">Contact</h4>
+          <ul>
+            <li><a href="mailto:contact@apl-consulting.com">contact@apl-consulting.com</a></li>
+            <li id="footerResponse">Réponse sous 24h ouvrées</li>
+          </ul>
+        </div>
+      </div>
 
-      const modalBackdrop = document.getElementById("contactModal");
-      const modalTitleEl = document.getElementById("modalTitle");
-      const modalTextEl = document.getElementById("modalText");
-      const modalHintEl = document.getElementById("modalHint");
-      const modalEmailEl = document.getElementById("modalEmail");
-      const modalCloseBtn = document.getElementById("modalClose");
+      <div class="footer-bottom">
+        <p id="footerCopy">© 2026 APL Consulting. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
 
-      const metaDescription = document.querySelector('meta[name="description"]');
-      const metaOgTitle = document.querySelector('meta[property="og:title"]');
-      const metaOgDescription = document.querySelector('meta[property="og:description"]');
-
-      let lastFocusedElement = null;
-
-      function setLanguage(lang) {
-        if (!content[lang]) {
-          lang = "en";
-        }
-
-        const data = content[lang];
-
-        eyebrowEl.textContent = data.eyebrow;
-        taglineEl.textContent = data.tagline;
-        headlineEl.textContent = data.headline;
-        leadEl.textContent = data.lead;
-        bodyEl.textContent = data.body;
-        footerEl.textContent = data.footer;
-        toastEl.textContent = data.toast;
-        ctaLabelEl.textContent = data.cta;
-
-        modalTitleEl.textContent = data.modalTitle;
-        modalTextEl.textContent = data.modalText;
-        modalHintEl.textContent = data.modalHint;
-        modalEmailEl.textContent = EMAIL;
-
-        document.documentElement.lang = lang;
-
-        if (data.title) {
-          document.title = data.title;
-        }
-        if (metaDescription && data.description) {
-          metaDescription.setAttribute("content", data.description);
-        }
-        if (metaOgTitle && data.title) {
-          metaOgTitle.setAttribute("content", data.title);
-        }
-        if (metaOgDescription && data.description) {
-          metaOgDescription.setAttribute("content", data.description);
-        }
-
-        langButtons.forEach((btn) => {
-          const isActive = btn.dataset.lang === lang;
-          btn.classList.toggle("active", isActive);
-          btn.setAttribute("aria-pressed", String(isActive));
-        });
-
-        try {
-          localStorage.setItem("apl_lang", lang);
-        } catch (e) {
-          // localStorage não disponível
-        }
-      }
-
-      function showToast() {
-        toastEl.classList.add("visible");
-        clearTimeout(showToast._timer);
-        showToast._timer = setTimeout(() => {
-          toastEl.classList.remove("visible");
-        }, 2400);
-      }
-
-      function getModalFocusableElements() {
-        return modalBackdrop.querySelectorAll(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-      }
-
-      function handleModalKeydown(event) {
-        if (event.key === "Escape") {
-          event.preventDefault();
-          closeModal();
-          return;
-        }
-
-        if (event.key === "Tab") {
-          const focusable = getModalFocusableElements();
-          if (!focusable.length) return;
-
-          const first = focusable[0];
-          const last = focusable[focusable.length - 1];
-
-          if (event.shiftKey) {
-            if (document.activeElement === first) {
-              event.preventDefault();
-              last.focus();
-            }
-          } else {
-            if (document.activeElement === last) {
-              event.preventDefault();
-              first.focus();
-            }
-          }
-        }
-      }
-
-      function openModal() {
-        lastFocusedElement = document.activeElement;
-
-        modalBackdrop.classList.add("visible");
-        modalBackdrop.setAttribute("aria-hidden", "false");
-
-        const focusable = getModalFocusableElements();
-        if (focusable.length) {
-          focusable[0].focus();
-        }
-
-        document.addEventListener("keydown", handleModalKeydown);
-      }
-
-      function closeModal() {
-        modalBackdrop.classList.remove("visible");
-        modalBackdrop.setAttribute("aria-hidden", "true");
-
-        document.removeEventListener("keydown", handleModalKeydown);
-
-        if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
-          lastFocusedElement.focus();
-        }
-      }
-
-      async function copyEmailToClipboard(event) {
-        if (event) {
-          event.stopPropagation();
-        }
-
-        const originalText = modalEmailEl.textContent;
-        
-        // Obter idioma atual
-        const currentLang = document.documentElement.lang || "en";
-        const data = content[currentLang] || content.en;
-
-        try {
-          await navigator.clipboard.writeText(EMAIL);
-          
-          // Feedback visual de sucesso com texto traduzido
-          modalEmailEl.textContent = data.copied;
-          modalEmailEl.classList.add("copied");
-          
-          showToast();
-          
-          setTimeout(() => {
-            modalEmailEl.textContent = originalText;
-            modalEmailEl.classList.remove("copied");
-          }, 2000);
-        } catch (err) {
-          // Fallback: selecionar texto para cópia manual
-          try {
-            const range = document.createRange();
-            range.selectNodeContents(modalEmailEl);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-          } catch (selectErr) {
-            // Se nada funcionar, pelo menos o user vê o email
-          }
-        }
-      }
-
-      function handleContactClick() {
-        const lang = document.documentElement.lang || "en";
-        const data = content[lang] || content.en;
-
-        const subject = encodeURIComponent(data.contactSubject);
-        const mailtoUrl = `mailto:${EMAIL}?subject=${subject}`;
-
-        // Tentar abrir mailto
-        window.location.href = mailtoUrl;
-
-        // Mostrar modal após pequeno delay (assume que mailto pode não funcionar)
-        setTimeout(() => {
-          openModal();
-        }, 500);
-      }
-
-      contactBtn.addEventListener("click", handleContactClick);
-
-      langButtons.forEach((btn) => {
-        btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
-      });
-
-      modalCloseBtn.addEventListener("click", closeModal);
-      modalBackdrop.addEventListener("click", (e) => {
-        if (e.target === modalBackdrop) closeModal();
-      });
-
-      modalEmailEl.addEventListener("click", copyEmailToClipboard);
-
-      // Intersection Observer para pausar animação do logo quando fora de vista
-      if ('IntersectionObserver' in window && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
-        const logoFrame = document.querySelector('.logo-frame');
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.target.style.animationPlayState !== undefined) {
-              entry.target.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
-            }
-          });
-        });
-        observer.observe(logoFrame);
-      }
-
-      // Inicializar idioma
-      (function initLang() {
-        let initialLang = "en"; // Default para inglês
-
-        try {
-          // Primeiro verificar se há idioma guardado
-          const stored = localStorage.getItem("apl_lang");
-          if (stored && content[stored]) {
-            initialLang = stored;
-          } else {
-            // Detectar idioma do browser
-            const browserLang = (navigator?.language || navigator?.userLanguage || "en").toLowerCase();
-            
-            if (browserLang.startsWith("pt")) {
-              initialLang = "pt";
-            } else if (browserLang.startsWith("fr")) {
-              initialLang = "fr";
-            } else {
-              // Qualquer outro idioma (árabe, chinês, espanhol, alemão, etc.) → inglês
-              initialLang = "en";
-            }
-          }
-        } catch (e) {
-          // Se localStorage falhar, tentar apenas detecção de browser
-          const browserLang = (navigator?.language || navigator?.userLanguage || "en").toLowerCase();
-          
-          if (browserLang.startsWith("pt")) {
-            initialLang = "pt";
-          } else if (browserLang.startsWith("fr")) {
-            initialLang = "fr";
-          } else {
-            initialLang = "en";
-          }
-        }
-
-        setLanguage(initialLang);
-      })();
-    })();
-  </script>
-
-  <!-- Developed by Alexandre Pereira Leite | APL Consulting © 2025 -->
+  <script src="script.js"></script>
 </body>
 </html>
