@@ -719,16 +719,16 @@
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="#home" class="nav-logo" data-scroll="home">
+      <a href="#home" class="nav-logo">
         <img src="logo-apl-branco.png" alt="APL Consulting" width="40" height="40" />
         <span>APL Consulting</span>
       </a>
 
       <ul class="nav-menu">
-        <li><a href="#home" class="nav-link active" data-scroll="home" data-nav="home">Início</a></li>
-        <li><a href="#services" class="nav-link" data-scroll="services" data-nav="services">Serviços</a></li>
-        <li><a href="#about" class="nav-link" data-scroll="about" data-nav="about">Sobre</a></li>
-        <li><a href="#contact" class="nav-link" data-scroll="contact" data-nav="contact">Contacto</a></li>
+        <li><a href="#home" class="nav-link active" data-nav="home">Início</a></li>
+        <li><a href="#services" class="nav-link" data-nav="services">Serviços</a></li>
+        <li><a href="#about" class="nav-link" data-nav="about">Sobre</a></li>
+        <li><a href="#contact" class="nav-link" data-nav="contact">Contacto</a></li>
       </ul>
 
       <div class="nav-lang">
@@ -747,10 +747,10 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
       <ul class="mobile-menu-list">
-        <li><a href="#home" class="mobile-link" data-scroll="home" data-nav="home">Início</a></li>
-        <li><a href="#services" class="mobile-link" data-scroll="services" data-nav="services">Serviços</a></li>
-        <li><a href="#about" class="mobile-link" data-scroll="about" data-nav="about">Sobre</a></li>
-        <li><a href="#contact" class="mobile-link" data-scroll="contact" data-nav="contact">Contacto</a></li>
+        <li><a href="#home" class="mobile-link" data-nav="home">Início</a></li>
+        <li><a href="#services" class="mobile-link" data-nav="services">Serviços</a></li>
+        <li><a href="#about" class="mobile-link" data-nav="about">Sobre</a></li>
+        <li><a href="#contact" class="mobile-link" data-nav="contact">Contacto</a></li>
       </ul>
     </div>
   </nav>
@@ -777,11 +777,11 @@
       </p>
 
       <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary" data-scroll="contact">
+        <a href="#contact" class="btn btn-primary btn-scroll" data-target="contact">
           <span id="heroCta1">Discutir o seu projeto</span>
           <span>→</span>
         </a>
-        <a href="#services" class="btn btn-secondary" data-scroll="services" id="heroCta2">
+        <a href="#services" class="btn btn-secondary btn-scroll" data-target="services" id="heroCta2">
           Descobrir os nossos serviços
         </a>
       </div>
@@ -918,10 +918,10 @@
         <div class="footer-links">
           <h4 id="footerNav">Navegação</h4>
           <ul>
-            <li><a href="#home" data-scroll="home" data-footer="home">Início</a></li>
-            <li><a href="#services" data-scroll="services" data-footer="services" id="footerServices">Serviços</a></li>
-            <li><a href="#about" data-scroll="about" data-footer="about" id="footerAbout">Sobre</a></li>
-            <li><a href="#contact" data-scroll="contact" data-footer="contact" id="footerContact">Contacto</a></li>
+            <li><a href="#home" data-target="home" class="footer-link" data-footer="home">Início</a></li>
+            <li><a href="#services" data-target="services" class="footer-link" data-footer="services" id="footerServices">Serviços</a></li>
+            <li><a href="#about" data-target="about" class="footer-link" data-footer="about" id="footerAbout">Sobre</a></li>
+            <li><a href="#contact" data-target="contact" class="footer-link" data-footer="contact" id="footerContact">Contacto</a></li>
           </ul>
         </div>
 
@@ -944,15 +944,13 @@
     (function () {
       'use strict';
 
-      // ===== DESABILITA SCROLL RESTORATION DO BROWSER =====
+      // ===== DESABILITA SCROLL RESTORATION =====
       if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
       }
-
-      // ===== FORÇA TOPO NO LOAD =====
       window.scrollTo(0, 0);
 
-      // Content translations
+      // ===== TRADUÇÕES =====
       const content = {
         fr: {
           navHome: "Accueil", navServices: "Services", navAbout: "À propos", navContact: "Contact",
@@ -1052,18 +1050,16 @@
         }
       };
 
-      // ===== MUDAR IDIOMA (SEM AFETAR SCROLL) =====
+      // ===== MUDAR IDIOMA =====
       function setLanguage(lang) {
         if (!content[lang]) lang = "pt";
         const data = content[lang];
 
-        // Atualiza textos
         Object.keys(data).forEach(key => {
           const el = document.getElementById(key);
           if (el) el.textContent = data[key];
         });
 
-        // Atualiza nav/footer links
         document.querySelectorAll('[data-nav]').forEach(el => {
           const key = 'nav' + el.dataset.nav.charAt(0).toUpperCase() + el.dataset.nav.slice(1);
           if (data[key]) el.textContent = data[key];
@@ -1073,7 +1069,6 @@
           if (data[key]) el.textContent = data[key];
         });
 
-        // Meta tags
         document.documentElement.lang = lang;
         document.title = data.title;
         const metaDesc = document.querySelector('meta[name="description"]');
@@ -1083,18 +1078,14 @@
         const ogDesc = document.querySelector('meta[property="og:description"]');
         if (ogDesc) ogDesc.setAttribute("content", data.description);
 
-        // Botões lang
         document.querySelectorAll('.lang-btn-nav').forEach(btn => {
           btn.classList.toggle('active', btn.dataset.lang === lang);
         });
 
-        // localStorage
-        try { 
-          localStorage.setItem("apl_lang", lang); 
-        } catch(e) {}
+        try { localStorage.setItem("apl_lang", lang); } catch(e) {}
       }
 
-      // ===== INIT LANG =====
+      // ===== INIT =====
       (function() {
         let lang = "pt";
         try {
@@ -1108,47 +1099,32 @@
             else lang = "en";
           }
         } catch(e) {}
-        
         setLanguage(lang);
       })();
 
-      // ===== BOTÕES DE LÍNGUA (SEPARADOS E PRIMEIRO!) =====
+      // ===== BOTÕES LÍNGUA (ISOLADOS!) =====
       document.querySelectorAll('.lang-btn-nav').forEach(btn => {
         btn.addEventListener('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
-          e.stopImmediatePropagation(); // IMPORTANTE!
-          console.log('🌐 Mudando língua para:', this.dataset.lang);
+          e.stopImmediatePropagation();
           setLanguage(this.dataset.lang);
-        }, true); // CAPTURE PHASE!
+        });
       });
 
-      // ===== SCROLL TO SECTION (OFFSET 80px) =====
+      // ===== SCROLL FUNCTION (OFFSET 40PX = MAIS SCROLL) =====
       function scrollToSection(sectionId) {
-        console.log('📍 Scrolling para:', sectionId);
-        
         const target = document.getElementById(sectionId);
-        if (!target) {
-          console.warn('⚠️ Secção não encontrada:', sectionId);
-          return;
-        }
+        if (!target) return;
 
-        const navHeight = 70;
-        
-        // Home vai sempre para topo
         if (sectionId === 'home') {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
+          window.scrollTo({ top: 0, behavior: 'smooth' });
           return;
         }
         
-        // Para outras secções: offset de 80px
-        const offset = 80;
+        const navHeight = 70;
+        const offset = 40; // REDUZIDO! (menos offset = desce mais)
         const targetPos = target.offsetTop - navHeight - offset;
-        
-        console.log('🎯 Target position:', targetPos);
         
         window.scrollTo({
           top: Math.max(0, targetPos),
@@ -1156,36 +1132,50 @@
         });
       }
 
-      // ===== APLICA SCROLL APENAS A ELEMENTOS COM data-scroll =====
-      document.querySelectorAll('[data-scroll]').forEach(el => {
-        // Pula botões de língua
-        if (el.classList.contains('lang-btn-nav')) {
-          console.log('⏭️ Pulando botão de língua:', el);
-          return;
-        }
-        
+      // ===== NAVEGAÇÃO (APENAS .nav-link, .btn-scroll, .footer-link) =====
+      document.querySelectorAll('.nav-link').forEach(el => {
         el.addEventListener('click', function(e) {
-          console.log('🖱️ Clique em elemento com data-scroll:', this);
-          
           e.preventDefault();
-          e.stopPropagation();
-          
-          const sectionId = this.dataset.scroll;
-          scrollToSection(sectionId);
-          
-          // Fecha mobile menu se estiver aberto
-          const mobileMenu = document.getElementById('mobileMenu');
-          const navToggle = document.getElementById('navToggle');
-          if (mobileMenu.classList.contains('active')) {
-            mobileMenu.classList.remove('active');
-            navToggle.classList.remove('active');
-          }
+          const target = this.getAttribute('href').substring(1);
+          scrollToSection(target);
         });
       });
 
-      // ===== NAVBAR SCROLL EFFECT =====
+      document.querySelectorAll('.btn-scroll').forEach(el => {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          scrollToSection(this.dataset.target);
+        });
+      });
+
+      document.querySelectorAll('.footer-link').forEach(el => {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          scrollToSection(this.dataset.target);
+        });
+      });
+
+      document.querySelectorAll('.mobile-link').forEach(el => {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = this.getAttribute('href').substring(1);
+          scrollToSection(target);
+          
+          const mobileMenu = document.getElementById('mobileMenu');
+          const navToggle = document.getElementById('navToggle');
+          mobileMenu.classList.remove('active');
+          navToggle.classList.remove('active');
+        });
+      });
+
+      // Logo
+      document.querySelector('.nav-logo').addEventListener('click', function(e) {
+        e.preventDefault();
+        scrollToSection('home');
+      });
+
+      // ===== NAVBAR SCROLL =====
       const navbar = document.getElementById('navbar');
-      
       window.addEventListener('scroll', function() {
         navbar.classList.toggle('scrolled', window.pageYOffset > 50);
       });
@@ -1196,12 +1186,10 @@
       
       navToggle.addEventListener('click', function(e) {
         e.preventDefault();
-        e.stopPropagation();
         this.classList.toggle('active');
         mobileMenu.classList.toggle('active');
       });
 
-      // Fecha mobile menu ao clicar fora
       document.addEventListener('click', function(e) {
         if (!navToggle.contains(e.target) && 
             !mobileMenu.contains(e.target) &&
@@ -1211,7 +1199,7 @@
         }
       });
 
-      // ===== ACTIVE NAV LINK =====
+      // ===== ACTIVE NAV =====
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link');
 
@@ -1229,18 +1217,17 @@
 
         navLinks.forEach(link => {
           link.classList.remove('active');
-          if (link.dataset.scroll === current) {
+          const linkTarget = link.getAttribute('href').substring(1);
+          if (linkTarget === current) {
             link.classList.add('active');
           }
         });
       });
 
-      // ===== GARANTE TOPO NO LOAD =====
+      // ===== GARANTE TOPO =====
       window.addEventListener('load', function() {
         setTimeout(function() {
-          if (window.pageYOffset !== 0) {
-            window.scrollTo(0, 0);
-          }
+          if (window.pageYOffset !== 0) window.scrollTo(0, 0);
         }, 100);
       });
 
