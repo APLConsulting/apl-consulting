@@ -1057,7 +1057,7 @@
         if (!content[lang]) lang = "pt";
         const data = content[lang];
 
-        // Atualiza textos SEM mexer no scroll
+        // Atualiza textos
         Object.keys(data).forEach(key => {
           const el = document.getElementById(key);
           if (el) el.textContent = data[key];
@@ -1091,9 +1091,7 @@
         // localStorage
         try { 
           localStorage.setItem("apl_lang", lang); 
-        } catch(e) {
-          console.warn('localStorage não disponível');
-        }
+        } catch(e) {}
       }
 
       // ===== INIT LANG =====
@@ -1109,27 +1107,29 @@
             else if (browserLang.startsWith("fr")) lang = "fr";
             else lang = "en";
           }
-        } catch(e) {
-          console.warn('localStorage não disponível');
-        }
+        } catch(e) {}
         
         setLanguage(lang);
       })();
 
-      // ===== LANG BUTTONS =====
+      // ===== BOTÕES DE LÍNGUA (SEPARADOS E PRIMEIRO!) =====
       document.querySelectorAll('.lang-btn-nav').forEach(btn => {
         btn.addEventListener('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
+          e.stopImmediatePropagation(); // IMPORTANTE!
+          console.log('🌐 Mudando língua para:', this.dataset.lang);
           setLanguage(this.dataset.lang);
-        });
+        }, true); // CAPTURE PHASE!
       });
 
-      // ===== SCROLL TO SECTION (CORRIGIDO COM OFFSET MAIOR) =====
+      // ===== SCROLL TO SECTION (OFFSET 80px) =====
       function scrollToSection(sectionId) {
+        console.log('📍 Scrolling para:', sectionId);
+        
         const target = document.getElementById(sectionId);
         if (!target) {
-          console.warn('Secção não encontrada:', sectionId);
+          console.warn('⚠️ Secção não encontrada:', sectionId);
           return;
         }
 
@@ -1144,9 +1144,11 @@
           return;
         }
         
-        // Para outras secções: offset maior (150px) para não cortar
-        const offset = 150;
+        // Para outras secções: offset de 80px
+        const offset = 80;
         const targetPos = target.offsetTop - navHeight - offset;
+        
+        console.log('🎯 Target position:', targetPos);
         
         window.scrollTo({
           top: Math.max(0, targetPos),
@@ -1154,11 +1156,20 @@
         });
       }
 
-      // ===== APLICA SCROLL A TODOS OS LINKS =====
+      // ===== APLICA SCROLL APENAS A ELEMENTOS COM data-scroll =====
       document.querySelectorAll('[data-scroll]').forEach(el => {
+        // Pula botões de língua
+        if (el.classList.contains('lang-btn-nav')) {
+          console.log('⏭️ Pulando botão de língua:', el);
+          return;
+        }
+        
         el.addEventListener('click', function(e) {
+          console.log('🖱️ Clique em elemento com data-scroll:', this);
+          
           e.preventDefault();
           e.stopPropagation();
+          
           const sectionId = this.dataset.scroll;
           scrollToSection(sectionId);
           
@@ -1192,7 +1203,9 @@
 
       // Fecha mobile menu ao clicar fora
       document.addEventListener('click', function(e) {
-        if (!navToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+        if (!navToggle.contains(e.target) && 
+            !mobileMenu.contains(e.target) &&
+            !e.target.classList.contains('lang-btn-nav')) {
           navToggle.classList.remove('active');
           mobileMenu.classList.remove('active');
         }
@@ -1206,7 +1219,7 @@
         let current = 'home';
         
         sections.forEach(section => {
-          const sectionTop = section.offsetTop - 250;
+          const sectionTop = section.offsetTop - 200;
           const sectionBottom = sectionTop + section.offsetHeight;
           
           if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionBottom) {
@@ -1222,7 +1235,7 @@
         });
       });
 
-      // ===== GARANTE TOPO NO LOAD (BACKUP) =====
+      // ===== GARANTE TOPO NO LOAD =====
       window.addEventListener('load', function() {
         setTimeout(function() {
           if (window.pageYOffset !== 0) {
