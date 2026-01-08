@@ -53,7 +53,7 @@
     }
 
     html {
-      /* REMOVIDO scroll-behavior: smooth; - causa conflitos! */
+      /* scroll-behavior removido - controlado via JS */
     }
 
     body {
@@ -945,6 +945,14 @@
 
   <script>
     (function () {
+      // ===== DESABILITA SCROLL RESTORATION DO BROWSER =====
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+
+      // ===== FORÇA TOPO NO LOAD =====
+      window.scrollTo(0, 0);
+
       // Content translations
       const content = {
         fr: {
@@ -1045,15 +1053,12 @@
         }
       };
 
-      // SIMPLIFICADO: Mudar idioma SEM mexer scroll
+      // ===== MUDAR IDIOMA (SEM AFETAR SCROLL) =====
       function setLanguage(lang) {
         if (!content[lang]) lang = "fr";
         const data = content[lang];
 
-        // Guarda posição ANTES
-        const savedScroll = window.pageYOffset;
-
-        // Atualiza textos
+        // Atualiza textos SEM mexer no scroll
         Object.keys(data).forEach(key => {
           const el = document.getElementById(key);
           if (el) el.textContent = data[key];
@@ -1062,11 +1067,11 @@
         // Atualiza nav/footer links
         document.querySelectorAll('[data-nav]').forEach(el => {
           const key = 'nav' + el.dataset.nav.charAt(0).toUpperCase() + el.dataset.nav.slice(1);
-          el.textContent = data[key];
+          if (data[key]) el.textContent = data[key];
         });
         document.querySelectorAll('[data-footer]').forEach(el => {
           const key = 'nav' + el.dataset.footer.charAt(0).toUpperCase() + el.dataset.footer.slice(1);
-          el.textContent = data[key];
+          if (data[key]) el.textContent = data[key];
         });
 
         // Meta tags
@@ -1081,91 +1086,120 @@
           btn.classList.toggle('active', btn.dataset.lang === lang);
         });
 
-        // FORÇA scroll para posição original
-        window.scrollTo(0, savedScroll);
-
         // localStorage
         try { localStorage.setItem("apl_lang", lang); } catch(e) {}
       }
 
-      // Init lang
+      // ===== INIT LANG (SEM SCROLL) =====
       (function() {
         let lang = "fr";
         try {
           const stored = localStorage.getItem("apl_lang");
-          if (stored && content[stored]) lang = stored;
-          else {
+          if (stored && content[stored]) {
+            lang = stored;
+          } else {
             const browserLang = (navigator?.language || "fr").toLowerCase();
             if (browserLang.startsWith("pt")) lang = "pt";
             else if (browserLang.startsWith("fr")) lang = "fr";
             else lang = "en";
           }
         } catch(e) {}
+        
         setLanguage(lang);
       })();
 
-      // Lang buttons
+      // ===== LANG BUTTONS =====
       document.querySelectorAll('.lang-btn-nav').forEach(btn => {
-        btn.addEventListener('click', (e) => {
+        btn.addEventListener('click', function(e) {
           e.preventDefault();
-          setLanguage(btn.dataset.lang);
+          e.stopPropagation();
+          setLanguage(this.dataset.lang);
         });
       });
 
-      // SCROLL MANUAL 100% (sem CSS smooth)
+      // ===== SCROLL TO SECTION (CORRIGIDO) =====
       function scrollToSection(sectionId) {
         const target = document.getElementById(sectionId);
         if (!target) return;
 
         const navHeight = 70;
-        const offset = 200; // AUMENTADO para não cortar
+        let offset = 20; // Reduzido de 200 para 20
+        
+        // Ajuste especial para home (topo)
+        if (sectionId === 'home') {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+          return;
+        }
+        
         const targetPos = target.offsetTop - navHeight - offset;
-
+        
         window.scrollTo({
-          top: targetPos,
+          top: Math.max(0, targetPos),
           behavior: 'smooth'
         });
       }
 
-      // Aplica a TODOS com data-scroll
+      // ===== APLICA SCROLL A TODOS OS LINKS =====
       document.querySelectorAll('[data-scroll]').forEach(el => {
-        el.addEventListener('click', (e) => {
+        el.addEventListener('click', function(e) {
           e.preventDefault();
-          scrollToSection(el.dataset.scroll);
+          e.stopPropagation();
+          const sectionId = this.dataset.scroll;
+          scrollToSection(sectionId);
         });
       });
 
-      // Navbar scroll effect
+      // ===== NAVBAR SCROLL EFFECT =====
       const navbar = document.getElementById('navbar');
-      window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
+      let lastScroll = 0;
+      
+      window.addEventListener('scroll', function() {
+        const currentScroll = window.pageYOffset;
+        navbar.classList.toggle('scrolled', currentScroll > 50);
+        lastScroll = currentScroll;
       });
 
-      // Mobile menu
+      // ===== MOBILE MENU =====
       const navToggle = document.getElementById('navToggle');
       const mobileMenu = document.getElementById('mobileMenu');
       
-      navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('active');
+      navToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        this.classList.toggle('active');
         mobileMenu.classList.toggle('active');
       });
 
+      // Fecha mobile menu ao clicar em link
       document.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', function() {
           navToggle.classList.remove('active');
           mobileMenu.classList.remove('active');
         });
       });
 
-      // Active nav link
+      // Fecha mobile menu ao clicar fora
+      document.addEventListener('click', function(e) {
+        if (!navToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+          navToggle.classList.remove('active');
+          mobileMenu.classList.remove('active');
+        }
+      });
+
+      // ===== ACTIVE NAV LINK =====
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link');
 
-      window.addEventListener('scroll', () => {
-        let current = '';
+      window.addEventListener('scroll', function() {
+        let current = 'home';
+        
         sections.forEach(section => {
-          const sectionTop = section.offsetTop - 300;
-          if (window.scrollY >= sectionTop) {
+          const sectionTop = section.offsetTop - 200;
+          const sectionBottom = sectionTop + section.offsetHeight;
+          
+          if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionBottom) {
             current = section.getAttribute('id');
           }
         });
@@ -1177,6 +1211,15 @@
           }
         });
       });
+
+      // ===== GARANTE TOPO NO LOAD (BACKUP) =====
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          if (window.pageYOffset === 0) return;
+          window.scrollTo(0, 0);
+        }, 50);
+      });
+
     })();
   </script>
 </body>
