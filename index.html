@@ -53,7 +53,7 @@
     }
 
     html {
-      scroll-behavior: smooth;
+      /* REMOVIDO scroll-behavior: smooth; - causa conflitos! */
     }
 
     body {
@@ -715,16 +715,16 @@
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="#home" class="nav-logo">
+      <a href="javascript:void(0)" class="nav-logo" data-scroll="home">
         <img src="logo-apl-branco.png" alt="APL Consulting" width="40" height="40" />
         <span>APL Consulting</span>
       </a>
 
       <ul class="nav-menu">
-        <li><a href="#home" class="nav-link" data-nav="home">Accueil</a></li>
-        <li><a href="#services" class="nav-link" data-nav="services">Services</a></li>
-        <li><a href="#about" class="nav-link" data-nav="about">À propos</a></li>
-        <li><a href="#contact" class="nav-link" data-nav="contact">Contact</a></li>
+        <li><a href="javascript:void(0)" class="nav-link" data-scroll="home" data-nav="home">Accueil</a></li>
+        <li><a href="javascript:void(0)" class="nav-link" data-scroll="services" data-nav="services">Services</a></li>
+        <li><a href="javascript:void(0)" class="nav-link" data-scroll="about" data-nav="about">À propos</a></li>
+        <li><a href="javascript:void(0)" class="nav-link" data-scroll="contact" data-nav="contact">Contact</a></li>
       </ul>
 
       <div class="nav-lang">
@@ -743,10 +743,10 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
       <ul class="mobile-menu-list">
-        <li><a href="#home" class="mobile-link" data-nav="home">Accueil</a></li>
-        <li><a href="#services" class="mobile-link" data-nav="services">Services</a></li>
-        <li><a href="#about" class="mobile-link" data-nav="about">À propos</a></li>
-        <li><a href="#contact" class="mobile-link" data-nav="contact">Contact</a></li>
+        <li><a href="javascript:void(0)" class="mobile-link" data-scroll="home" data-nav="home">Accueil</a></li>
+        <li><a href="javascript:void(0)" class="mobile-link" data-scroll="services" data-nav="services">Services</a></li>
+        <li><a href="javascript:void(0)" class="mobile-link" data-scroll="about" data-nav="about">À propos</a></li>
+        <li><a href="javascript:void(0)" class="mobile-link" data-scroll="contact" data-nav="contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -774,11 +774,11 @@
       </p>
 
       <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary scroll-link">
+        <a href="javascript:void(0)" class="btn btn-primary" data-scroll="contact">
           <span id="heroCta1">Discuter de votre projet</span>
           <span>→</span>
         </a>
-        <a href="#services" class="btn btn-secondary scroll-link" id="heroCta2">
+        <a href="javascript:void(0)" class="btn btn-secondary" data-scroll="services" id="heroCta2">
           Découvrir nos services
         </a>
       </div>
@@ -921,10 +921,10 @@
         <div class="footer-links">
           <h4 id="footerNav">Navigation</h4>
           <ul>
-            <li><a href="#home" class="scroll-link" data-footer="home">Accueil</a></li>
-            <li><a href="#services" class="scroll-link" data-footer="services" id="footerServices">Services</a></li>
-            <li><a href="#about" class="scroll-link" data-footer="about" id="footerAbout">À propos</a></li>
-            <li><a href="#contact" class="scroll-link" data-footer="contact" id="footerContact">Contact</a></li>
+            <li><a href="javascript:void(0)" data-scroll="home" data-footer="home">Accueil</a></li>
+            <li><a href="javascript:void(0)" data-scroll="services" data-footer="services" id="footerServices">Services</a></li>
+            <li><a href="javascript:void(0)" data-scroll="about" data-footer="about" id="footerAbout">À propos</a></li>
+            <li><a href="javascript:void(0)" data-scroll="contact" data-footer="contact" id="footerContact">Contact</a></li>
           </ul>
         </div>
 
@@ -945,296 +945,203 @@
 
   <script>
     (function () {
-      const EMAIL = "contact@apl-consulting.com";
-
       // Content translations
       const content = {
         fr: {
-          navHome: "Accueil",
-          navServices: "Services",
-          navAbout: "À propos",
-          navContact: "Contact",
+          navHome: "Accueil", navServices: "Services", navAbout: "À propos", navContact: "Contact",
           heroBadge: "Disponible pour nouveaux projets",
           heroTitle: "Solutions numériques & automatisation",
           heroSubtitle: "Nous accompagnons les entreprises dans leur transformation digitale et l'optimisation de leurs opérations.",
           heroLocation: "Basée en Provence-Alpes-Côte d'Azur, France",
-          heroCta1: "Discuter de votre projet",
-          heroCta2: "Découvrir nos services",
-          servicesEyebrow: "Nos Services",
-          servicesTitle: "Comment nous pouvons vous aider",
+          heroCta1: "Discuter de votre projet", heroCta2: "Découvrir nos services",
+          servicesEyebrow: "Nos Services", servicesTitle: "Comment nous pouvons vous aider",
           servicesDesc: "Expertise technique et accompagnement personnalisé pour vos projets de transformation digitale.",
           service1Title: "Conseil technique",
           service1Desc: "Audit de systèmes, architecture de solutions, sélection de technologies et planification d'implémentation.",
-          service1Feature1: "Audit et analyse",
-          service1Feature2: "Architecture de solutions",
-          service1Feature3: "Planification stratégique",
+          service1Feature1: "Audit et analyse", service1Feature2: "Architecture de solutions", service1Feature3: "Planification stratégique",
           service2Title: "Support à distance",
           service2Desc: "Résolution de problèmes techniques, maintenance préventive et support technique qualifié disponible rapidement.",
-          service2Feature1: "Support réactif",
-          service2Feature2: "Maintenance préventive",
-          service2Feature3: "Monitoring 24/7 (option)",
+          service2Feature1: "Support réactif", service2Feature2: "Maintenance préventive", service2Feature3: "Monitoring 24/7 (option)",
           service3Title: "Implémentation",
           service3Desc: "Développement sur mesure, intégrations entre systèmes, migration de données et formation des équipes.",
-          service3Feature1: "Développement custom",
-          service3Feature2: "Intégrations système",
-          service3Feature3: "Formation incluse",
+          service3Feature1: "Développement custom", service3Feature2: "Intégrations système", service3Feature3: "Formation incluse",
           aboutEyebrow: "À propos",
           aboutText: "Basée en Provence-Alpes-Côte d'Azur, APL Consulting est une entreprise spécialisée en systèmes numériques et automatisation. Nous travaillons avec des entreprises qui ont besoin d'optimiser leurs opérations à travers l'intégration de systèmes et l'automatisation de processus.",
-          stat1Label: "Fondée",
-          stat2Label: "France",
-          stat3Label: "Réponse",
-          contactEyebrow: "Contact",
-          contactTitle: "Parlons de votre projet",
+          stat1Label: "Fondée", stat2Label: "France", stat3Label: "Réponse",
+          contactEyebrow: "Contact", contactTitle: "Parlons de votre projet",
           contactDesc: "Nous sommes disponibles pour discuter de vos besoins et vous proposer des solutions adaptées.",
-          contactInfoText: "Contactez-nous par email",
-          contactResponse: "Réponse garantie sous 24h ouvrées",
+          contactInfoText: "Contactez-nous par email", contactResponse: "Réponse garantie sous 24h ouvrées",
           footerDesc: "Solutions numériques et automatisation pour entreprises exigeantes.",
-          footerLocation: "Provence-Alpes-Côte d'Azur, France",
-          footerNav: "Navigation",
-          footerServices: "Services",
-          footerAbout: "À propos",
-          footerContact: "Contact",
-          footerContactTitle: "Contact",
-          footerResponse: "Réponse sous 24h ouvrées",
+          footerLocation: "Provence-Alpes-Côte d'Azur, France", footerNav: "Navigation",
+          footerServices: "Services", footerAbout: "À propos", footerContact: "Contact",
+          footerContactTitle: "Contact", footerResponse: "Réponse sous 24h ouvrées",
           footerCopy: "© 2026 APL Consulting. Tous droits réservés.",
           title: "APL Consulting – Systèmes numériques & automatisation",
           description: "APL Consulting conçoit des systèmes numériques et des solutions d'automatisation pour les entreprises. Basée en Provence-Alpes-Côte d'Azur, France."
         },
         pt: {
-          navHome: "Início",
-          navServices: "Serviços",
-          navAbout: "Sobre",
-          navContact: "Contacto",
+          navHome: "Início", navServices: "Serviços", navAbout: "Sobre", navContact: "Contacto",
           heroBadge: "Disponível para novos projetos",
           heroTitle: "Soluções digitais & automação",
           heroSubtitle: "Acompanhamos empresas na sua transformação digital e otimização de operações.",
           heroLocation: "Sediada em Provence-Alpes-Côte d'Azur, França",
-          heroCta1: "Discutir o seu projeto",
-          heroCta2: "Descobrir os nossos serviços",
-          servicesEyebrow: "Nossos Serviços",
-          servicesTitle: "Como podemos ajudar",
+          heroCta1: "Discutir o seu projeto", heroCta2: "Descobrir os nossos serviços",
+          servicesEyebrow: "Nossos Serviços", servicesTitle: "Como podemos ajudar",
           servicesDesc: "Expertise técnica e acompanhamento personalizado para os seus projetos de transformação digital.",
           service1Title: "Consultoria técnica",
           service1Desc: "Auditoria de sistemas, arquitetura de soluções, seleção de tecnologias e planeamento de implementação.",
-          service1Feature1: "Auditoria e análise",
-          service1Feature2: "Arquitetura de soluções",
-          service1Feature3: "Planeamento estratégico",
+          service1Feature1: "Auditoria e análise", service1Feature2: "Arquitetura de soluções", service1Feature3: "Planeamento estratégico",
           service2Title: "Suporte remoto",
           service2Desc: "Resolução de problemas técnicos, manutenção preventiva e suporte técnico qualificado disponível rapidamente.",
-          service2Feature1: "Suporte reativo",
-          service2Feature2: "Manutenção preventiva",
-          service2Feature3: "Monitorização 24/7 (opção)",
+          service2Feature1: "Suporte reativo", service2Feature2: "Manutenção preventiva", service2Feature3: "Monitorização 24/7 (opção)",
           service3Title: "Implementação",
           service3Desc: "Desenvolvimento à medida, integrações entre sistemas, migração de dados e formação de equipas.",
-          service3Feature1: "Desenvolvimento custom",
-          service3Feature2: "Integrações de sistema",
-          service3Feature3: "Formação incluída",
+          service3Feature1: "Desenvolvimento custom", service3Feature2: "Integrações de sistema", service3Feature3: "Formação incluída",
           aboutEyebrow: "Sobre",
           aboutText: "Sediada em Provence-Alpes-Côte d'Azur, a APL Consulting é uma empresa especializada em sistemas digitais e automação. Trabalhamos com empresas que precisam otimizar as suas operações através da integração de sistemas e automação de processos.",
-          stat1Label: "Fundada",
-          stat2Label: "França",
-          stat3Label: "Resposta",
-          contactEyebrow: "Contacto",
-          contactTitle: "Vamos falar do seu projeto",
+          stat1Label: "Fundada", stat2Label: "França", stat3Label: "Resposta",
+          contactEyebrow: "Contacto", contactTitle: "Vamos falar do seu projeto",
           contactDesc: "Estamos disponíveis para discutir as suas necessidades e propor soluções adaptadas.",
-          contactInfoText: "Contacte-nos por email",
-          contactResponse: "Resposta garantida em 24h úteis",
+          contactInfoText: "Contacte-nos por email", contactResponse: "Resposta garantida em 24h úteis",
           footerDesc: "Soluções digitais e automação para empresas exigentes.",
-          footerLocation: "Provence-Alpes-Côte d'Azur, França",
-          footerNav: "Navegação",
-          footerServices: "Serviços",
-          footerAbout: "Sobre",
-          footerContact: "Contacto",
-          footerContactTitle: "Contacto",
-          footerResponse: "Resposta em 24h úteis",
+          footerLocation: "Provence-Alpes-Côte d'Azur, França", footerNav: "Navegação",
+          footerServices: "Serviços", footerAbout: "Sobre", footerContact: "Contacto",
+          footerContactTitle: "Contacto", footerResponse: "Resposta em 24h úteis",
           footerCopy: "© 2026 APL Consulting. Todos os direitos reservados.",
           title: "APL Consulting – Sistemas digitais & automação",
           description: "A APL Consulting desenvolve sistemas digitais e soluções de automação para empresas. Sediada em Provence-Alpes-Côte d'Azur, França."
         },
         en: {
-          navHome: "Home",
-          navServices: "Services",
-          navAbout: "About",
-          navContact: "Contact",
+          navHome: "Home", navServices: "Services", navAbout: "About", navContact: "Contact",
           heroBadge: "Available for new projects",
           heroTitle: "Digital solutions & automation",
           heroSubtitle: "We support businesses in their digital transformation and operations optimization.",
           heroLocation: "Based in Provence-Alpes-Côte d'Azur, France",
-          heroCta1: "Discuss your project",
-          heroCta2: "Discover our services",
-          servicesEyebrow: "Our Services",
-          servicesTitle: "How we can help",
+          heroCta1: "Discuss your project", heroCta2: "Discover our services",
+          servicesEyebrow: "Our Services", servicesTitle: "How we can help",
           servicesDesc: "Technical expertise and personalized support for your digital transformation projects.",
           service1Title: "Technical consulting",
           service1Desc: "System audits, solution architecture, technology selection and implementation planning.",
-          service1Feature1: "Audit and analysis",
-          service1Feature2: "Solution architecture",
-          service1Feature3: "Strategic planning",
+          service1Feature1: "Audit and analysis", service1Feature2: "Solution architecture", service1Feature3: "Strategic planning",
           service2Title: "Remote support",
           service2Desc: "Technical problem resolution, preventive maintenance and qualified technical support available quickly.",
-          service2Feature1: "Reactive support",
-          service2Feature2: "Preventive maintenance",
-          service2Feature3: "24/7 monitoring (option)",
+          service2Feature1: "Reactive support", service2Feature2: "Preventive maintenance", service2Feature3: "24/7 monitoring (option)",
           service3Title: "Implementation",
           service3Desc: "Custom development, system integrations, data migration and team training.",
-          service3Feature1: "Custom development",
-          service3Feature2: "System integrations",
-          service3Feature3: "Training included",
+          service3Feature1: "Custom development", service3Feature2: "System integrations", service3Feature3: "Training included",
           aboutEyebrow: "About",
           aboutText: "Based in Provence-Alpes-Côte d'Azur, APL Consulting is a company specialized in digital systems and automation. We work with businesses that need to optimize their operations through system integration and process automation.",
-          stat1Label: "Founded",
-          stat2Label: "France",
-          stat3Label: "Response",
-          contactEyebrow: "Contact",
-          contactTitle: "Let's talk about your project",
+          stat1Label: "Founded", stat2Label: "France", stat3Label: "Response",
+          contactEyebrow: "Contact", contactTitle: "Let's talk about your project",
           contactDesc: "We are available to discuss your needs and propose tailored solutions.",
-          contactInfoText: "Contact us by email",
-          contactResponse: "Response guaranteed within 24 business hours",
+          contactInfoText: "Contact us by email", contactResponse: "Response guaranteed within 24 business hours",
           footerDesc: "Digital solutions and automation for demanding businesses.",
-          footerLocation: "Provence-Alpes-Côte d'Azur, France",
-          footerNav: "Navigation",
-          footerServices: "Services",
-          footerAbout: "About",
-          footerContact: "Contact",
-          footerContactTitle: "Contact",
-          footerResponse: "Response within 24 business hours",
+          footerLocation: "Provence-Alpes-Côte d'Azur, France", footerNav: "Navigation",
+          footerServices: "Services", footerAbout: "About", footerContact: "Contact",
+          footerContactTitle: "Contact", footerResponse: "Response within 24 business hours",
           footerCopy: "© 2026 APL Consulting. All rights reserved.",
           title: "APL Consulting – Digital systems & automation",
           description: "APL Consulting develops digital systems and automation solutions for businesses. Based in Provence-Alpes-Côte d'Azur, France."
         }
       };
 
-      // CRITICAL: Store scroll position before any DOM updates
-      let scrollLocked = false;
-      let lockedScrollY = 0;
-
-      // Function to set language with scroll lock
+      // SIMPLIFICADO: Mudar idioma SEM mexer scroll
       function setLanguage(lang) {
-        if (!content[lang]) {
-          lang = "fr";
-        }
-
+        if (!content[lang]) lang = "fr";
         const data = content[lang];
 
-        // LOCK scroll position
-        scrollLocked = true;
-        lockedScrollY = window.scrollY;
+        // Guarda posição ANTES
+        const savedScroll = window.pageYOffset;
 
-        // Update all elements with IDs
+        // Atualiza textos
         Object.keys(data).forEach(key => {
           const el = document.getElementById(key);
-          if (el) {
-            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-              el.value = data[key];
-            } else {
-              el.textContent = data[key];
-            }
-          }
+          if (el) el.textContent = data[key];
         });
 
-        // Update nav links manually
-        document.querySelectorAll('[data-nav="home"]').forEach(el => el.textContent = data.navHome);
-        document.querySelectorAll('[data-nav="services"]').forEach(el => el.textContent = data.navServices);
-        document.querySelectorAll('[data-nav="about"]').forEach(el => el.textContent = data.navAbout);
-        document.querySelectorAll('[data-nav="contact"]').forEach(el => el.textContent = data.navContact);
+        // Atualiza nav/footer links
+        document.querySelectorAll('[data-nav]').forEach(el => {
+          const key = 'nav' + el.dataset.nav.charAt(0).toUpperCase() + el.dataset.nav.slice(1);
+          el.textContent = data[key];
+        });
+        document.querySelectorAll('[data-footer]').forEach(el => {
+          const key = 'nav' + el.dataset.footer.charAt(0).toUpperCase() + el.dataset.footer.slice(1);
+          el.textContent = data[key];
+        });
 
-        // Update footer links
-        document.querySelectorAll('[data-footer="home"]').forEach(el => el.textContent = data.navHome);
-        document.querySelectorAll('[data-footer="services"]').forEach(el => el.textContent = data.navServices);
-        document.querySelectorAll('[data-footer="about"]').forEach(el => el.textContent = data.navAbout);
-        document.querySelectorAll('[data-footer="contact"]').forEach(el => el.textContent = data.navContact);
-
-        // Update meta tags
+        // Meta tags
         document.documentElement.lang = lang;
         document.title = data.title;
-        
-        const metaDescription = document.querySelector('meta[name="description"]');
-        if (metaDescription) metaDescription.setAttribute("content", data.description);
-        
-        const metaOgTitle = document.querySelector('meta[property="og:title"]');
-        if (metaOgTitle) metaOgTitle.setAttribute("content", data.title);
-        
-        const metaOgDescription = document.querySelector('meta[property="og:description"]');
-        if (metaOgDescription) metaOgDescription.setAttribute("content", data.description);
+        document.querySelector('meta[name="description"]')?.setAttribute("content", data.description);
+        document.querySelector('meta[property="og:title"]')?.setAttribute("content", data.title);
+        document.querySelector('meta[property="og:description"]')?.setAttribute("content", data.description);
 
-        // Update language buttons
+        // Botões lang
         document.querySelectorAll('.lang-btn-nav').forEach(btn => {
           btn.classList.toggle('active', btn.dataset.lang === lang);
         });
 
-        // FORCE restore scroll position with requestAnimationFrame
-        requestAnimationFrame(() => {
-          window.scrollTo(0, lockedScrollY);
-          scrollLocked = false;
-        });
+        // FORÇA scroll para posição original
+        window.scrollTo(0, savedScroll);
 
-        // Save to localStorage
-        try {
-          localStorage.setItem("apl_lang", lang);
-        } catch (e) {
-          // localStorage not available
-        }
+        // localStorage
+        try { localStorage.setItem("apl_lang", lang); } catch(e) {}
       }
 
-      // Prevent scroll during language change
-      window.addEventListener('scroll', () => {
-        if (scrollLocked) {
-          window.scrollTo(0, lockedScrollY);
-        }
-      }, { passive: false });
-
-      // Initialize language
-      (function initLang() {
-        let initialLang = "fr";
-
+      // Init lang
+      (function() {
+        let lang = "fr";
         try {
           const stored = localStorage.getItem("apl_lang");
-          if (stored && content[stored]) {
-            initialLang = stored;
-          } else {
-            const browserLang = (navigator?.language || navigator?.userLanguage || "fr").toLowerCase();
-            if (browserLang.startsWith("pt")) {
-              initialLang = "pt";
-            } else if (browserLang.startsWith("fr")) {
-              initialLang = "fr";
-            } else {
-              initialLang = "en";
-            }
+          if (stored && content[stored]) lang = stored;
+          else {
+            const browserLang = (navigator?.language || "fr").toLowerCase();
+            if (browserLang.startsWith("pt")) lang = "pt";
+            else if (browserLang.startsWith("fr")) lang = "fr";
+            else lang = "en";
           }
-        } catch (e) {
-          const browserLang = (navigator?.language || navigator?.userLanguage || "fr").toLowerCase();
-          if (browserLang.startsWith("pt")) {
-            initialLang = "pt";
-          } else if (browserLang.startsWith("fr")) {
-            initialLang = "fr";
-          } else {
-            initialLang = "en";
-          }
-        }
-
-        setLanguage(initialLang);
+        } catch(e) {}
+        setLanguage(lang);
       })();
 
-      // Language button handlers
+      // Lang buttons
       document.querySelectorAll('.lang-btn-nav').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
-          e.stopPropagation();
           setLanguage(btn.dataset.lang);
+        });
+      });
+
+      // SCROLL MANUAL 100% (sem CSS smooth)
+      function scrollToSection(sectionId) {
+        const target = document.getElementById(sectionId);
+        if (!target) return;
+
+        const navHeight = 70;
+        const offset = 200; // AUMENTADO para não cortar
+        const targetPos = target.offsetTop - navHeight - offset;
+
+        window.scrollTo({
+          top: targetPos,
+          behavior: 'smooth'
+        });
+      }
+
+      // Aplica a TODOS com data-scroll
+      document.querySelectorAll('[data-scroll]').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          scrollToSection(el.dataset.scroll);
         });
       });
 
       // Navbar scroll effect
       const navbar = document.getElementById('navbar');
       window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
-        }
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
       });
 
-      // Mobile menu toggle
+      // Mobile menu
       const navToggle = document.getElementById('navToggle');
       const mobileMenu = document.getElementById('mobileMenu');
       
@@ -1243,7 +1150,6 @@
         mobileMenu.classList.toggle('active');
       });
 
-      // Close mobile menu when clicking links
       document.querySelectorAll('.mobile-link').forEach(link => {
         link.addEventListener('click', () => {
           navToggle.classList.remove('active');
@@ -1251,59 +1157,22 @@
         });
       });
 
-      // IMPROVED: Smooth scroll function with better offset calculation
-      function smoothScrollTo(targetId) {
-        const target = document.querySelector(targetId);
-        if (!target) return;
-
-        const navHeight = document.querySelector('.navbar').offsetHeight;
-        // INCREASED offset to 150px to prevent cutting off content
-        const extraOffset = 150;
-        const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight - extraOffset;
-        
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
-      }
-
-      // Apply smooth scroll to ALL anchor links (nav, buttons, footer)
-      document.querySelectorAll('a[href^="#"], .scroll-link').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          
-          const targetId = this.getAttribute('href');
-          if (targetId && targetId !== '#') {
-            smoothScrollTo(targetId);
-          }
-        });
-      });
-
-      // IMPROVED: Active nav link detection with better boundaries
+      // Active nav link
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link');
 
       window.addEventListener('scroll', () => {
-        if (scrollLocked) return; // Don't update during language change
-
         let current = '';
-        const navHeight = document.querySelector('.navbar').offsetHeight;
-        const scrollPosition = window.scrollY;
-        
         sections.forEach(section => {
-          const sectionTop = section.offsetTop - navHeight - 200;
-          const sectionBottom = sectionTop + section.offsetHeight;
-          
-          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          const sectionTop = section.offsetTop - 300;
+          if (window.scrollY >= sectionTop) {
             current = section.getAttribute('id');
           }
         });
 
         navLinks.forEach(link => {
           link.classList.remove('active');
-          const href = link.getAttribute('href');
-          if (href === `#${current}`) {
+          if (link.dataset.scroll === current) {
             link.classList.add('active');
           }
         });
