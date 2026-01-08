@@ -774,11 +774,11 @@
       </p>
 
       <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">
+        <a href="#contact" class="btn btn-primary scroll-link">
           <span id="heroCta1">Discuter de votre projet</span>
           <span>→</span>
         </a>
-        <a href="#services" class="btn btn-secondary" id="heroCta2">
+        <a href="#services" class="btn btn-secondary scroll-link" id="heroCta2">
           Découvrir nos services
         </a>
       </div>
@@ -921,10 +921,10 @@
         <div class="footer-links">
           <h4 id="footerNav">Navigation</h4>
           <ul>
-            <li><a href="#home">Accueil</a></li>
-            <li><a href="#services" id="footerServices">Services</a></li>
-            <li><a href="#about" id="footerAbout">À propos</a></li>
-            <li><a href="#contact" id="footerContact">Contact</a></li>
+            <li><a href="#home" class="scroll-link" data-footer="home">Accueil</a></li>
+            <li><a href="#services" class="scroll-link" data-footer="services" id="footerServices">Services</a></li>
+            <li><a href="#about" class="scroll-link" data-footer="about" id="footerAbout">À propos</a></li>
+            <li><a href="#contact" class="scroll-link" data-footer="contact" id="footerContact">Contact</a></li>
           </ul>
         </div>
 
@@ -1104,7 +1104,11 @@
         }
       };
 
-      // Function to set language
+      // CRITICAL: Store scroll position before any DOM updates
+      let scrollLocked = false;
+      let lockedScrollY = 0;
+
+      // Function to set language with scroll lock
       function setLanguage(lang) {
         if (!content[lang]) {
           lang = "fr";
@@ -1112,8 +1116,9 @@
 
         const data = content[lang];
 
-        // CRITICAL FIX: Save scroll position BEFORE updating
-        const currentScrollY = window.scrollY;
+        // LOCK scroll position
+        scrollLocked = true;
+        lockedScrollY = window.scrollY;
 
         // Update all elements with IDs
         Object.keys(data).forEach(key => {
@@ -1133,6 +1138,12 @@
         document.querySelectorAll('[data-nav="about"]').forEach(el => el.textContent = data.navAbout);
         document.querySelectorAll('[data-nav="contact"]').forEach(el => el.textContent = data.navContact);
 
+        // Update footer links
+        document.querySelectorAll('[data-footer="home"]').forEach(el => el.textContent = data.navHome);
+        document.querySelectorAll('[data-footer="services"]').forEach(el => el.textContent = data.navServices);
+        document.querySelectorAll('[data-footer="about"]').forEach(el => el.textContent = data.navAbout);
+        document.querySelectorAll('[data-footer="contact"]').forEach(el => el.textContent = data.navContact);
+
         // Update meta tags
         document.documentElement.lang = lang;
         document.title = data.title;
@@ -1151,8 +1162,11 @@
           btn.classList.toggle('active', btn.dataset.lang === lang);
         });
 
-        // CRITICAL FIX: Restore scroll position AFTER updating
-        window.scrollTo(0, currentScrollY);
+        // FORCE restore scroll position with requestAnimationFrame
+        requestAnimationFrame(() => {
+          window.scrollTo(0, lockedScrollY);
+          scrollLocked = false;
+        });
 
         // Save to localStorage
         try {
@@ -1161,6 +1175,13 @@
           // localStorage not available
         }
       }
+
+      // Prevent scroll during language change
+      window.addEventListener('scroll', () => {
+        if (scrollLocked) {
+          window.scrollTo(0, lockedScrollY);
+        }
+      }, { passive: false });
 
       // Initialize language
       (function initLang() {
@@ -1194,10 +1215,11 @@
         setLanguage(initialLang);
       })();
 
-      // Language button handlers with preventDefault
+      // Language button handlers
       document.querySelectorAll('.lang-btn-nav').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
+          e.stopPropagation();
           setLanguage(btn.dataset.lang);
         });
       });
@@ -1229,42 +1251,51 @@
         });
       });
 
-      // CRITICAL FIX: Improved smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      // IMPROVED: Smooth scroll function with better offset calculation
+      function smoothScrollTo(targetId) {
+        const target = document.querySelector(targetId);
+        if (!target) return;
+
+        const navHeight = document.querySelector('.navbar').offsetHeight;
+        // INCREASED offset to 150px to prevent cutting off content
+        const extraOffset = 150;
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight - extraOffset;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+
+      // Apply smooth scroll to ALL anchor links (nav, buttons, footer)
+      document.querySelectorAll('a[href^="#"], .scroll-link').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
           e.stopPropagation();
           
           const targetId = this.getAttribute('href');
-          if (targetId === '#') return;
-          
-          const target = document.querySelector(targetId);
-          
-          if (target) {
-            const navHeight = document.querySelector('.navbar').offsetHeight;
-            const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
-            
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth'
-            });
+          if (targetId && targetId !== '#') {
+            smoothScrollTo(targetId);
           }
         });
       });
 
-      // CRITICAL FIX: Improved active nav link on scroll
+      // IMPROVED: Active nav link detection with better boundaries
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link');
 
       window.addEventListener('scroll', () => {
+        if (scrollLocked) return; // Don't update during language change
+
         let current = '';
         const navHeight = document.querySelector('.navbar').offsetHeight;
+        const scrollPosition = window.scrollY;
         
         sections.forEach(section => {
-          const sectionTop = section.offsetTop - navHeight - 100;
+          const sectionTop = section.offsetTop - navHeight - 200;
           const sectionBottom = sectionTop + section.offsetHeight;
           
-          if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
             current = section.getAttribute('id');
           }
         });
