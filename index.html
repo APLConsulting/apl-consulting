@@ -1,94 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>APL Consulting – Sistemas digitais & automação</title>
-  <meta name="description" content="A APL Consulting desenvolve sistemas digitais e soluções de automação para empresas. Sediada em Provence-Alpes-Côte d'Azur, França." />
-
-  <!-- Meta tags -->
-  <meta name="theme-color" content="#05070b" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="APL Consulting – Sistemas digitais & automação" />
-  <meta property="og:description" content="Consultoria técnica e suporte remoto para empresas exigentes." />
-  <meta property="og:image" content="https://www.apl-consulting.com/logo-apl-branco.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.apl-consulting.com" />
-  <link rel="canonical" href="https://www.apl-consulting.com" />
-
-  <!-- Security -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'self'; frame-ancestors 'self';" />
-  <meta name="referrer" content="same-origin" />
-
-  <link rel="icon" type="image/png" href="logo-apl-branco.png" />
-  <link rel="shortcut icon" type="image/png" href="logo-apl-branco.png" />
-  <link rel="apple-touch-icon" href="logo-apl-branco.png" />
-  <link rel="preload" as="image" href="logo-apl-branco.png" />
-
+  <meta name="description" content="A APL Consulting desenvolve sistemas digitais e soluções de automação para empresas. Sediada em Provence-Alpes-Côte d'Azur, França.">
+  <meta name="theme-color" content="#05070b">
+  <meta property="og:title" content="APL Consulting – Sistemas digitais & automação">
+  <meta property="og:description" content="Consultoria técnica e suporte remoto para empresas exigentes.">
+  <meta property="og:image" content="https://www.apl-consulting.com/logo-apl-branco.png">
+  <link rel="icon" type="image/png" href="logo-apl-branco.png">
   <style>
     :root {
-      --bg: #05070b;
-      --card-bg: rgba(16, 24, 40, 0.96);
-      --card-border: rgba(148, 163, 184, 0.25);
+      --nav-height: 70px;
       --blue1: #0078ff;
       --blue2: #00a0ff;
       --green: #10b981;
       --text-main: #e5edf9;
       --text-muted: #9ca3af;
-      --shadow-strong: 0 32px 80px rgba(15, 23, 42, 0.95);
-      --radius-xl: 28px;
-      --radius-lg: 16px;
-      --radius-full: 999px;
-      --nav-height: 70px;
+      --card-bg: rgba(16, 24, 40, 0.96);
+      --card-border: rgba(148, 163, 184, 0.25);
     }
-
+    
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
-    html {
-      /* scroll-behavior removido - controlado via JS */
-    }
-
+    
     body {
-      min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(59, 130, 246, 0.35), transparent 55%),
-        radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.3), transparent 55%),
-        radial-gradient(circle at 50% -10%, rgba(15, 23, 42, 0.8), transparent 60%),
-        #020617;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.35), transparent 55%),
+                  radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.3), transparent 55%),
+                  radial-gradient(circle at 50% -10%, rgba(15, 23, 42, 0.8), transparent 60%),
+                  #020617;
       color: var(--text-main);
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
       padding-top: var(--nav-height);
+      min-height: 100vh;
     }
-
-    /* ========== NAVBAR ========== */
+    
+    /* NAVBAR */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       height: var(--nav-height);
-      background: rgba(5, 7, 11, 0.85);
-      backdrop-filter: blur(12px);
+      background: rgba(5, 7, 11, 0.95);
       border-bottom: 1px solid rgba(148, 163, 184, 0.15);
       z-index: 100;
-      transition: all 0.3s ease;
+      transition: all 0.3s;
     }
-
+    
     .navbar.scrolled {
-      background: rgba(5, 7, 11, 0.95);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
-
+    
     .nav-container {
       max-width: 1200px;
       margin: 0 auto;
@@ -98,61 +65,52 @@
       justify-content: space-between;
       padding: 0 24px;
     }
-
+    
     .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
       color: var(--text-main);
       font-weight: 600;
       font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       cursor: pointer;
     }
-
+    
     .nav-logo img {
       width: 40px;
       height: 40px;
       filter: drop-shadow(0 2px 8px rgba(37, 99, 235, 0.6));
     }
-
+    
     .nav-logo span {
       display: none;
     }
-
+    
     @media (min-width: 640px) {
       .nav-logo span {
         display: inline;
       }
     }
-
+    
     .nav-menu {
-      display: none;
+      display: flex;
       gap: 32px;
       list-style: none;
     }
-
-    @media (min-width: 768px) {
-      .nav-menu {
-        display: flex;
-      }
-    }
-
+    
     .nav-menu a {
       color: var(--text-muted);
-      text-decoration: none;
       font-size: 0.95rem;
-      font-weight: 500;
-      transition: color 0.2s ease;
-      position: relative;
       cursor: pointer;
+      transition: color 0.2s;
+      position: relative;
     }
-
+    
     .nav-menu a:hover,
     .nav-menu a.active {
       color: var(--text-main);
     }
-
+    
     .nav-menu a::after {
       content: '';
       position: absolute;
@@ -161,146 +119,74 @@
       width: 0;
       height: 2px;
       background: linear-gradient(90deg, var(--blue1), var(--blue2));
-      transition: width 0.3s ease;
+      transition: width 0.3s;
     }
-
+    
     .nav-menu a:hover::after,
     .nav-menu a.active::after {
       width: 100%;
     }
-
+    
     .nav-lang {
       display: flex;
       gap: 8px;
     }
-
-    .lang-btn-nav {
-      min-width: 36px;
-      padding: 6px 10px;
-      border-radius: var(--radius-full);
+    
+    .lang-btn {
+      padding: 6px 12px;
+      border-radius: 999px;
       border: 1px solid rgba(148, 163, 184, 0.3);
       background: transparent;
       color: var(--text-muted);
       font-size: 0.7rem;
-      letter-spacing: 0.12em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.2s;
     }
-
-    .lang-btn-nav.active {
+    
+    .lang-btn.active {
       background: rgba(59, 130, 246, 0.2);
       color: var(--text-main);
       border-color: rgba(59, 130, 246, 0.5);
     }
-
-    .lang-btn-nav:hover:not(.active) {
-      border-color: rgba(148, 163, 184, 0.6);
-      color: var(--text-main);
-    }
-
-    /* Mobile Menu Toggle */
-    .nav-toggle {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-    }
-
-    @media (min-width: 768px) {
-      .nav-toggle {
-        display: none;
-      }
-    }
-
-    .nav-toggle span {
-      width: 24px;
-      height: 2px;
-      background: var(--text-main);
-      transition: all 0.3s ease;
-      border-radius: 2px;
-    }
-
-    .nav-toggle.active span:nth-child(1) {
-      transform: rotate(45deg) translate(7px, 7px);
-    }
-
-    .nav-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .nav-toggle.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -7px);
-    }
-
-    /* Mobile Menu */
-    .mobile-menu {
-      position: fixed;
-      top: var(--nav-height);
-      left: 0;
-      right: 0;
-      background: rgba(5, 7, 11, 0.98);
-      backdrop-filter: blur(12px);
-      padding: 24px;
-      transform: translateY(-100%);
-      opacity: 0;
-      transition: all 0.3s ease;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
-      z-index: 99;
-    }
-
-    .mobile-menu.active {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .mobile-menu-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .mobile-menu-list a {
-      color: var(--text-main);
-      text-decoration: none;
-      font-size: 1.1rem;
-      font-weight: 500;
-      display: block;
-      padding: 8px 0;
-      cursor: pointer;
-    }
-
-    /* ========== MAIN CONTENT ========== */
+    
+    /* SECTIONS */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
     }
-
+    
     section {
       padding: 80px 0;
       min-height: 50vh;
     }
-
-    /* ========== HERO SECTION ========== */
+    
+    /* HERO */
     .hero {
       min-height: calc(100vh - var(--nav-height));
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      position: relative;
     }
-
+    
     .hero-content {
       max-width: 800px;
-      animation: fadeInUp 0.8s ease-out;
+      animation: fadeIn 0.8s;
     }
-
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -308,43 +194,25 @@
       padding: 8px 16px;
       background: rgba(16, 185, 129, 0.15);
       border: 1px solid rgba(16, 185, 129, 0.3);
-      border-radius: var(--radius-full);
+      border-radius: 999px;
       font-size: 0.85rem;
       color: var(--green);
       margin-bottom: 24px;
-      animation: pulse 2s ease-in-out infinite;
     }
-
+    
     .hero-badge::before {
       content: '●';
       font-size: 1.2rem;
-      animation: blink 2s ease-in-out infinite;
     }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-    }
-
+    
     .logo-hero {
       width: 120px;
       height: 120px;
       margin: 0 auto 32px;
       display: block;
       filter: drop-shadow(0 14px 40px rgba(15, 23, 42, 0.9));
-      animation: floatLogo 6s ease-in-out infinite;
     }
-
-    @keyframes floatLogo {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-
+    
     .hero h1 {
       font-size: clamp(2.2rem, 5vw, 3.5rem);
       font-weight: 800;
@@ -353,76 +221,71 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      letter-spacing: -0.02em;
       line-height: 1.1;
     }
-
+    
     .hero-subtitle {
       font-size: clamp(1rem, 2vw, 1.25rem);
       color: var(--text-muted);
       margin-bottom: 16px;
       line-height: 1.6;
     }
-
+    
     .hero-location {
       font-size: 0.95rem;
       color: var(--text-muted);
       margin-bottom: 32px;
     }
-
+    
     .hero-cta {
       display: flex;
       gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
     }
-
+    
     .btn {
       padding: 14px 32px;
-      border-radius: var(--radius-full);
+      border-radius: 999px;
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s ease;
-      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      border: none;
+      transition: all 0.2s;
     }
-
+    
     .btn-primary {
-      background: radial-gradient(circle at 20% 0%, #38bdf8, #0ea5e9 45%, #2563eb 100%);
+      background: radial-gradient(circle at 20% 0%, #38bdf8, #0ea5e9 45%, #2563eb);
       color: #020617;
       box-shadow: 0 0 0 1px rgba(191, 219, 254, 0.35), 0 18px 40px rgba(37, 99, 235, 0.9);
     }
-
+    
     .btn-primary:hover {
       transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 0 0 1px rgba(191, 219, 254, 0.45), 0 22px 52px rgba(37, 99, 235, 0.95);
     }
-
+    
     .btn-secondary {
       background: rgba(148, 163, 184, 0.1);
       color: var(--text-main);
       border: 1px solid rgba(148, 163, 184, 0.3);
     }
-
+    
     .btn-secondary:hover {
       background: rgba(148, 163, 184, 0.2);
-      border-color: rgba(148, 163, 184, 0.5);
     }
-
-    /* ========== SERVICES SECTION ========== */
-    .services {
+    
+    /* SERVICES */
+    .services, .about, .contact {
       background: rgba(16, 24, 40, 0.3);
     }
-
+    
     .section-header {
       text-align: center;
       margin-bottom: 64px;
     }
-
+    
     .section-eyebrow {
       font-size: 0.85rem;
       text-transform: uppercase;
@@ -431,38 +294,37 @@
       margin-bottom: 12px;
       font-weight: 600;
     }
-
+    
     .section-title {
       font-size: clamp(1.8rem, 4vw, 2.5rem);
       font-weight: 700;
       margin-bottom: 16px;
-      color: var(--text-main);
     }
-
-    .section-description {
+    
+    .section-desc {
       font-size: 1.1rem;
       color: var(--text-muted);
       max-width: 600px;
       margin: 0 auto;
       line-height: 1.6;
     }
-
+    
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 32px;
     }
-
+    
     .service-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: var(--radius-lg);
+      border-radius: 16px;
       padding: 32px;
-      transition: all 0.3s ease;
+      transition: all 0.3s;
       position: relative;
       overflow: hidden;
     }
-
+    
     .service-card::before {
       content: '';
       position: absolute;
@@ -472,42 +334,40 @@
       height: 3px;
       background: linear-gradient(90deg, var(--blue1), var(--blue2));
       transform: scaleX(0);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s;
     }
-
+    
     .service-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 40px rgba(15, 23, 42, 0.8);
-      border-color: rgba(59, 130, 246, 0.4);
     }
-
+    
     .service-card:hover::before {
       transform: scaleX(1);
     }
-
+    
     .service-icon {
       font-size: 2.5rem;
       margin-bottom: 20px;
       display: block;
     }
-
+    
     .service-card h3 {
       font-size: 1.4rem;
       margin-bottom: 12px;
-      color: var(--text-main);
     }
-
+    
     .service-card p {
       color: var(--text-muted);
       line-height: 1.6;
       margin-bottom: 20px;
     }
-
+    
     .service-features {
       list-style: none;
       margin-top: 20px;
     }
-
+    
     .service-features li {
       padding: 8px 0;
       color: var(--text-muted);
@@ -516,30 +376,30 @@
       align-items: center;
       gap: 8px;
     }
-
+    
     .service-features li::before {
       content: '✓';
       color: var(--green);
-      font-weight: bold;
+      font-weight: 700;
     }
-
-    /* ========== ABOUT SECTION ========== */
+    
+    /* ABOUT */
     .about {
       text-align: center;
     }
-
+    
     .about-content {
       max-width: 700px;
       margin: 0 auto 40px;
     }
-
+    
     .about-text {
       font-size: 1.1rem;
       color: var(--text-muted);
       line-height: 1.8;
       margin-bottom: 24px;
     }
-
+    
     .about-stats {
       display: flex;
       justify-content: center;
@@ -547,11 +407,11 @@
       flex-wrap: wrap;
       margin-top: 48px;
     }
-
+    
     .stat {
       text-align: center;
     }
-
+    
     .stat-number {
       font-size: 2.5rem;
       font-weight: 800;
@@ -561,111 +421,102 @@
       color: transparent;
       margin-bottom: 8px;
     }
-
+    
     .stat-label {
       font-size: 0.9rem;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
-
-    /* ========== CONTACT SECTION ========== */
-    .contact {
-      background: rgba(16, 24, 40, 0.3);
-    }
-
+    
+    /* CONTACT */
     .contact-content {
       max-width: 600px;
       margin: 0 auto;
     }
-
+    
     .contact-info {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: var(--radius-lg);
+      border-radius: 16px;
       padding: 32px;
       text-align: center;
-      margin-bottom: 32px;
     }
-
+    
     .contact-email {
       font-size: 1.2rem;
       color: var(--blue1);
-      text-decoration: none;
       font-weight: 600;
       display: inline-block;
       margin: 16px 0;
     }
-
+    
     .contact-email:hover {
       color: var(--blue2);
     }
-
+    
     .contact-response {
       font-size: 0.95rem;
       color: var(--text-muted);
       margin-top: 16px;
     }
-
-    /* ========== FOOTER ========== */
+    
+    /* FOOTER */
     footer {
       background: rgba(5, 7, 11, 0.95);
       border-top: 1px solid rgba(148, 163, 184, 0.15);
       padding: 48px 0 24px;
     }
-
+    
     .footer-content {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 48px;
       margin-bottom: 48px;
     }
-
+    
     .footer-brand h3 {
       font-size: 1.3rem;
       margin-bottom: 12px;
-      color: var(--text-main);
     }
-
+    
     .footer-brand p {
       color: var(--text-muted);
       line-height: 1.6;
       margin-bottom: 16px;
     }
-
+    
     .footer-location {
       color: var(--text-muted);
       font-size: 0.9rem;
     }
-
+    
     .footer-links h4 {
       font-size: 0.95rem;
       margin-bottom: 16px;
-      color: var(--text-main);
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
-
+    
     .footer-links ul {
       list-style: none;
     }
-
+    
     .footer-links li {
       margin-bottom: 12px;
     }
-
+    
     .footer-links a {
       color: var(--text-muted);
-      text-decoration: none;
       font-size: 0.95rem;
-      transition: color 0.2s ease;
+      transition: color 0.2s;
       cursor: pointer;
     }
-
+    
     .footer-links a:hover {
       color: var(--text-main);
     }
-
+    
     .footer-bottom {
       text-align: center;
       padding-top: 32px;
@@ -673,511 +524,463 @@
       color: var(--text-muted);
       font-size: 0.85rem;
     }
-
-    /* ========== ANIMATIONS ========== */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
       }
     }
-
-    /* ========== RESPONSIVE ========== */
+    
     @media (max-width: 640px) {
       section {
         padding: 60px 0;
       }
-
+      
       .services-grid {
         grid-template-columns: 1fr;
       }
-
+      
       .about-stats {
         gap: 32px;
       }
-
+      
       .footer-content {
         grid-template-columns: 1fr;
         gap: 32px;
       }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
   </style>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="javascript:void(0)" class="nav-logo" onclick="goToSection('home')">
-        <img src="logo-apl-branco.png" alt="APL Consulting" width="40" height="40" />
-        <span>APL Consulting</span>
-      </a>
 
-      <ul class="nav-menu">
-        <li><a href="javascript:void(0)" class="nav-link active" onclick="goToSection('home')" data-section="home" data-nav="home">Início</a></li>
-        <li><a href="javascript:void(0)" class="nav-link" onclick="goToSection('services')" data-section="services" data-nav="services">Serviços</a></li>
-        <li><a href="javascript:void(0)" class="nav-link" onclick="goToSection('about')" data-section="about" data-nav="about">Sobre</a></li>
-        <li><a href="javascript:void(0)" class="nav-link" onclick="goToSection('contact')" data-section="contact" data-nav="contact">Contacto</a></li>
-      </ul>
-
-      <div class="nav-lang">
-        <button class="lang-btn-nav" onclick="changeLang('fr')" data-lang="fr">FR</button>
-        <button class="lang-btn-nav active" onclick="changeLang('pt')" data-lang="pt">PT</button>
-        <button class="lang-btn-nav" onclick="changeLang('en')" data-lang="en">EN</button>
-      </div>
-
-      <button class="nav-toggle" id="navToggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-      <ul class="mobile-menu-list">
-        <li><a href="javascript:void(0)" class="mobile-link" onclick="goToSection('home')" data-nav="home">Início</a></li>
-        <li><a href="javascript:void(0)" class="mobile-link" onclick="goToSection('services')" data-nav="services">Serviços</a></li>
-        <li><a href="javascript:void(0)" class="mobile-link" onclick="goToSection('about')" data-nav="about">Sobre</a></li>
-        <li><a href="javascript:void(0)" class="mobile-link" onclick="goToSection('contact')" data-nav="contact">Contacto</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- HERO SECTION -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <div class="hero-badge" id="heroBadge">
-        Disponível para novos projetos
-      </div>
-      
-      <img src="logo-apl-branco.png" alt="APL Consulting" class="logo-hero" width="120" height="120" />
-      
-      <h1 id="heroTitle">
-        Soluções digitais & automação
-      </h1>
-      
-      <p class="hero-subtitle" id="heroSubtitle">
-        Acompanhamos empresas na sua transformação digital e otimização de operações.
-      </p>
-      
-      <p class="hero-location" id="heroLocation">
-        Sediada em Provence-Alpes-Côte d'Azur, França
-      </p>
-
-      <div class="hero-cta">
-        <a href="javascript:void(0)" class="btn btn-primary" onclick="goToSection('contact')">
-          <span id="heroCta1">Discutir o seu projeto</span>
-          <span>→</span>
-        </a>
-        <a href="javascript:void(0)" class="btn btn-secondary" onclick="goToSection('services')" id="heroCta2">
-          Descobrir os nossos serviços
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES SECTION -->
-  <section class="services" id="services">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow" id="servicesEyebrow">Nossos Serviços</div>
-        <h2 class="section-title" id="servicesTitle">Como podemos ajudar</h2>
-        <p class="section-description" id="servicesDesc">
-          Expertise técnica e acompanhamento personalizado para os seus projetos de transformação digital.
-        </p>
-      </div>
-
-      <div class="services-grid">
-        <!-- Service 1 -->
-        <div class="service-card">
-          <span class="service-icon">💼</span>
-          <h3 id="service1Title">Consultoria técnica</h3>
-          <p id="service1Desc">
-            Auditoria de sistemas, arquitetura de soluções, seleção de tecnologias e planeamento de implementação.
-          </p>
-          <ul class="service-features">
-            <li id="service1Feature1">Auditoria e análise</li>
-            <li id="service1Feature2">Arquitetura de soluções</li>
-            <li id="service1Feature3">Planeamento estratégico</li>
-          </ul>
-        </div>
-
-        <!-- Service 2 -->
-        <div class="service-card">
-          <span class="service-icon">🛠️</span>
-          <h3 id="service2Title">Suporte remoto</h3>
-          <p id="service2Desc">
-            Resolução de problemas técnicos, manutenção preventiva e suporte técnico qualificado disponível rapidamente.
-          </p>
-          <ul class="service-features">
-            <li id="service2Feature1">Suporte reativo</li>
-            <li id="service2Feature2">Manutenção preventiva</li>
-            <li id="service2Feature3">Monitorização 24/7 (opção)</li>
-          </ul>
-        </div>
-
-        <!-- Service 3 -->
-        <div class="service-card">
-          <span class="service-icon">⚙️</span>
-          <h3 id="service3Title">Implementação</h3>
-          <p id="service3Desc">
-            Desenvolvimento à medida, integrações entre sistemas, migração de dados e formação de equipas.
-          </p>
-          <ul class="service-features">
-            <li id="service3Feature1">Desenvolvimento custom</li>
-            <li id="service3Feature2">Integrações de sistema</li>
-            <li id="service3Feature3">Formação incluída</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT SECTION -->
-  <section class="about" id="about">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow" id="aboutEyebrow">Sobre</div>
-        <h2 class="section-title">APL Consulting</h2>
-      </div>
-
-      <div class="about-content">
-        <p class="about-text" id="aboutText">
-          Sediada em Provence-Alpes-Côte d'Azur, a APL Consulting é uma empresa especializada em sistemas digitais e automação. Trabalhamos com empresas que precisam otimizar as suas operações através da integração de sistemas e automação de processos.
-        </p>
-      </div>
-
-      <div class="about-stats">
-        <div class="stat">
-          <div class="stat-number">2026</div>
-          <div class="stat-label" id="stat1Label">Fundada</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">FR</div>
-          <div class="stat-label" id="stat2Label">França</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">&lt;24h</div>
-          <div class="stat-label" id="stat3Label">Resposta</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT SECTION -->
-  <section class="contact" id="contact">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow" id="contactEyebrow">Contacto</div>
-        <h2 class="section-title" id="contactTitle">Vamos falar do seu projeto</h2>
-        <p class="section-description" id="contactDesc">
-          Estamos disponíveis para discutir as suas necessidades e propor soluções adaptadas.
-        </p>
-      </div>
-
-      <div class="contact-content">
-        <div class="contact-info">
-          <p id="contactInfoText">Contacte-nos por email</p>
-          <a href="mailto:contact@apl-consulting.com" class="contact-email">
-            contact@apl-consulting.com
-          </a>
-          <p class="contact-response" id="contactResponse">
-            Resposta garantida em 24h úteis
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <h3>APL Consulting</h3>
-          <p id="footerDesc">
-            Soluções digitais e automação para empresas exigentes.
-          </p>
-          <p class="footer-location" id="footerLocation">
-            Provence-Alpes-Côte d'Azur, França
-          </p>
-        </div>
-
-        <div class="footer-links">
-          <h4 id="footerNav">Navegação</h4>
-          <ul>
-            <li><a href="javascript:void(0)" onclick="goToSection('home')" data-footer="home">Início</a></li>
-            <li><a href="javascript:void(0)" onclick="goToSection('services')" data-footer="services" id="footerServices">Serviços</a></li>
-            <li><a href="javascript:void(0)" onclick="goToSection('about')" data-footer="about" id="footerAbout">Sobre</a></li>
-            <li><a href="javascript:void(0)" onclick="goToSection('contact')" data-footer="contact" id="footerContact">Contacto</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-links">
-          <h4 id="footerContactTitle">Contacto</h4>
-          <ul>
-            <li><a href="mailto:contact@apl-consulting.com">contact@apl-consulting.com</a></li>
-            <li id="footerResponse" style="color: var(--text-muted);">Resposta em 24h úteis</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p id="footerCopy">© 2026 APL Consulting. Todos os direitos reservados.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // ===== DESABILITA SCROLL RESTORATION =====
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
-    window.scrollTo(0, 0);
-
-    // ===== TRADUÇÕES =====
-    const content = {
-      fr: {
-        navHome: "Accueil", navServices: "Services", navAbout: "À propos", navContact: "Contact",
-        heroBadge: "Disponible pour nouveaux projets",
-        heroTitle: "Solutions numériques & automatisation",
-        heroSubtitle: "Nous accompagnons les entreprises dans leur transformation digitale et l'optimisation de leurs opérations.",
-        heroLocation: "Basée en Provence-Alpes-Côte d'Azur, France",
-        heroCta1: "Discuter de votre projet", heroCta2: "Découvrir nos services",
-        servicesEyebrow: "Nos Services", servicesTitle: "Comment nous pouvons vous aider",
-        servicesDesc: "Expertise technique et accompagnement personnalisé pour vos projets de transformation digitale.",
-        service1Title: "Conseil technique",
-        service1Desc: "Audit de systèmes, architecture de solutions, sélection de technologies et planification d'implémentation.",
-        service1Feature1: "Audit et analyse", service1Feature2: "Architecture de solutions", service1Feature3: "Planification stratégique",
-        service2Title: "Support à distance",
-        service2Desc: "Résolution de problèmes techniques, maintenance préventive et support technique qualifié disponible rapidement.",
-        service2Feature1: "Support réactif", service2Feature2: "Maintenance préventive", service2Feature3: "Monitoring 24/7 (option)",
-        service3Title: "Implémentation",
-        service3Desc: "Développement sur mesure, intégrations entre systèmes, migration de données et formation des équipes.",
-        service3Feature1: "Développement custom", service3Feature2: "Intégrations système", service3Feature3: "Formation incluse",
-        aboutEyebrow: "À propos",
-        aboutText: "Basée en Provence-Alpes-Côte d'Azur, APL Consulting est une entreprise spécialisée en systèmes numériques et automatisation. Nous travaillons avec des entreprises qui ont besoin d'optimiser leurs opérations à travers l'intégration de systèmes et l'automatisation de processus.",
-        stat1Label: "Fondée", stat2Label: "France", stat3Label: "Réponse",
-        contactEyebrow: "Contact", contactTitle: "Parlons de votre projet",
-        contactDesc: "Nous sommes disponibles pour discuter de vos besoins et vous proposer des solutions adaptées.",
-        contactInfoText: "Contactez-nous par email", contactResponse: "Réponse garantie sous 24h ouvrées",
-        footerDesc: "Solutions numériques et automatisation pour entreprises exigeantes.",
-        footerLocation: "Provence-Alpes-Côte d'Azur, France", footerNav: "Navigation",
-        footerServices: "Services", footerAbout: "À propos", footerContact: "Contact",
-        footerContactTitle: "Contact", footerResponse: "Réponse sous 24h ouvrées",
-        footerCopy: "© 2026 APL Consulting. Tous droits réservés.",
-        title: "APL Consulting – Systèmes numériques & automatisation",
-        description: "APL Consulting conçoit des systèmes numériques et des solutions d'automatisation pour les entreprises. Basée en Provence-Alpes-Côte d'Azur, France."
-      },
-      pt: {
-        navHome: "Início", navServices: "Serviços", navAbout: "Sobre", navContact: "Contacto",
-        heroBadge: "Disponível para novos projetos",
-        heroTitle: "Soluções digitais & automação",
-        heroSubtitle: "Acompanhamos empresas na sua transformação digital e otimização de operações.",
-        heroLocation: "Sediada em Provence-Alpes-Côte d'Azur, França",
-        heroCta1: "Discutir o seu projeto", heroCta2: "Descobrir os nossos serviços",
-        servicesEyebrow: "Nossos Serviços", servicesTitle: "Como podemos ajudar",
-        servicesDesc: "Expertise técnica e acompanhamento personalizado para os seus projetos de transformação digital.",
-        service1Title: "Consultoria técnica",
-        service1Desc: "Auditoria de sistemas, arquitetura de soluções, seleção de tecnologias e planeamento de implementação.",
-        service1Feature1: "Auditoria e análise", service1Feature2: "Arquitetura de soluções", service1Feature3: "Planeamento estratégico",
-        service2Title: "Suporte remoto",
-        service2Desc: "Resolução de problemas técnicos, manutenção preventiva e suporte técnico qualificado disponível rapidamente.",
-        service2Feature1: "Suporte reativo", service2Feature2: "Manutenção preventiva", service2Feature3: "Monitorização 24/7 (opção)",
-        service3Title: "Implementação",
-        service3Desc: "Desenvolvimento à medida, integrações entre sistemas, migração de dados e formação de equipas.",
-        service3Feature1: "Desenvolvimento custom", service3Feature2: "Integrações de sistema", service3Feature3: "Formação incluída",
-        aboutEyebrow: "Sobre",
-        aboutText: "Sediada em Provence-Alpes-Côte d'Azur, a APL Consulting é uma empresa especializada em sistemas digitais e automação. Trabalhamos com empresas que precisam otimizar as suas operações através da integração de sistemas e automação de processos.",
-        stat1Label: "Fundada", stat2Label: "França", stat3Label: "Resposta",
-        contactEyebrow: "Contacto", contactTitle: "Vamos falar do seu projeto",
-        contactDesc: "Estamos disponíveis para discutir as suas necessidades e propor soluções adaptadas.",
-        contactInfoText: "Contacte-nos por email", contactResponse: "Resposta garantida em 24h úteis",
-        footerDesc: "Soluções digitais e automação para empresas exigentes.",
-        footerLocation: "Provence-Alpes-Côte d'Azur, França", footerNav: "Navegação",
-        footerServices: "Serviços", footerAbout: "Sobre", footerContact: "Contacto",
-        footerContactTitle: "Contacto", footerResponse: "Resposta em 24h úteis",
-        footerCopy: "© 2026 APL Consulting. Todos os direitos reservados.",
-        title: "APL Consulting – Sistemas digitais & automação",
-        description: "A APL Consulting desenvolve sistemas digitais e soluções de automação para empresas. Sediada em Provence-Alpes-Côte d'Azur, França."
-      },
-      en: {
-        navHome: "Home", navServices: "Services", navAbout: "About", navContact: "Contact",
-        heroBadge: "Available for new projects",
-        heroTitle: "Digital solutions & automation",
-        heroSubtitle: "We support businesses in their digital transformation and operations optimization.",
-        heroLocation: "Based in Provence-Alpes-Côte d'Azur, France",
-        heroCta1: "Discuss your project", heroCta2: "Discover our services",
-        servicesEyebrow: "Our Services", servicesTitle: "How we can help",
-        servicesDesc: "Technical expertise and personalized support for your digital transformation projects.",
-        service1Title: "Technical consulting",
-        service1Desc: "System audits, solution architecture, technology selection and implementation planning.",
-        service1Feature1: "Audit and analysis", service1Feature2: "Solution architecture", service1Feature3: "Strategic planning",
-        service2Title: "Remote support",
-        service2Desc: "Technical problem resolution, preventive maintenance and qualified technical support available quickly.",
-        service2Feature1: "Reactive support", service2Feature2: "Preventive maintenance", service2Feature3: "24/7 monitoring (option)",
-        service3Title: "Implementation",
-        service3Desc: "Custom development, system integrations, data migration and team training.",
-        service3Feature1: "Custom development", service3Feature2: "System integrations", service3Feature3: "Training included",
-        aboutEyebrow: "About",
-        aboutText: "Based in Provence-Alpes-Côte d'Azur, APL Consulting is a company specialized in digital systems and automation. We work with businesses that need to optimize their operations through system integration and process automation.",
-        stat1Label: "Founded", stat2Label: "France", stat3Label: "Response",
-        contactEyebrow: "Contact", contactTitle: "Let's talk about your project",
-        contactDesc: "We are available to discuss your needs and propose tailored solutions.",
-        contactInfoText: "Contact us by email", contactResponse: "Response guaranteed within 24 business hours",
-        footerDesc: "Digital solutions and automation for demanding businesses.",
-        footerLocation: "Provence-Alpes-Côte d'Azur, France", footerNav: "Navigation",
-        footerServices: "Services", footerAbout: "About", footerContact: "Contact",
-        footerContactTitle: "Contact", footerResponse: "Response within 24 business hours",
-        footerCopy: "© 2026 APL Consulting. All rights reserved.",
-        title: "APL Consulting – Digital systems & automation",
-        description: "APL Consulting develops digital systems and automation solutions for businesses. Based in Provence-Alpes-Côte d'Azur, France."
-      }
-    };
-
-    // ===== FUNÇÃO GLOBAL DE SCROLL (OFFSET 10PX!) =====
-    function goToSection(sectionId) {
-      const target = document.getElementById(sectionId);
-      if (!target) return;
-
-      // Fecha mobile menu
-      document.getElementById('mobileMenu').classList.remove('active');
-      document.getElementById('navToggle').classList.remove('active');
-
-      if (sectionId === 'home') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        return;
-      }
-      
-      const navHeight = 70;
-      const offset = 10; // OFFSET MÍNIMO (10px = desce MUITO mais!)
-      const targetPos = target.offsetTop - navHeight - offset;
-      
-      window.scrollTo({
-        top: Math.max(0, targetPos),
-        behavior: 'smooth'
-      });
-    }
-
-    // ===== FUNÇÃO GLOBAL DE MUDAR LÍNGUA =====
-    function changeLang(lang) {
-      if (!content[lang]) lang = "pt";
-      const data = content[lang];
-
-      Object.keys(data).forEach(key => {
-        const el = document.getElementById(key);
-        if (el) el.textContent = data[key];
-      });
-
-      document.querySelectorAll('[data-nav]').forEach(el => {
-        const key = 'nav' + el.dataset.nav.charAt(0).toUpperCase() + el.dataset.nav.slice(1);
-        if (data[key]) el.textContent = data[key];
-      });
-      document.querySelectorAll('[data-footer]').forEach(el => {
-        const key = 'nav' + el.dataset.footer.charAt(0).toUpperCase() + el.dataset.footer.slice(1);
-        if (data[key]) el.textContent = data[key];
-      });
-
-      document.documentElement.lang = lang;
-      document.title = data.title;
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) metaDesc.setAttribute("content", data.description);
-      const ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) ogTitle.setAttribute("content", data.title);
-      const ogDesc = document.querySelector('meta[property="og:description"]');
-      if (ogDesc) ogDesc.setAttribute("content", data.description);
-
-      document.querySelectorAll('.lang-btn-nav').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.lang === lang);
-      });
-
-      try { localStorage.setItem("apl_lang", lang); } catch(e) {}
-    }
-
-    // ===== INIT =====
-    (function() {
-      let lang = "pt";
-      try {
-        const stored = localStorage.getItem("apl_lang");
-        if (stored && content[stored]) {
-          lang = stored;
-        } else {
-          const browserLang = (navigator.language || "pt").toLowerCase();
-          if (browserLang.startsWith("pt")) lang = "pt";
-          else if (browserLang.startsWith("fr")) lang = "fr";
-          else lang = "en";
-        }
-      } catch(e) {}
-      changeLang(lang);
-    })();
-
-    // ===== NAVBAR SCROLL =====
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', function() {
-      navbar.classList.toggle('scrolled', window.pageYOffset > 50);
-    });
-
-    // ===== MOBILE MENU =====
-    const navToggle = document.getElementById('navToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <span onclick="goToSection('home')" class="nav-logo">
+      <img src="logo-apl-branco.png" alt="APL" width="40" height="40">
+      <span>APL Consulting</span>
+    </span>
     
-    navToggle.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-    });
+    <ul class="nav-menu">
+      <li><a onclick="goToSection('home')" class="active" id="link-home">Início</a></li>
+      <li><a onclick="goToSection('services')" id="link-services">Serviços</a></li>
+      <li><a onclick="goToSection('about')" id="link-about">Sobre</a></li>
+      <li><a onclick="goToSection('contact')" id="link-contact">Contacto</a></li>
+    </ul>
+    
+    <div class="nav-lang">
+      <button class="lang-btn" onclick="changeLang('fr')" data-lang="fr">FR</button>
+      <button class="lang-btn active" onclick="changeLang('pt')" data-lang="pt">PT</button>
+      <button class="lang-btn" onclick="changeLang('en')" data-lang="en">EN</button>
+    </div>
+  </div>
+</nav>
 
-    document.addEventListener('click', function(e) {
-      if (!navToggle.contains(e.target) && 
-          !mobileMenu.contains(e.target) &&
-          !e.target.classList.contains('lang-btn-nav')) {
-        navToggle.classList.remove('active');
-        mobileMenu.classList.remove('active');
-      }
-    });
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge" id="txt-hero-badge">Disponível para novos projetos</div>
+    <img src="logo-apl-branco.png" alt="APL Consulting" class="logo-hero" width="120" height="120">
+    <h1 id="txt-hero-title">Soluções digitais & automação</h1>
+    <p class="hero-subtitle" id="txt-hero-subtitle">Acompanhamos empresas na sua transformação digital e otimização de operações.</p>
+    <p class="hero-location" id="txt-hero-location">Sediada em Provence-Alpes-Côte d'Azur, França</p>
+    <div class="hero-cta">
+      <span onclick="goToSection('contact')" class="btn btn-primary">
+        <span id="txt-cta1">Discutir o seu projeto</span>
+        <span>→</span>
+      </span>
+      <span onclick="goToSection('services')" class="btn btn-secondary" id="txt-cta2">
+        Descobrir os nossos serviços
+      </span>
+    </div>
+  </div>
+</section>
 
-    // ===== ACTIVE NAV =====
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    window.addEventListener('scroll', function() {
-      let current = 'home';
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow" id="txt-services-eyebrow">Nossos Serviços</div>
+      <h2 class="section-title" id="txt-services-title">Como podemos ajudar</h2>
+      <p class="section-desc" id="txt-services-desc">Expertise técnica e acompanhamento personalizado para os seus projetos de transformação digital.</p>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">💼</span>
+        <h3 id="txt-service1-title">Consultoria técnica</h3>
+        <p id="txt-service1-desc">Auditoria de sistemas, arquitetura de soluções, seleção de tecnologias e planeamento de implementação.</p>
+        <ul class="service-features">
+          <li id="txt-service1-f1">Auditoria e análise</li>
+          <li id="txt-service1-f2">Arquitetura de soluções</li>
+          <li id="txt-service1-f3">Planeamento estratégico</li>
+        </ul>
+      </div>
       
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 200;
-        const sectionBottom = sectionTop + section.offsetHeight;
-        
-        if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionBottom) {
-          current = section.getAttribute('id');
-        }
-      });
+      <div class="service-card">
+        <span class="service-icon">🛠️</span>
+        <h3 id="txt-service2-title">Suporte remoto</h3>
+        <p id="txt-service2-desc">Resolução de problemas técnicos, manutenção preventiva e suporte técnico qualificado disponível rapidamente.</p>
+        <ul class="service-features">
+          <li id="txt-service2-f1">Suporte reativo</li>
+          <li id="txt-service2-f2">Manutenção preventiva</li>
+          <li id="txt-service2-f3">Monitorização 24/7 (opção)</li>
+        </ul>
+      </div>
+      
+      <div class="service-card">
+        <span class="service-icon">⚙️</span>
+        <h3 id="txt-service3-title">Implementação</h3>
+        <p id="txt-service3-desc">Desenvolvimento à medida, integrações entre sistemas, migração de dados e formação de equipas.</p>
+        <ul class="service-features">
+          <li id="txt-service3-f1">Desenvolvimento custom</li>
+          <li id="txt-service3-f2">Integrações de sistema</li>
+          <li id="txt-service3-f3">Formação incluída</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.dataset.section === current) {
-          link.classList.add('active');
-        }
-      });
-    });
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow" id="txt-about-eyebrow">Sobre</div>
+      <h2 class="section-title">APL Consulting</h2>
+    </div>
+    
+    <div class="about-content">
+      <p class="about-text" id="txt-about-text">Sediada em Provence-Alpes-Côte d'Azur, a APL Consulting é uma empresa especializada em sistemas digitais e automação. Trabalhamos com empresas que precisam otimizar as suas operações através da integração de sistemas e automação de processos.</p>
+    </div>
+    
+    <div class="about-stats">
+      <div class="stat">
+        <div class="stat-number">2026</div>
+        <div class="stat-label" id="txt-stat1">Fundada</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">FR</div>
+        <div class="stat-label" id="txt-stat2">França</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">&lt;24h</div>
+        <div class="stat-label" id="txt-stat3">Resposta</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    // ===== GARANTE TOPO =====
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        if (window.pageYOffset !== 0) window.scrollTo(0, 0);
-      }, 100);
-    });
-  </script>
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow" id="txt-contact-eyebrow">Contacto</div>
+      <h2 class="section-title" id="txt-contact-title">Vamos falar do seu projeto</h2>
+      <p class="section-desc" id="txt-contact-desc">Estamos disponíveis para discutir as suas necessidades e propor soluções adaptadas.</p>
+    </div>
+    
+    <div class="contact-content">
+      <div class="contact-info">
+        <p id="txt-contact-info">Contacte-nos por email</p>
+        <a href="mailto:contact@apl-consulting.com" class="contact-email">contact@apl-consulting.com</a>
+        <p class="contact-response" id="txt-contact-response">Resposta garantida em 24h úteis</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>APL Consulting</h3>
+        <p id="txt-footer-desc">Soluções digitais e automação para empresas exigentes.</p>
+        <p class="footer-location" id="txt-footer-location">Provence-Alpes-Côte d'Azur, França</p>
+      </div>
+      
+      <div class="footer-links">
+        <h4 id="txt-footer-nav">Navegação</h4>
+        <ul>
+          <li><a onclick="goToSection('home')" id="footer-link-home">Início</a></li>
+          <li><a onclick="goToSection('services')" id="footer-link-services">Serviços</a></li>
+          <li><a onclick="goToSection('about')" id="footer-link-about">Sobre</a></li>
+          <li><a onclick="goToSection('contact')" id="footer-link-contact">Contacto</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h4 id="txt-footer-contact">Contacto</h4>
+        <ul>
+          <li><a href="mailto:contact@apl-consulting.com">contact@apl-consulting.com</a></li>
+          <li id="txt-footer-response" style="color: var(--text-muted);">Resposta em 24h úteis</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p id="txt-footer-copy">© 2026 APL Consulting. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// GARANTIR QUE DOM ESTÁ PRONTO
+let isReady = false;
+
+document.addEventListener('DOMContentLoaded', function() {
+  isReady = true;
+  console.log('✅ DOM ready - sistema ativo');
+});
+
+// FUNÇÃO DE NAVEGAÇÃO
+function goToSection(sectionId) {
+  console.log('▶ Clicaste em:', sectionId);
+  
+  const targetSection = document.getElementById(sectionId);
+  
+  if (!targetSection) {
+    console.error('❌ Secção não encontrada:', sectionId);
+    return;
+  }
+  
+  const offset = 70;
+  const targetPosition = targetSection.offsetTop - offset;
+  
+  console.log('📍 Scroll para posição:', targetPosition);
+  
+  window.scrollTo({
+    top: targetPosition,
+    behavior: 'smooth'
+  });
+  
+  // Update active link
+  document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.classList.remove('active');
+  });
+  const activeLink = document.getElementById('link-' + sectionId);
+  if (activeLink) {
+    activeLink.classList.add('active');
+  }
+}
+
+// TRADUÇÕES COMPLETAS
+const translations = {
+  fr: {
+    'link-home': 'Accueil',
+    'link-services': 'Services',
+    'link-about': 'À propos',
+    'link-contact': 'Contact',
+    'txt-hero-badge': 'Disponible pour nouveaux projets',
+    'txt-hero-title': 'Solutions numériques & automatisation',
+    'txt-hero-subtitle': 'Nous accompagnons les entreprises dans leur transformation digitale et l\'optimisation de leurs opérations.',
+    'txt-hero-location': 'Basée en Provence-Alpes-Côte d\'Azur, France',
+    'txt-cta1': 'Discuter de votre projet',
+    'txt-cta2': 'Découvrir nos services',
+    'txt-services-eyebrow': 'Nos Services',
+    'txt-services-title': 'Comment nous pouvons vous aider',
+    'txt-services-desc': 'Expertise technique et accompagnement personnalisé pour vos projets de transformation digitale.',
+    'txt-service1-title': 'Conseil technique',
+    'txt-service1-desc': 'Audit de systèmes, architecture de solutions, sélection de technologies et planification d\'implémentation.',
+    'txt-service1-f1': 'Audit et analyse',
+    'txt-service1-f2': 'Architecture de solutions',
+    'txt-service1-f3': 'Planification stratégique',
+    'txt-service2-title': 'Support à distance',
+    'txt-service2-desc': 'Résolution de problèmes techniques, maintenance préventive et support technique qualifié disponible rapidement.',
+    'txt-service2-f1': 'Support réactif',
+    'txt-service2-f2': 'Maintenance préventive',
+    'txt-service2-f3': 'Monitoring 24/7 (option)',
+    'txt-service3-title': 'Implémentation',
+    'txt-service3-desc': 'Développement sur mesure, intégrations entre systèmes, migration de données et formation des équipes.',
+    'txt-service3-f1': 'Développement custom',
+    'txt-service3-f2': 'Intégrations système',
+    'txt-service3-f3': 'Formation incluse',
+    'txt-about-eyebrow': 'À propos',
+    'txt-about-text': 'Basée en Provence-Alpes-Côte d\'Azur, APL Consulting est une entreprise spécialisée en systèmes numériques et automatisation. Nous travaillons avec des entreprises qui ont besoin d\'optimiser leurs opérations à travers l\'intégration de systèmes et l\'automatisation de processus.',
+    'txt-stat1': 'Fondée',
+    'txt-stat2': 'France',
+    'txt-stat3': 'Réponse',
+    'txt-contact-eyebrow': 'Contact',
+    'txt-contact-title': 'Parlons de votre projet',
+    'txt-contact-desc': 'Nous sommes disponibles pour discuter de vos besoins et vous proposer des solutions adaptées.',
+    'txt-contact-info': 'Contactez-nous par email',
+    'txt-contact-response': 'Réponse garantie sous 24h ouvrées',
+    'txt-footer-desc': 'Solutions numériques et automatisation pour entreprises exigeantes.',
+    'txt-footer-location': 'Provence-Alpes-Côte d\'Azur, France',
+    'txt-footer-nav': 'Navigation',
+    'footer-link-home': 'Accueil',
+    'footer-link-services': 'Services',
+    'footer-link-about': 'À propos',
+    'footer-link-contact': 'Contact',
+    'txt-footer-contact': 'Contact',
+    'txt-footer-response': 'Réponse sous 24h ouvrées',
+    'txt-footer-copy': '© 2026 APL Consulting. Tous droits réservés.'
+  },
+  pt: {
+    'link-home': 'Início',
+    'link-services': 'Serviços',
+    'link-about': 'Sobre',
+    'link-contact': 'Contacto',
+    'txt-hero-badge': 'Disponível para novos projetos',
+    'txt-hero-title': 'Soluções digitais & automação',
+    'txt-hero-subtitle': 'Acompanhamos empresas na sua transformação digital e otimização de operações.',
+    'txt-hero-location': 'Sediada em Provence-Alpes-Côte d\'Azur, França',
+    'txt-cta1': 'Discutir o seu projeto',
+    'txt-cta2': 'Descobrir os nossos serviços',
+    'txt-services-eyebrow': 'Nossos Serviços',
+    'txt-services-title': 'Como podemos ajudar',
+    'txt-services-desc': 'Expertise técnica e acompanhamento personalizado para os seus projetos de transformação digital.',
+    'txt-service1-title': 'Consultoria técnica',
+    'txt-service1-desc': 'Auditoria de sistemas, arquitetura de soluções, seleção de tecnologias e planeamento de implementação.',
+    'txt-service1-f1': 'Auditoria e análise',
+    'txt-service1-f2': 'Arquitetura de soluções',
+    'txt-service1-f3': 'Planeamento estratégico',
+    'txt-service2-title': 'Suporte remoto',
+    'txt-service2-desc': 'Resolução de problemas técnicos, manutenção preventiva e suporte técnico qualificado disponível rapidamente.',
+    'txt-service2-f1': 'Suporte reativo',
+    'txt-service2-f2': 'Manutenção preventiva',
+    'txt-service2-f3': 'Monitorização 24/7 (opção)',
+    'txt-service3-title': 'Implementação',
+    'txt-service3-desc': 'Desenvolvimento à medida, integrações entre sistemas, migração de dados e formação de equipas.',
+    'txt-service3-f1': 'Desenvolvimento custom',
+    'txt-service3-f2': 'Integrações de sistema',
+    'txt-service3-f3': 'Formação incluída',
+    'txt-about-eyebrow': 'Sobre',
+    'txt-about-text': 'Sediada em Provence-Alpes-Côte d\'Azur, a APL Consulting é uma empresa especializada em sistemas digitais e automação. Trabalhamos com empresas que precisam otimizar as suas operações através da integração de sistemas e automação de processos.',
+    'txt-stat1': 'Fundada',
+    'txt-stat2': 'França',
+    'txt-stat3': 'Resposta',
+    'txt-contact-eyebrow': 'Contacto',
+    'txt-contact-title': 'Vamos falar do seu projeto',
+    'txt-contact-desc': 'Estamos disponíveis para discutir as suas necessidades e propor soluções adaptadas.',
+    'txt-contact-info': 'Contacte-nos por email',
+    'txt-contact-response': 'Resposta garantida em 24h úteis',
+    'txt-footer-desc': 'Soluções digitais e automação para empresas exigentes.',
+    'txt-footer-location': 'Provence-Alpes-Côte d\'Azur, França',
+    'txt-footer-nav': 'Navegação',
+    'footer-link-home': 'Início',
+    'footer-link-services': 'Serviços',
+    'footer-link-about': 'Sobre',
+    'footer-link-contact': 'Contacto',
+    'txt-footer-contact': 'Contacto',
+    'txt-footer-response': 'Resposta em 24h úteis',
+    'txt-footer-copy': '© 2026 APL Consulting. Todos os direitos reservados.'
+  },
+  en: {
+    'link-home': 'Home',
+    'link-services': 'Services',
+    'link-about': 'About',
+    'link-contact': 'Contact',
+    'txt-hero-badge': 'Available for new projects',
+    'txt-hero-title': 'Digital solutions & automation',
+    'txt-hero-subtitle': 'We support businesses in their digital transformation and operations optimization.',
+    'txt-hero-location': 'Based in Provence-Alpes-Côte d\'Azur, France',
+    'txt-cta1': 'Discuss your project',
+    'txt-cta2': 'Discover our services',
+    'txt-services-eyebrow': 'Our Services',
+    'txt-services-title': 'How we can help',
+    'txt-services-desc': 'Technical expertise and personalized support for your digital transformation projects.',
+    'txt-service1-title': 'Technical consulting',
+    'txt-service1-desc': 'System audits, solution architecture, technology selection and implementation planning.',
+    'txt-service1-f1': 'Audit and analysis',
+    'txt-service1-f2': 'Solution architecture',
+    'txt-service1-f3': 'Strategic planning',
+    'txt-service2-title': 'Remote support',
+    'txt-service2-desc': 'Technical problem resolution, preventive maintenance and qualified technical support available quickly.',
+    'txt-service2-f1': 'Reactive support',
+    'txt-service2-f2': 'Preventive maintenance',
+    'txt-service2-f3': '24/7 monitoring (option)',
+    'txt-service3-title': 'Implementation',
+    'txt-service3-desc': 'Custom development, system integrations, data migration and team training.',
+    'txt-service3-f1': 'Custom development',
+    'txt-service3-f2': 'System integrations',
+    'txt-service3-f3': 'Training included',
+    'txt-about-eyebrow': 'About',
+    'txt-about-text': 'Based in Provence-Alpes-Côte d\'Azur, APL Consulting is a company specialized in digital systems and automation. We work with businesses that need to optimize their operations through system integration and process automation.',
+    'txt-stat1': 'Founded',
+    'txt-stat2': 'France',
+    'txt-stat3': 'Response',
+    'txt-contact-eyebrow': 'Contact',
+    'txt-contact-title': 'Let\'s talk about your project',
+    'txt-contact-desc': 'We are available to discuss your needs and propose tailored solutions.',
+    'txt-contact-info': 'Contact us by email',
+    'txt-contact-response': 'Response guaranteed within 24 business hours',
+    'txt-footer-desc': 'Digital solutions and automation for demanding businesses.',
+    'txt-footer-location': 'Provence-Alpes-Côte d\'Azur, France',
+    'txt-footer-nav': 'Navigation',
+    'footer-link-home': 'Home',
+    'footer-link-services': 'Services',
+    'footer-link-about': 'About',
+    'footer-link-contact': 'Contact',
+    'txt-footer-contact': 'Contact',
+    'txt-footer-response': 'Response within 24 business hours',
+    'txt-footer-copy': '© 2026 APL Consulting. All rights reserved.'
+  }
+};
+
+function changeLang(lang) {
+  console.log('🌍 Mudando para língua:', lang);
+  
+  const texts = translations[lang] || translations.pt;
+  
+  Object.keys(texts).forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.textContent = texts[id];
+    }
+  });
+  
+  // Update active button
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.getAttribute('data-lang') === lang) {
+      btn.classList.add('active');
+    }
+  });
+  
+  try {
+    localStorage.setItem('apl_lang', lang);
+  } catch (e) {}
+}
+
+// INIT
+(function() {
+  let lang = 'pt';
+  try {
+    const stored = localStorage.getItem('apl_lang');
+    if (stored && translations[stored]) {
+      lang = stored;
+    } else {
+      const browserLang = (navigator.language || 'pt').toLowerCase();
+      if (browserLang.startsWith('pt')) lang = 'pt';
+      else if (browserLang.startsWith('fr')) lang = 'fr';
+      else lang = 'en';
+    }
+  } catch (e) {}
+  
+  if (lang !== 'pt') {
+    changeLang(lang);
+  }
+  
+  // Scroll restoration
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  
+  window.addEventListener('load', function() {
+    console.log('✅ Página carregada - voltar ao topo');
+    window.scrollTo(0, 0);
+  });
+  
+  // Navbar scroll effect
+  window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('navbar');
+    if (window.pageYOffset > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+  
+  console.log('✅ Setup completo - pronto para usar!');
+})();
+</script>
+
 </body>
 </html>
